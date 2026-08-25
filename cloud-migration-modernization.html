@@ -182,17 +182,59 @@
     }
     .btn-accent:hover { background: #4AA3E8; }
 
+    /* Hero — same cinematic pattern as homepage: photo right, copy left */
     .svc-hero {
-      position: relative; min-height: min(90vh, 740px); display: flex; align-items: center;
-      overflow: hidden; background: #0B1220;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background-color: #000;
+      min-height: min(100vh, 860px);
+      min-height: min(100dvh, 860px);
     }
-    /* Attached photo as full-bleed background; left scrim keeps copy readable */
-    .svc-hero-bg {
-      position: absolute; inset: 0;
+    .svc-hero .hero-photo {
+      position: absolute;
+      inset: 0;
+      background-color: #000;
+      background-image:
+        linear-gradient(
+          90deg,
+          #000000 0%,
+          #000000 22%,
+          rgba(0, 0, 0, 0.82) 34%,
+          rgba(0, 0, 0, 0.35) 48%,
+          rgba(0, 0, 0, 0.08) 60%,
+          transparent 72%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.45) 0%,
+          transparent 22%,
+          transparent 78%,
+          rgba(0, 0, 0, 0.25) 100%
+        ),
+        url('svc-migration-hero-bg.jpg');
+      background-size: cover, cover, cover;
+      background-position: center, center, right center;
+      background-repeat: no-repeat;
+    }
+    .svc-hero .hero-glass {
+      position: absolute;
+      inset: 0;
       pointer-events: none;
       background:
-        linear-gradient(95deg, rgba(11,18,32,0.92) 0%, rgba(11,18,32,0.82) 34%, rgba(11,18,32,0.35) 58%, rgba(11,18,32,0.2) 100%),
-        url('svc-migration-hero-bg.jpg') center/cover no-repeat;
+        radial-gradient(ellipse 50% 70% at 78% 45%, rgba(98, 181, 247, 0.14) 0%, transparent 55%),
+        radial-gradient(ellipse 30% 40% at 90% 30%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
+    }
+    @media (max-width: 1023px) {
+      .svc-hero { min-height: auto; }
+      .svc-hero .hero-photo {
+        background-image:
+          linear-gradient(180deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.55) 35%, rgba(0,0,0,0.88) 100%),
+          url('svc-migration-hero-bg.jpg');
+        background-size: cover, cover;
+        background-position: center, center;
+      }
     }
     .intro-dial {
       width: 180px; height: 180px; margin: 0 auto; position: relative;
@@ -344,20 +386,24 @@
   </header>
 
   <main>
-    <!-- 01 Hero — left copy over attached photo background (no right illustration) -->
-    <section class="svc-hero pt-28 sm:pt-32" aria-labelledby="hero-heading">
-      <div class="svc-hero-bg" aria-hidden="true"></div>
-      <div class="relative z-10 mx-auto max-w-container w-full px-5 sm:px-6 lg:px-8 py-14 sm:py-20">
-        <div class="max-w-xl reveal">
-          <h1 id="hero-heading" class="font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold tracking-tight text-white leading-[1.12]">
+    <!-- 01 Hero — homepage-style cinematic: photo right · copy left -->
+    <section class="svc-hero pt-32 sm:pt-36" aria-labelledby="hero-heading">
+      <div class="hero-photo" role="img" aria-label="Cloud migration and modernization visual — infrastructure transforming into cloud"></div>
+      <div class="hero-glass" aria-hidden="true"></div>
+      <div class="relative z-10 mx-auto max-w-container w-full px-5 sm:px-6 lg:px-8 py-20 sm:py-24 lg:py-32">
+        <div class="max-w-xl lg:max-w-[34rem] reveal">
+          <h1 id="hero-heading" class="font-display text-[2.45rem] sm:text-5xl lg:text-[3.15rem] font-bold tracking-tight leading-[1.08] text-white">
             Cloud Migration &amp; Modernization:<br />
             Built for What’s Next
           </h1>
-          <p class="mt-6 text-base sm:text-lg text-white/70 leading-relaxed">
+          <p class="mt-5 text-base sm:text-lg text-white/70 leading-relaxed max-w-md">
             Move beyond legacy infrastructure. Modernize your applications, data, and operations with a secure, scalable cloud foundation designed around your business.
           </p>
-          <a href="#final-cta" class="btn-pill-lg mt-8">
+          <a href="#final-cta" class="btn-pill-lg mt-9 self-start inline-flex">
             Start Your Cloud Journey
+            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+            </svg>
           </a>
         </div>
       </div>
