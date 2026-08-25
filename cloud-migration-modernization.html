@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cloud Migration &amp; Modernization Services | JIT Global</title>
   <meta name="description" content="Modernize your IT environment with JIT Global's cloud migration and modernization services. Migrate, modernize, optimize, and manage workloads across AWS, Azure, and Google Cloud." />
-  <meta name="keywords" content="Cloud Migration & Modernization Services, Cloud migration services, Cloud modernization services, Cloud transformation services, Application modernization, AWS migration, Azure migration, Google Cloud migration" />
+  <meta name="keywords" content="Cloud Migration & Modernization Services, Cloud migration services, Cloud modernization services, Application modernization, AWS migration, Azure migration, Google Cloud migration, Cloud optimization services" />
   <link rel="canonical" href="cloud-migration-modernization.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -30,9 +30,6 @@
             mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
           },
           borderRadius: { btn: '6px', card: '16px' },
-          boxShadow: {
-            card: '0 1px 2px rgba(15,23,42,0.04), 0 12px 32px rgba(15,23,42,0.06)',
-          },
           maxWidth: { container: '1200px' },
         },
       },
@@ -40,236 +37,192 @@
   </script>
   <style>
     body { font-family: Inter, system-ui, sans-serif; color: #18181B; background: #fff; -webkit-font-smoothing: antialiased; }
-    h1, h2, h3, h4, .font-display { font-family: "Space Grotesk", system-ui, sans-serif; }
-    .eyebrow { font-family: "Roboto Mono", ui-monospace, monospace; letter-spacing: 0.14em; text-transform: uppercase; font-size: 11px; font-weight: 500; }
+    h1,h2,h3,h4,.font-display { font-family: "Space Grotesk", system-ui, sans-serif; }
+    .eyebrow { font-family: "Roboto Mono", ui-monospace, monospace; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; }
 
-    /* Nav */
+    /* Sticky glass nav — light default, dark when scrolled */
     #navbar {
       position: fixed; inset-inline: 0; top: 0; z-index: 50; pointer-events: none;
-      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+      transition: background .3s, border-color .3s, box-shadow .3s;
+      background: rgba(255,255,255,.88); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(228,228,231,.9);
     }
     #navbar.nav-scrolled {
-      background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(98,181,247,0.15); box-shadow: 0 8px 32px rgba(2,6,23,0.3);
-    }
-    #navbar:not(.nav-scrolled) {
-      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(228,228,231,0.8);
+      background: rgba(15,23,42,.92); border-bottom-color: rgba(98,181,247,.16);
+      box-shadow: 0 8px 32px rgba(2,6,23,.3);
     }
     #navbar .nav-shell {
       pointer-events: auto; max-width: 1200px; margin: 0 auto; height: 4.25rem;
       padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
-    #navbar .nav-brand img {
-      height: 2.75rem; width: auto; object-fit: contain; display: block;
-    }
+    #navbar .nav-brand img { height: 2.65rem; width: auto; display: block; object-fit: contain; }
     #navbar .nav-center { display: none; flex: 1; justify-content: center; }
-    #navbar .nav-links { display: inline-flex; align-items: center; gap: 0.15rem; }
+    #navbar .nav-links { display: inline-flex; align-items: center; gap: .1rem; }
     #navbar .nav-link {
-      padding: 0.5rem 0.85rem; font-size: 0.875rem; font-weight: 500; color: #52525B;
-      border-radius: 6px; text-decoration: none; background: transparent; border: 0; cursor: pointer;
-      display: inline-flex; align-items: center; gap: 0.3rem;
+      display: inline-flex; align-items: center; gap: .3rem; padding: .5rem .85rem;
+      font-size: .875rem; font-weight: 500; color: #52525B; border-radius: 6px;
+      text-decoration: none; background: transparent; border: 0; cursor: pointer;
     }
     #navbar .nav-link:hover, #navbar .nav-item.is-open > .nav-link { color: #0F172A; background: #F4F4F5; }
-    #navbar.nav-scrolled .nav-link { color: rgba(226,232,240,0.8); }
-    #navbar.nav-scrolled .nav-link:hover, #navbar.nav-scrolled .nav-item.is-open > .nav-link {
-      color: #fff; background: rgba(255,255,255,0.08);
-    }
-    #navbar .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    #navbar.nav-scrolled .nav-link { color: rgba(226,232,240,.82); }
+    #navbar.nav-scrolled .nav-link:hover, #navbar.nav-scrolled .nav-item.is-open > .nav-link { color: #fff; background: rgba(255,255,255,.08); }
+    #navbar .nav-actions { display: flex; align-items: center; gap: .5rem; }
     #navbar .nav-ghost {
       display: none; align-items: center; height: 2.4rem; padding: 0 1rem; border-radius: 6px;
-      border: 1px solid #E4E4E7; font-size: 0.8125rem; font-weight: 600; color: #18181B; text-decoration: none;
+      border: 1px solid #E4E4E7; font-size: .8125rem; font-weight: 600; color: #18181B; text-decoration: none;
     }
     #navbar .nav-ghost:hover { border-color: #62B5F7; color: #1E3A8A; }
-    #navbar.nav-scrolled .nav-ghost { border-color: rgba(255,255,255,0.2); color: #fff; }
+    #navbar.nav-scrolled .nav-ghost { border-color: rgba(255,255,255,.2); color: #fff; }
     #navbar .nav-cta {
       display: none; align-items: center; height: 2.4rem; padding: 0 1.1rem; border-radius: 6px;
-      background: #62B5F7; color: #0F172A; font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+      background: #62B5F7; color: #0F172A; font-size: .8125rem; font-weight: 600; text-decoration: none;
     }
     #navbar .nav-cta:hover { background: #4AA3E8; }
     #navbar .nav-mobile-toggle {
       display: inline-flex; width: 2.4rem; height: 2.4rem; align-items: center; justify-content: center;
       border-radius: 6px; border: 1px solid #E4E4E7; background: #fff; color: #18181B; cursor: pointer;
     }
-    #navbar.nav-scrolled .nav-mobile-toggle { border-color: rgba(255,255,255,0.2); background: transparent; color: #fff; }
+    #navbar.nav-scrolled .nav-mobile-toggle { border-color: rgba(255,255,255,.2); background: transparent; color: #fff; }
     @media (min-width: 768px) { #navbar .nav-ghost, #navbar .nav-cta { display: inline-flex; } }
     @media (min-width: 1024px) { #navbar .nav-center { display: flex; } #navbar .nav-mobile-toggle { display: none; } }
 
     #navbar .nav-item { position: relative; }
     .mega-panel {
-      position: absolute; left: 50%; top: calc(100% + 0.65rem); transform: translateX(-30%) translateY(8px);
-      width: min(40rem, calc(100vw - 2rem)); opacity: 0; pointer-events: none; transition: 0.2s; z-index: 80;
+      position: absolute; left: 50%; top: calc(100% + .65rem); transform: translateX(-28%) translateY(8px);
+      width: min(38rem, calc(100vw - 2rem)); opacity: 0; pointer-events: none; transition: .2s; z-index: 80;
     }
-    .nav-item.is-open .mega-panel, .nav-item:hover .mega-panel {
-      opacity: 1; pointer-events: auto; transform: translateX(-30%) translateY(0);
-    }
+    .nav-item.is-open .mega-panel, .nav-item:hover .mega-panel { opacity: 1; pointer-events: auto; transform: translateX(-28%) translateY(0); }
     .mega-inner {
-      background: #0B1220; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
-      box-shadow: 0 20px 50px rgba(2,6,23,0.45); padding: 1.25rem; color: #fff;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem;
+      background: #0B1220; border: 1px solid rgba(255,255,255,.1); border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(2,6,23,.45); padding: 1.25rem; color: #fff;
+      display: grid; grid-template-columns: 1fr 1fr; gap: .35rem 1.5rem;
     }
-    .mega-simple {
-      display: block; padding: 0.45rem 0; font-size: 0.875rem; font-weight: 500;
-      color: rgba(226,232,240,0.85); text-decoration: none;
-    }
+    .mega-label { font-family: "Roboto Mono", monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: rgba(148,163,184,.65); margin-bottom: .35rem; }
+    .mega-simple { display: block; padding: .4rem 0; font-size: .875rem; font-weight: 500; color: rgba(226,232,240,.85); text-decoration: none; }
     .mega-simple:hover, .mega-simple.is-current { color: #62B5F7; }
-    .mega-label {
-      font-family: "Roboto Mono", monospace; font-size: 10px; letter-spacing: 0.12em;
-      text-transform: uppercase; color: rgba(148,163,184,0.65); margin-bottom: 0.35rem;
-    }
 
     #mobile-menu {
       pointer-events: auto; background: #fff; border-top: 1px solid #E4E4E7;
-      max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s, opacity 0.25s;
+      max-height: 0; overflow: hidden; opacity: 0; transition: max-height .3s, opacity .25s;
     }
-    #navbar.nav-scrolled #mobile-menu { background: #0B1220; border-color: rgba(255,255,255,0.08); }
+    #navbar.nav-scrolled #mobile-menu { background: #0B1220; border-color: rgba(255,255,255,.08); }
     #mobile-menu.open { max-height: 70vh; opacity: 1; }
     #mobile-menu[hidden] { display: none !important; }
     @media (min-width: 1024px) { #mobile-menu { display: none !important; } }
     #mobile-menu a, #mobile-menu summary {
-      display: block; padding: 0.7rem 1.25rem; font-size: 0.9375rem; font-weight: 500;
-      color: #3F3F46; text-decoration: none;
+      display: block; padding: .7rem 1.25rem; font-size: .9375rem; font-weight: 500; color: #3F3F46; text-decoration: none;
     }
-    #navbar.nav-scrolled #mobile-menu a,
-    #navbar.nav-scrolled #mobile-menu summary { color: rgba(226,232,240,0.9); }
+    #navbar.nav-scrolled #mobile-menu a, #navbar.nav-scrolled #mobile-menu summary { color: rgba(226,232,240,.9); }
     #mobile-menu summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
     #mobile-menu summary::-webkit-details-marker { display: none; }
 
     .btn-primary {
-      display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 6px;
-      padding: 0.8rem 1.35rem; font-size: 0.9rem; font-weight: 600;
-      background: #62B5F7; color: #0F172A; text-decoration: none; transition: background 0.2s, transform 0.15s;
+      display: inline-flex; align-items: center; gap: .4rem; border-radius: 6px; padding: .8rem 1.35rem;
+      font-size: .9rem; font-weight: 600; background: #62B5F7; color: #0F172A; text-decoration: none; transition: background .2s;
     }
     .btn-primary:hover { background: #4AA3E8; }
-    .btn-primary:focus-visible, .btn-outline:focus-visible, .btn-dark:focus-visible, .nav-link:focus-visible, .tab-btn:focus-visible, .carousel-btn:focus-visible {
-      outline: 2px solid #62B5F7; outline-offset: 2px;
-    }
     .btn-outline {
-      display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 6px;
-      padding: 0.78rem 1.3rem; font-size: 0.9rem; font-weight: 600;
-      border: 1px solid #E4E4E7; color: #18181B; background: #fff; text-decoration: none; transition: 0.2s;
+      display: inline-flex; align-items: center; gap: .4rem; border-radius: 6px; padding: .78rem 1.3rem;
+      font-size: .9rem; font-weight: 600; border: 1px solid #E4E4E7; color: #18181B; background: #fff; text-decoration: none; transition: .2s;
     }
     .btn-outline:hover { border-color: #62B5F7; color: #1E3A8A; }
     .btn-dark {
-      display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 6px;
-      padding: 0.8rem 1.35rem; font-size: 0.9rem; font-weight: 600;
-      background: #0F172A; color: #fff; text-decoration: none; transition: background 0.2s;
+      display: inline-flex; align-items: center; gap: .4rem; border-radius: 6px; padding: .8rem 1.35rem;
+      font-size: .9rem; font-weight: 600; background: #0F172A; color: #fff; text-decoration: none; transition: background .2s;
     }
     .btn-dark:hover { background: #1E3A8A; }
-    .btn-ghost-light {
-      display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.9rem; font-weight: 600;
-      color: #62B5F7; text-decoration: none;
+    .btn-link { display: inline-flex; align-items: center; gap: .35rem; font-size: .9rem; font-weight: 600; color: #62B5F7; text-decoration: none; }
+    .btn-link:hover { color: #4AA3E8; }
+    .btn-primary:focus-visible, .btn-outline:focus-visible, .btn-dark:focus-visible, .nav-link:focus-visible, .tab-btn:focus-visible, .carousel-btn:focus-visible {
+      outline: 2px solid #62B5F7; outline-offset: 2px;
     }
-    .btn-ghost-light:hover { color: #4AA3E8; }
 
-    /* Hero */
     .svc-hero { padding-top: 6.5rem; background: #fff; }
     .hero-illu {
       border: 1px solid #E4E4E7; border-radius: 16px; overflow: hidden; background: #F4F4F5;
-      box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 16px 40px rgba(15,23,42,0.06);
+      box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 16px 40px rgba(15,23,42,.06);
     }
     .hero-illu img { width: 100%; height: auto; display: block; }
-    .hero-enter { opacity: 0; transform: translateY(16px); animation: heroIn 0.7s ease forwards; }
-    .hero-enter:nth-child(1) { animation-delay: 0.05s; }
-    .hero-enter:nth-child(2) { animation-delay: 0.15s; }
-    .hero-enter:nth-child(3) { animation-delay: 0.25s; }
-    .hero-enter:nth-child(4) { animation-delay: 0.35s; }
-    .hero-illu-wrap { opacity: 0; transform: scale(0.98); animation: heroIllu 0.8s ease 0.2s forwards; }
+    .hero-enter { opacity: 0; transform: translateY(14px); animation: heroIn .65s ease forwards; }
+    .hero-enter:nth-child(1){animation-delay:.05s} .hero-enter:nth-child(2){animation-delay:.12s}
+    .hero-enter:nth-child(3){animation-delay:.2s} .hero-enter:nth-child(4){animation-delay:.28s}
+    .hero-illu-wrap { opacity: 0; transform: scale(.985); animation: heroIllu .75s ease .18s forwards; }
     @keyframes heroIn { to { opacity: 1; transform: none; } }
     @keyframes heroIllu { to { opacity: 1; transform: none; } }
 
-    /* Cards */
-    .benefit-card, .cta-card {
+    .intro-dial { width: 180px; height: 180px; }
+    .intro-dial svg { width: 100%; height: 100%; }
+    .intro-dial .spin { transform-origin: 90px 90px; animation: dialSpin 22s linear infinite; }
+    @keyframes dialSpin { to { transform: rotate(360deg); } }
+
+    .benefit-card {
       border: 1px solid #E4E4E7; border-radius: 16px; background: #fff;
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+      transition: transform .25s, border-color .25s, box-shadow .25s;
     }
-    .benefit-card:hover, .cta-card:hover {
-      transform: translateY(-4px); border-color: rgba(98,181,247,0.45);
-      box-shadow: 0 12px 32px rgba(15,23,42,0.08);
-    }
+    .benefit-card:hover { transform: translateY(-4px); border-color: rgba(98,181,247,.45); box-shadow: 0 12px 32px rgba(15,23,42,.08); }
     .benefit-card:hover .b-icon { color: #62B5F7; }
-    .b-icon { color: #1E3A8A; transition: color 0.2s; }
+    .b-icon { color: #1E3A8A; transition: color .2s; }
 
-    /* Journey timeline */
-    .journey {
-      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative;
+    .banner-block {
+      position: relative; overflow: hidden; border-radius: 16px; border: 1px solid #E4E4E7;
+      background: #F4F4F5; padding: 2.5rem 2rem;
     }
-    .journey::before {
-      content: ''; position: absolute; top: 1.35rem; left: 10%; right: 10%; height: 1px; background: #E4E4E7; z-index: 0;
-    }
-    .journey-step { position: relative; z-index: 1; padding: 0 0.75rem; text-align: left; }
-    .journey-num {
-      width: 2.7rem; height: 2.7rem; border-radius: 9999px; border: 1px solid #E4E4E7;
-      background: #fff; display: flex; align-items: center; justify-content: center;
-      font-family: "Roboto Mono", monospace; font-size: 0.75rem; font-weight: 600; color: #1E3A8A;
-      margin-bottom: 1rem; transition: border-color 0.2s, background 0.2s, color 0.2s;
-    }
-    .journey-step:hover .journey-num, .journey-step.is-on .journey-num {
-      border-color: #62B5F7; background: #E8F4FD; color: #0F172A;
-    }
-    @media (max-width: 900px) {
-      .journey { grid-template-columns: 1fr; gap: 1.25rem; }
-      .journey::before {
-        top: 0; bottom: 0; left: 1.3rem; right: auto; width: 1px; height: auto;
-      }
-      .journey-step { display: grid; grid-template-columns: 2.7rem 1fr; gap: 1rem; padding: 0; }
-      .journey-num { margin-bottom: 0; }
+    .banner-art {
+      position: absolute; inset: 0 0 0 auto; width: min(45%, 440px); opacity: .5; pointer-events: none;
+      background: url('svc-migration-banner-art.jpg') right center / cover no-repeat;
+      mask-image: linear-gradient(90deg, transparent, #000 35%);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 35%);
     }
 
-    /* Tabs */
     .tabs-bar {
-      display: flex; gap: 0.25rem; overflow-x: auto; border-bottom: 1px solid #E4E4E7;
+      display: flex; gap: .15rem; overflow-x: auto; border-bottom: 1px solid #E4E4E7;
       scrollbar-width: none; -ms-overflow-style: none;
     }
     .tabs-bar::-webkit-scrollbar { display: none; }
     .tab-btn {
-      flex-shrink: 0; padding: 0.85rem 1.1rem; font-size: 0.875rem; font-weight: 500;
-      color: #71717A; background: transparent; border: 0; border-bottom: 2px solid transparent;
-      cursor: pointer; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s;
+      flex-shrink: 0; padding: .85rem 1.05rem; font-size: .875rem; font-weight: 500; color: #71717A;
+      background: transparent; border: 0; border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer;
+      transition: color .2s, border-color .2s;
     }
     .tab-btn:hover { color: #18181B; }
     .tab-btn.is-active { color: #0F172A; border-bottom-color: #62B5F7; font-weight: 600; }
     .tab-panel { display: none; }
     .tab-panel.is-active { display: grid; }
 
-    /* Case carousel dark */
-    .cases-track { display: flex; gap: 1.25rem; transition: transform 0.4s ease; }
+    .cases-track { display: flex; gap: 1.25rem; transition: transform .4s ease; }
     .case-slide {
-      flex: 0 0 calc(50% - 0.625rem); min-width: 0;
-      border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; background: rgba(255,255,255,0.04);
-      padding: 1.75rem; transition: border-color 0.25s, transform 0.25s;
+      flex: 0 0 calc(50% - .625rem); min-width: 0; border: 1px solid rgba(255,255,255,.1);
+      border-radius: 16px; background: rgba(255,255,255,.04); overflow: hidden;
+      transition: border-color .25s, transform .25s;
     }
-    .case-slide:hover { border-color: rgba(98,181,247,0.35); transform: translateY(-3px); }
+    .case-slide:hover { border-color: rgba(98,181,247,.35); transform: translateY(-3px); }
     @media (max-width: 768px) { .case-slide { flex: 0 0 100%; } }
     .carousel-btn {
-      width: 2.5rem; height: 2.5rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.15);
+      width: 2.5rem; height: 2.5rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,.15);
       background: transparent; color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
     }
     .carousel-btn:hover { border-color: #62B5F7; color: #62B5F7; }
-    .dot { width: 0.45rem; height: 0.45rem; border-radius: 9999px; background: rgba(255,255,255,0.25); border: 0; padding: 0; cursor: pointer; }
+    .dot { width: .45rem; height: .45rem; border-radius: 9999px; background: rgba(255,255,255,.25); border: 0; padding: 0; cursor: pointer; }
     .dot.is-on { width: 1.2rem; border-radius: 9999px; background: #62B5F7; }
 
-    /* FAQ */
     .faq-dot-bg {
-      background-image: radial-gradient(rgba(30,58,138,0.12) 1px, transparent 1px);
+      background-image: radial-gradient(rgba(30,58,138,.12) 1px, transparent 1px);
       background-size: 16px 16px;
     }
     .faq-item > summary { list-style: none; }
     .faq-item > summary::-webkit-details-marker { display: none; }
-    .faq-item .faq-chev { transition: transform 0.25s; }
+    .faq-item .faq-chev { transition: transform .25s; }
     .faq-item[open] .faq-chev { transform: rotate(180deg); color: #62B5F7; }
-    .faq-item[open] { background: #E8F4FD; box-shadow: inset 0 0 0 1px rgba(98,181,247,0.35); }
+    .faq-item[open] { background: #E8F4FD; box-shadow: inset 0 0 0 1px rgba(98,181,247,.35); }
 
-    .banner-art {
-      position: absolute; right: 0; top: 0; bottom: 0; width: min(42%, 420px);
-      opacity: 0.55; pointer-events: none;
-      background: url('svc-migration-banner-art.jpg') right center / cover no-repeat;
-      mask-image: linear-gradient(90deg, transparent, #000 40%);
-      -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%);
+    .cta-card {
+      border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(255,255,255,.04);
+      transition: border-color .25s, transform .25s;
     }
+    .cta-card:hover { border-color: rgba(98,181,247,.35); transform: translateY(-3px); }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-enter, .hero-illu-wrap { animation: none !important; opacity: 1; transform: none; }
+      .hero-enter, .hero-illu-wrap, .intro-dial .spin { animation: none !important; opacity: 1; transform: none; }
     }
   </style>
 </head>
@@ -340,7 +293,7 @@
   </header>
 
   <main>
-    <!-- 05 HERO -->
+    <!-- HERO -->
     <section class="svc-hero" aria-labelledby="hero-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
         <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -359,24 +312,24 @@
           </div>
           <div class="hero-illu-wrap">
             <div class="hero-illu">
-              <img src="svc-migration-hero-art.jpg" alt="Technical line illustration of hands supporting a cloud infrastructure globe" width="800" height="600" />
+              <img src="svc-migration-hero-art.jpg" alt="Monochrome technical illustration of hands supporting a cloud infrastructure globe" width="800" height="600" />
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 06 INTRODUCTION -->
+    <!-- INTRODUCTION (wireframe: statement | body | dial) -->
     <section class="py-24 sm:py-28 bg-white" aria-labelledby="intro-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
-          <div>
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+          <div class="lg:col-span-4">
             <p class="eyebrow text-cloud-deep mb-4">Cloud Transformation</p>
-            <h2 id="intro-heading" class="font-display text-2xl sm:text-3xl lg:text-[2.15rem] font-bold tracking-tight text-cloud-dark leading-snug">
+            <h2 id="intro-heading" class="font-display text-2xl sm:text-[1.85rem] font-bold tracking-tight text-cloud-dark leading-snug">
               Seamless, expert-led cloud transformation customized to your business requirements.
             </h2>
           </div>
-          <div class="lg:pt-8">
+          <div class="lg:col-span-5">
             <p class="text-gray-400 text-base leading-relaxed">
               Cloud migration is more than moving workloads from one environment to another. It is an opportunity to simplify infrastructure, improve performance, strengthen security, and create a technology foundation that can evolve with your business.
             </p>
@@ -384,11 +337,24 @@
               From initial discovery and assessment to migration, modernization, optimization, and ongoing management, JIT Global brings together cloud expertise, proven practices, and a business-first approach to make transformation practical and measurable.
             </p>
           </div>
+          <div class="lg:col-span-3 flex justify-center" aria-hidden="true">
+            <div class="intro-dial">
+              <svg viewBox="0 0 180 180" fill="none">
+                <circle cx="90" cy="90" r="78" stroke="#E8F4FD" stroke-width="10"/>
+                <circle class="spin" cx="90" cy="90" r="78" stroke="#62B5F7" stroke-width="10" stroke-dasharray="80 410" stroke-linecap="round"/>
+                <circle cx="90" cy="90" r="56" stroke="rgba(30,58,138,.25)" stroke-width="1.5"/>
+                <circle cx="90" cy="90" r="36" stroke="rgba(98,181,247,.35)" stroke-width="1.5"/>
+                <circle cx="90" cy="90" r="24" fill="#E8F4FD"/>
+                <circle cx="90" cy="90" r="9" fill="#1E3A8A"/>
+                <path class="spin" d="M90 90 L90 28" stroke="#62B5F7" stroke-width="3" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- 07 BENEFITS -->
+    <!-- BENEFITS -->
     <section id="benefits" class="py-20 sm:py-24 bg-gray-50" aria-labelledby="benefits-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <div class="max-w-3xl mx-auto text-center">
@@ -427,10 +393,10 @@
       </div>
     </section>
 
-    <!-- 08 CORE TRANSFORMATION BANNER -->
-    <section class="py-16 sm:py-20" aria-labelledby="banner-heading">
+    <!-- CORE TRANSFORMATION BANNER -->
+    <section class="py-16 sm:py-20 bg-white" aria-labelledby="banner-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
-        <div class="relative overflow-hidden rounded-[16px] border border-gray-100 bg-gray-50 px-7 sm:px-10 py-10 sm:py-12">
+        <div class="banner-block">
           <div class="banner-art hidden sm:block" aria-hidden="true"></div>
           <div class="relative z-10 max-w-2xl">
             <p class="eyebrow text-cloud-deep mb-3">From first migration to long-term modernization</p>
@@ -440,50 +406,13 @@
             <p class="mt-4 text-gray-400 text-base leading-relaxed">
               JIT Global helps you continuously optimize your cloud environment for performance, security, scalability, cost efficiency, and long-term business value.
             </p>
-            <a href="#final-cta" class="btn-ghost-light mt-6">Talk to a Cloud Expert →</a>
+            <a href="#final-cta" class="btn-link mt-6">Talk to a Cloud Expert →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 09 TRANSFORMATION JOURNEY -->
-    <section id="journey" class="py-20 sm:py-24 bg-white" aria-labelledby="journey-heading">
-      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
-        <p class="eyebrow text-cloud-deep mb-4">The Transformation Journey</p>
-        <h2 id="journey-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-cloud-dark max-w-xl">
-          One cloud journey. Five stages of transformation.
-        </h2>
-        <div class="journey mt-14">
-          <div class="journey-step is-on">
-            <div class="journey-num">01</div>
-            <h3 class="font-display text-base font-semibold text-cloud-dark">Assess</h3>
-            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Understand what you have, what should move, what should change, and where the risks are.</p>
-          </div>
-          <div class="journey-step">
-            <div class="journey-num">02</div>
-            <h3 class="font-display text-base font-semibold text-cloud-dark">Migrate</h3>
-            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Move workloads and infrastructure with a structured approach designed to minimize disruption.</p>
-          </div>
-          <div class="journey-step">
-            <div class="journey-num">03</div>
-            <h3 class="font-display text-base font-semibold text-cloud-dark">Modernize</h3>
-            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Transform legacy applications, architectures, and data platforms where modernization creates real value.</p>
-          </div>
-          <div class="journey-step">
-            <div class="journey-num">04</div>
-            <h3 class="font-display text-base font-semibold text-cloud-dark">Optimize</h3>
-            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Continuously improve cloud performance, cost efficiency, security, resilience, and operations.</p>
-          </div>
-          <div class="journey-step">
-            <div class="journey-num">05</div>
-            <h3 class="font-display text-base font-semibold text-cloud-dark">Transform</h3>
-            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Use the modern cloud foundation to support automation, analytics, AI, digital products, and future growth.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 10–11 USE CASES (tabs) -->
+    <!-- USE CASES -->
     <section id="use-cases" class="py-20 sm:py-24 bg-gray-50" aria-labelledby="usecases-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <p class="eyebrow text-cloud-deep mb-4">Use Cases</p>
@@ -509,7 +438,7 @@
               <svg class="w-full max-w-sm text-cloud-deep/70" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="1.25">
                 <rect x="20" y="50" width="70" height="90" rx="4"/><rect x="32" y="62" width="46" height="8" rx="1"/><rect x="32" y="78" width="46" height="8" rx="1"/><rect x="32" y="94" width="46" height="8" rx="1"/>
                 <path d="M100 95 H140" stroke="#62B5F7"/><path d="M132 88 l8 7 -8 7" stroke="#62B5F7"/>
-                <ellipse cx="220" cy="70" rx="70" ry="28"/><ellipse cx="220" cy="95" rx="55" ry="22"/><circle cx="190" cy="70" r="3" fill="#62B5F7" stroke="none"/><circle cx="230" cy="85" r="3" fill="#62B5F7" stroke="none"/><circle cx="250" cy="65" r="2.5" fill="#62B5F7" stroke="none"/>
+                <ellipse cx="220" cy="70" rx="70" ry="28"/><ellipse cx="220" cy="95" rx="55" ry="22"/><circle cx="190" cy="70" r="3" fill="#62B5F7" stroke="none"/><circle cx="230" cy="85" r="3" fill="#62B5F7" stroke="none"/>
               </svg>
             </div>
           </div>
@@ -535,7 +464,7 @@
               <svg class="w-full max-w-sm text-cloud-deep/70" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="1.25">
                 <rect x="30" y="40" width="260" height="110" rx="8"/>
                 <path d="M50 120 L90 90 L130 105 L180 70 L230 95 L270 60" stroke="#62B5F7"/>
-                <circle cx="90" cy="90" r="3" fill="#62B5F7" stroke="none"/><circle cx="180" cy="70" r="3" fill="#62B5F7" stroke="none"/><circle cx="270" cy="60" r="3" fill="#62B5F7" stroke="none"/>
+                <circle cx="90" cy="90" r="3" fill="#62B5F7" stroke="none"/><circle cx="180" cy="70" r="3" fill="#62B5F7" stroke="none"/>
               </svg>
             </div>
           </div>
@@ -556,12 +485,12 @@
       </div>
     </section>
 
-    <!-- 12 PROVEN RESULTS (dark) -->
+    <!-- PROVEN RESULTS (dark) -->
     <section id="results" class="py-20 sm:py-24 bg-cloud-dark text-white" aria-labelledby="results-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
           <div class="max-w-2xl">
-            <p class="eyebrow text-accent mb-4">Proven Results</p>
+            <p class="eyebrow text-accent mb-4">Case study</p>
             <h2 id="results-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Count on us for proven results.</h2>
             <p class="mt-4 text-white/55 text-base leading-relaxed">Real transformation is measured by what improves after the technology changes.</p>
           </div>
@@ -573,16 +502,24 @@
         <div class="overflow-hidden">
           <div id="cases-track" class="cases-track">
             <article class="case-slide">
-              <p class="eyebrow text-[10px] text-white/40 mb-3">Case Study 01</p>
-              <h3 class="font-display text-lg font-semibold">Cloud Infrastructure Modernization</h3>
-              <p class="mt-3 text-sm text-white/55 leading-relaxed">Modernizing infrastructure to improve scalability, resilience, operational efficiency, and long-term cloud readiness.</p>
-              <a href="index.html#case-studies" class="btn-ghost-light mt-6">Read Case Study →</a>
+              <div class="h-44 overflow-hidden bg-black/30">
+                <img src="process-assess.jpg" alt="" class="h-full w-full object-cover opacity-90" loading="lazy" />
+              </div>
+              <div class="p-6 sm:p-7">
+                <h3 class="font-display text-lg font-semibold">Cloud Infrastructure Modernization</h3>
+                <p class="mt-3 text-sm text-white/55 leading-relaxed">Modernizing infrastructure to improve scalability, resilience, operational efficiency, and long-term cloud readiness.</p>
+                <a href="index.html#case-studies" class="btn-link mt-6">Read Case Study →</a>
+              </div>
             </article>
             <article class="case-slide">
-              <p class="eyebrow text-[10px] text-white/40 mb-3">Case Study 02</p>
-              <h3 class="font-display text-lg font-semibold">Accelerating Cloud Performance &amp; Scale</h3>
-              <p class="mt-3 text-sm text-white/55 leading-relaxed">Building a more scalable cloud environment designed to support business growth while improving performance and optimizing infrastructure costs.</p>
-              <a href="index.html#case-studies" class="btn-ghost-light mt-6">Read Case Study →</a>
+              <div class="h-44 overflow-hidden bg-black/30">
+                <img src="process-optimize.jpg" alt="" class="h-full w-full object-cover opacity-90" loading="lazy" />
+              </div>
+              <div class="p-6 sm:p-7">
+                <h3 class="font-display text-lg font-semibold">Accelerating Cloud Performance &amp; Scale</h3>
+                <p class="mt-3 text-sm text-white/55 leading-relaxed">Building a more scalable cloud environment designed to support business growth while improving performance and optimizing infrastructure costs.</p>
+                <a href="index.html#case-studies" class="btn-link mt-6">Read Case Study →</a>
+              </div>
             </article>
           </div>
         </div>
@@ -590,7 +527,7 @@
       </div>
     </section>
 
-    <!-- 13 FAQ -->
+    <!-- FAQ -->
     <section id="faq" class="py-20 sm:py-24 bg-white" aria-labelledby="faq-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
@@ -648,14 +585,14 @@
       </div>
     </section>
 
-    <!-- 14 FINAL CTA -->
+    <!-- FINAL CTA -->
     <section id="final-cta" class="relative py-20 sm:py-24 overflow-hidden" style="background:#0F172A;" aria-labelledby="next-heading">
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background:radial-gradient(ellipse 50% 60% at 85% 40%, rgba(98,181,247,0.18), transparent 60%);"></div>
       <div class="relative z-10 mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <h2 id="next-heading" class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Ready to move beyond migration?</h2>
         <p class="mt-4 text-white/55 text-base max-w-xl">Let’s build a cloud environment that is ready for what comes next.</p>
         <div class="mt-10 grid lg:grid-cols-2 gap-5">
-          <div class="cta-card bg-white/[0.04] border-white/10 p-8">
+          <div class="cta-card p-8">
             <div class="text-accent mb-5" aria-hidden="true">
               <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
             </div>
@@ -663,7 +600,7 @@
             <p class="mt-3 text-sm text-white/55 leading-relaxed">Tell us about your current infrastructure, migration goals, or modernization challenges. Our cloud specialists can help identify the right path forward.</p>
             <a href="mailto:sales@jitglobal.net?subject=Cloud%20Migration%20Inquiry" class="btn-primary mt-7">Contact Us →</a>
           </div>
-          <div class="cta-card bg-white/[0.04] border-white/10 p-8">
+          <div class="cta-card p-8">
             <div class="text-accent mb-5" aria-hidden="true">
               <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
             </div>
@@ -681,7 +618,6 @@
     </section>
   </main>
 
-  <!-- 15 FOOTER -->
   <footer class="bg-black text-gray-400" role="contentinfo">
     <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
@@ -745,7 +681,6 @@
   <script>
     (function () {
       document.getElementById('year').textContent = new Date().getFullYear();
-
       const nav = document.getElementById('navbar');
       const onScroll = () => nav.classList.toggle('nav-scrolled', window.scrollY > 20);
       window.addEventListener('scroll', onScroll, { passive: true });
@@ -777,17 +712,14 @@
       toggle.addEventListener('click', () => setMenu(menu.hidden));
       menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 
-      // Tabs
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      const panels = document.querySelectorAll('.tab-panel');
-      tabBtns.forEach((b) => {
+      document.querySelectorAll('.tab-btn').forEach((b) => {
         b.addEventListener('click', () => {
           const id = b.getAttribute('data-tab');
-          tabBtns.forEach((x) => {
+          document.querySelectorAll('.tab-btn').forEach((x) => {
             x.classList.toggle('is-active', x === b);
             x.setAttribute('aria-selected', x === b ? 'true' : 'false');
           });
-          panels.forEach((p) => {
+          document.querySelectorAll('.tab-panel').forEach((p) => {
             const on = p.id === 'tab-' + id;
             p.classList.toggle('is-active', on);
             p.hidden = !on;
@@ -795,15 +727,6 @@
         });
       });
 
-      // Journey hover highlight
-      document.querySelectorAll('.journey-step').forEach((step) => {
-        step.addEventListener('mouseenter', () => {
-          document.querySelectorAll('.journey-step').forEach((s) => s.classList.remove('is-on'));
-          step.classList.add('is-on');
-        });
-      });
-
-      // Case carousel
       const track = document.getElementById('cases-track');
       const slides = Array.from(track.querySelectorAll('.case-slide'));
       const dotsWrap = document.getElementById('case-dots');
