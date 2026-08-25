@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cloud Migration &amp; Modernization Services | JIT Global</title>
+  <meta name="description" content="Modernize your IT environment with JIT Global's cloud migration and modernization services. Migrate, modernize, optimize, and manage workloads across AWS, Azure, and Google Cloud." />
+  <meta name="keywords" content="Cloud Migration & Modernization Services, Cloud migration services, Cloud modernization services, Cloud transformation services, Application modernization, AWS migration, Azure migration, Google Cloud migration" />
+  <link rel="canonical" href="cloud-migration-modernization.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: { DEFAULT: '#62B5F7', hover: '#4AA3E8', soft: '#E8F4FD' },
+            cloud: { deep: '#1E3A8A', dark: '#0F172A', navy: '#0B1220' },
+            gray: {
+              50: '#F4F4F5', 100: '#E4E4E7', 200: '#D4D4D8', 300: '#A1A1AA',
+              400: '#71717A', 500: '#52525B', 600: '#3F3F46', 700: '#27272A',
+              800: '#18181B', 900: '#09090B',
+            },
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
+          },
+          borderRadius: { btn: '6px', card: '16px' },
+          boxShadow: {
+            card: '0 1px 2px rgba(15,23,42,0.04), 0 12px 32px rgba(15,23,42,0.06)',
+          },
+          maxWidth: { container: '1200px' },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; color: #18181B; background: #fff; -webkit-font-smoothing: antialiased; }
+    h1, h2, h3, h4, .font-display { font-family: "Space Grotesk", system-ui, sans-serif; }
+    .eyebrow { font-family: "Roboto Mono", ui-monospace, monospace; letter-spacing: 0.14em; text-transform: uppercase; font-size: 11px; font-weight: 500; }
+
+    /* Nav */
+    #navbar {
+      position: fixed; inset-inline: 0; top: 0; z-index: 50; pointer-events: none;
+      transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+    }
+    #navbar.nav-scrolled {
+      background: rgba(15, 23, 42, 0.9); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(98,181,247,0.15); box-shadow: 0 8px 32px rgba(2,6,23,0.3);
+    }
+    #navbar:not(.nav-scrolled) {
+      background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(228,228,231,0.8);
+    }
+    #navbar .nav-shell {
+      pointer-events: auto; max-width: 1200px; margin: 0 auto; height: 4.25rem;
+      padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    #navbar .nav-brand img {
+      height: 2.75rem; width: auto; object-fit: contain; display: block;
+    }
+    #navbar .nav-center { display: none; flex: 1; justify-content: center; }
+    #navbar .nav-links { display: inline-flex; align-items: center; gap: 0.15rem; }
+    #navbar .nav-link {
+      padding: 0.5rem 0.85rem; font-size: 0.875rem; font-weight: 500; color: #52525B;
+      border-radius: 6px; text-decoration: none; background: transparent; border: 0; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 0.3rem;
+    }
+    #navbar .nav-link:hover, #navbar .nav-item.is-open > .nav-link { color: #0F172A; background: #F4F4F5; }
+    #navbar.nav-scrolled .nav-link { color: rgba(226,232,240,0.8); }
+    #navbar.nav-scrolled .nav-link:hover, #navbar.nav-scrolled .nav-item.is-open > .nav-link {
+      color: #fff; background: rgba(255,255,255,0.08);
+    }
+    #navbar .nav-actions { display: flex; align-items: center; gap: 0.5rem; }
+    #navbar .nav-ghost {
+      display: none; align-items: center; height: 2.4rem; padding: 0 1rem; border-radius: 6px;
+      border: 1px solid #E4E4E7; font-size: 0.8125rem; font-weight: 600; color: #18181B; text-decoration: none;
+    }
+    #navbar .nav-ghost:hover { border-color: #62B5F7; color: #1E3A8A; }
+    #navbar.nav-scrolled .nav-ghost { border-color: rgba(255,255,255,0.2); color: #fff; }
+    #navbar .nav-cta {
+      display: none; align-items: center; height: 2.4rem; padding: 0 1.1rem; border-radius: 6px;
+      background: #62B5F7; color: #0F172A; font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+    }
+    #navbar .nav-cta:hover { background: #4AA3E8; }
+    #navbar .nav-mobile-toggle {
+      display: inline-flex; width: 2.4rem; height: 2.4rem; align-items: center; justify-content: center;
+      border-radius: 6px; border: 1px solid #E4E4E7; background: #fff; color: #18181B; cursor: pointer;
+    }
+    #navbar.nav-scrolled .nav-mobile-toggle { border-color: rgba(255,255,255,0.2); background: transparent; color: #fff; }
+    @media (min-width: 768px) { #navbar .nav-ghost, #navbar .nav-cta { display: inline-flex; } }
+    @media (min-width: 1024px) { #navbar .nav-center { display: flex; } #navbar .nav-mobile-toggle { display: none; } }
+
+    #navbar .nav-item { position: relative; }
+    .mega-panel {
+      position: absolute; left: 50%; top: calc(100% + 0.65rem); transform: translateX(-30%) translateY(8px);
+      width: min(40rem, calc(100vw - 2rem)); opacity: 0; pointer-events: none; transition: 0.2s; z-index: 80;
+    }
+    .nav-item.is-open .mega-panel, .nav-item:hover .mega-panel {
+      opacity: 1; pointer-events: auto; transform: translateX(-30%) translateY(0);
+    }
+    .mega-inner {
+      background: #0B1220; border: 1px solid rgba(255,255,255,0.1); border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(2,6,23,0.45); padding: 1.25rem; color: #fff;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem 1.5rem;
+    }
+    .mega-simple {
+      display: block; padding: 0.45rem 0; font-size: 0.875rem; font-weight: 500;
+      color: rgba(226,232,240,0.85); text-decoration: none;
+    }
+    .mega-simple:hover, .mega-simple.is-current { color: #62B5F7; }
+    .mega-label {
+      font-family: "Roboto Mono", monospace; font-size: 10px; letter-spacing: 0.12em;
+      text-transform: uppercase; color: rgba(148,163,184,0.65); margin-bottom: 0.35rem;
+    }
+
+    #mobile-menu {
+      pointer-events: auto; background: #fff; border-top: 1px solid #E4E4E7;
+      max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s, opacity 0.25s;
+    }
+    #navbar.nav-scrolled #mobile-menu { background: #0B1220; border-color: rgba(255,255,255,0.08); }
+    #mobile-menu.open { max-height: 70vh; opacity: 1; }
+    #mobile-menu[hidden] { display: none !important; }
+    @media (min-width: 1024px) { #mobile-menu { display: none !important; } }
+    #mobile-menu a, #mobile-menu summary {
+      display: block; padding: 0.7rem 1.25rem; font-size: 0.9375rem; font-weight: 500;
+      color: #3F3F46; text-decoration: none;
+    }
+    #navbar.nav-scrolled #mobile-menu a,
+    #navbar.nav-scrolled #mobile-menu summary { color: rgba(226,232,240,0.9); }
+    #mobile-menu summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    #mobile-menu summary::-webkit-details-marker { display: none; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 6px;
+      padding: 0.8rem 1.35rem; font-size: 0.9rem; font-weight: 600;
+      background: #62B5F7; color: #0F172A; text-decoration: none; transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: #4AA3E8; }
+    .btn-primary:focus-visible, .btn-outline:focus-visible, .btn-dark:focus-visible, .nav-link:focus-visible, .tab-btn:focus-visible, .carousel-btn:focus-visible {
+      outline: 2px solid #62B5F7; outline-offset: 2px;
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 6px;
+      padding: 0.78rem 1.3rem; font-size: 0.9rem; font-weight: 600;
+      border: 1px solid #E4E4E7; color: #18181B; background: #fff; text-decoration: none; transition: 0.2s;
+    }
+    .btn-outline:hover { border-color: #62B5F7; color: #1E3A8A; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 0.4rem; border-radius: 6px;
+      padding: 0.8rem 1.35rem; font-size: 0.9rem; font-weight: 600;
+      background: #0F172A; color: #fff; text-decoration: none; transition: background 0.2s;
+    }
+    .btn-dark:hover { background: #1E3A8A; }
+    .btn-ghost-light {
+      display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.9rem; font-weight: 600;
+      color: #62B5F7; text-decoration: none;
+    }
+    .btn-ghost-light:hover { color: #4AA3E8; }
+
+    /* Hero */
+    .svc-hero { padding-top: 6.5rem; background: #fff; }
+    .hero-illu {
+      border: 1px solid #E4E4E7; border-radius: 16px; overflow: hidden; background: #F4F4F5;
+      box-shadow: 0 1px 2px rgba(15,23,42,0.04), 0 16px 40px rgba(15,23,42,0.06);
+    }
+    .hero-illu img { width: 100%; height: auto; display: block; }
+    .hero-enter { opacity: 0; transform: translateY(16px); animation: heroIn 0.7s ease forwards; }
+    .hero-enter:nth-child(1) { animation-delay: 0.05s; }
+    .hero-enter:nth-child(2) { animation-delay: 0.15s; }
+    .hero-enter:nth-child(3) { animation-delay: 0.25s; }
+    .hero-enter:nth-child(4) { animation-delay: 0.35s; }
+    .hero-illu-wrap { opacity: 0; transform: scale(0.98); animation: heroIllu 0.8s ease 0.2s forwards; }
+    @keyframes heroIn { to { opacity: 1; transform: none; } }
+    @keyframes heroIllu { to { opacity: 1; transform: none; } }
+
+    /* Cards */
+    .benefit-card, .cta-card {
+      border: 1px solid #E4E4E7; border-radius: 16px; background: #fff;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .benefit-card:hover, .cta-card:hover {
+      transform: translateY(-4px); border-color: rgba(98,181,247,0.45);
+      box-shadow: 0 12px 32px rgba(15,23,42,0.08);
+    }
+    .benefit-card:hover .b-icon { color: #62B5F7; }
+    .b-icon { color: #1E3A8A; transition: color 0.2s; }
+
+    /* Journey timeline */
+    .journey {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; position: relative;
+    }
+    .journey::before {
+      content: ''; position: absolute; top: 1.35rem; left: 10%; right: 10%; height: 1px; background: #E4E4E7; z-index: 0;
+    }
+    .journey-step { position: relative; z-index: 1; padding: 0 0.75rem; text-align: left; }
+    .journey-num {
+      width: 2.7rem; height: 2.7rem; border-radius: 9999px; border: 1px solid #E4E4E7;
+      background: #fff; display: flex; align-items: center; justify-content: center;
+      font-family: "Roboto Mono", monospace; font-size: 0.75rem; font-weight: 600; color: #1E3A8A;
+      margin-bottom: 1rem; transition: border-color 0.2s, background 0.2s, color 0.2s;
+    }
+    .journey-step:hover .journey-num, .journey-step.is-on .journey-num {
+      border-color: #62B5F7; background: #E8F4FD; color: #0F172A;
+    }
+    @media (max-width: 900px) {
+      .journey { grid-template-columns: 1fr; gap: 1.25rem; }
+      .journey::before {
+        top: 0; bottom: 0; left: 1.3rem; right: auto; width: 1px; height: auto;
+      }
+      .journey-step { display: grid; grid-template-columns: 2.7rem 1fr; gap: 1rem; padding: 0; }
+      .journey-num { margin-bottom: 0; }
+    }
+
+    /* Tabs */
+    .tabs-bar {
+      display: flex; gap: 0.25rem; overflow-x: auto; border-bottom: 1px solid #E4E4E7;
+      scrollbar-width: none; -ms-overflow-style: none;
+    }
+    .tabs-bar::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      flex-shrink: 0; padding: 0.85rem 1.1rem; font-size: 0.875rem; font-weight: 500;
+      color: #71717A; background: transparent; border: 0; border-bottom: 2px solid transparent;
+      cursor: pointer; margin-bottom: -1px; transition: color 0.2s, border-color 0.2s;
+    }
+    .tab-btn:hover { color: #18181B; }
+    .tab-btn.is-active { color: #0F172A; border-bottom-color: #62B5F7; font-weight: 600; }
+    .tab-panel { display: none; }
+    .tab-panel.is-active { display: grid; }
+
+    /* Case carousel dark */
+    .cases-track { display: flex; gap: 1.25rem; transition: transform 0.4s ease; }
+    .case-slide {
+      flex: 0 0 calc(50% - 0.625rem); min-width: 0;
+      border: 1px solid rgba(255,255,255,0.1); border-radius: 16px; background: rgba(255,255,255,0.04);
+      padding: 1.75rem; transition: border-color 0.25s, transform 0.25s;
+    }
+    .case-slide:hover { border-color: rgba(98,181,247,0.35); transform: translateY(-3px); }
+    @media (max-width: 768px) { .case-slide { flex: 0 0 100%; } }
+    .carousel-btn {
+      width: 2.5rem; height: 2.5rem; border-radius: 9999px; border: 1px solid rgba(255,255,255,0.15);
+      background: transparent; color: #fff; display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .carousel-btn:hover { border-color: #62B5F7; color: #62B5F7; }
+    .dot { width: 0.45rem; height: 0.45rem; border-radius: 9999px; background: rgba(255,255,255,0.25); border: 0; padding: 0; cursor: pointer; }
+    .dot.is-on { width: 1.2rem; border-radius: 9999px; background: #62B5F7; }
+
+    /* FAQ */
+    .faq-dot-bg {
+      background-image: radial-gradient(rgba(30,58,138,0.12) 1px, transparent 1px);
+      background-size: 16px 16px;
+    }
+    .faq-item > summary { list-style: none; }
+    .faq-item > summary::-webkit-details-marker { display: none; }
+    .faq-item .faq-chev { transition: transform 0.25s; }
+    .faq-item[open] .faq-chev { transform: rotate(180deg); color: #62B5F7; }
+    .faq-item[open] { background: #E8F4FD; box-shadow: inset 0 0 0 1px rgba(98,181,247,0.35); }
+
+    .banner-art {
+      position: absolute; right: 0; top: 0; bottom: 0; width: min(42%, 420px);
+      opacity: 0.55; pointer-events: none;
+      background: url('svc-migration-banner-art.jpg') right center / cover no-repeat;
+      mask-image: linear-gradient(90deg, transparent, #000 40%);
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 40%);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-enter, .hero-illu-wrap { animation: none !important; opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header id="navbar">
+    <div class="nav-shell">
+      <a href="index.html" class="nav-brand" aria-label="JIT Global home">
+        <img src="logo.png" alt="JIT Global" width="120" height="44" />
+      </a>
+      <div class="nav-center">
+        <nav class="nav-links" aria-label="Primary">
+          <div class="nav-item" id="nav-services">
+            <button type="button" class="nav-link" id="services-mega-btn" aria-expanded="false" aria-controls="services-mega">
+              Services
+              <svg class="h-3.5 w-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="services-mega" class="mega-panel" role="region" aria-labelledby="services-mega-btn">
+              <div class="mega-inner">
+                <div>
+                  <p class="mega-label">Cloud &amp; infrastructure</p>
+                  <a href="cloud-migration-modernization.html" class="mega-simple is-current">Cloud Migration &amp; Modernization</a>
+                  <a href="index.html#svc-infra" class="mega-simple">Cloud Infrastructure Management</a>
+                  <a href="index.html#svc-security" class="mega-simple">Cybersecurity &amp; Compliance</a>
+                </div>
+                <div>
+                  <p class="mega-label">Data, apps &amp; delivery</p>
+                  <a href="index.html#svc-data" class="mega-simple">Data Engineering &amp; Analytics</a>
+                  <a href="index.html#svc-apps" class="mega-simple">Application Development &amp; Integration</a>
+                  <a href="index.html#svc-devops" class="mega-simple">DevOps &amp; Automation</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="index.html#industries" class="nav-link">Industries</a>
+          <a href="index.html#case-studies" class="nav-link">Success Stories</a>
+          <a href="index.html#about" class="nav-link">Company</a>
+        </nav>
+      </div>
+      <div class="nav-actions">
+        <a href="index.html#case-studies" class="nav-ghost">View Success Stories</a>
+        <a href="#final-cta" class="nav-cta">Request a Demo</a>
+        <button type="button" id="menu-toggle" class="nav-mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+          <svg id="icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <details>
+          <summary>Services <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <a href="cloud-migration-modernization.html" class="!pl-8 text-sm">Cloud Migration &amp; Modernization</a>
+          <a href="index.html#svc-infra" class="!pl-8 text-sm">Infrastructure Management</a>
+          <a href="index.html#svc-security" class="!pl-8 text-sm">Cybersecurity &amp; Compliance</a>
+          <a href="index.html#svc-data" class="!pl-8 text-sm">Data Engineering &amp; Analytics</a>
+          <a href="index.html#svc-apps" class="!pl-8 text-sm">Application Development</a>
+          <a href="index.html#svc-devops" class="!pl-8 text-sm">DevOps &amp; Automation</a>
+        </details>
+        <a href="index.html#industries">Industries</a>
+        <a href="index.html#case-studies">Success Stories</a>
+        <a href="index.html#about">Company</a>
+        <div class="px-5 py-4 flex flex-col gap-2 border-t border-gray-100">
+          <a href="index.html#case-studies" class="btn-outline justify-center">View Success Stories</a>
+          <a href="#final-cta" class="btn-primary justify-center">Request a Demo</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- 05 HERO -->
+    <section class="svc-hero" aria-labelledby="hero-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+          <div>
+            <p class="hero-enter eyebrow text-cloud-deep mb-4">Cloud Migration &amp; Modernization</p>
+            <h1 id="hero-heading" class="hero-enter font-display text-3xl sm:text-4xl lg:text-[2.75rem] font-bold tracking-tight text-cloud-dark leading-[1.12]">
+              From Migration to Modernization.<br class="hidden sm:block" /> From Modernization to Momentum.
+            </h1>
+            <p class="hero-enter mt-6 text-base sm:text-lg text-gray-400 leading-relaxed max-w-xl">
+              Move beyond simply migrating workloads. JIT Global helps you assess, migrate, modernize, optimize, and continuously evolve your cloud environment — creating a more secure, scalable, resilient, and efficient foundation for your business.
+            </p>
+            <div class="hero-enter mt-9 flex flex-col sm:flex-row gap-3">
+              <a href="#final-cta" class="btn-primary">Start Your Cloud Journey</a>
+              <a href="#final-cta" class="btn-outline">Talk to a Cloud Expert</a>
+            </div>
+          </div>
+          <div class="hero-illu-wrap">
+            <div class="hero-illu">
+              <img src="svc-migration-hero-art.jpg" alt="Technical line illustration of hands supporting a cloud infrastructure globe" width="800" height="600" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 06 INTRODUCTION -->
+    <section class="py-24 sm:py-28 bg-white" aria-labelledby="intro-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20">
+          <div>
+            <p class="eyebrow text-cloud-deep mb-4">Cloud Transformation</p>
+            <h2 id="intro-heading" class="font-display text-2xl sm:text-3xl lg:text-[2.15rem] font-bold tracking-tight text-cloud-dark leading-snug">
+              Seamless, expert-led cloud transformation customized to your business requirements.
+            </h2>
+          </div>
+          <div class="lg:pt-8">
+            <p class="text-gray-400 text-base leading-relaxed">
+              Cloud migration is more than moving workloads from one environment to another. It is an opportunity to simplify infrastructure, improve performance, strengthen security, and create a technology foundation that can evolve with your business.
+            </p>
+            <p class="mt-5 text-gray-400 text-base leading-relaxed">
+              From initial discovery and assessment to migration, modernization, optimization, and ongoing management, JIT Global brings together cloud expertise, proven practices, and a business-first approach to make transformation practical and measurable.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 07 BENEFITS -->
+    <section id="benefits" class="py-20 sm:py-24 bg-gray-50" aria-labelledby="benefits-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="max-w-3xl mx-auto text-center">
+          <p class="eyebrow text-cloud-deep mb-4">Benefits</p>
+          <h2 id="benefits-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-cloud-dark leading-snug">
+            Deploy and scale in the cloud with confidence, knowing you have the right foundation to reduce complexity and accelerate growth.
+          </h2>
+          <p class="mt-5 text-gray-400 text-base leading-relaxed">
+            We help you turn cloud transformation into a measurable business advantage — without unnecessary disruption.
+          </p>
+          <a href="#use-cases" class="btn-dark mt-8">Explore Our Cloud Capabilities →</a>
+        </div>
+        <div class="mt-14 grid sm:grid-cols-3 gap-5">
+          <article class="benefit-card p-7">
+            <div class="b-icon mb-5" aria-hidden="true">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-cloud-dark">Modernize what matters</h3>
+            <p class="mt-2.5 text-sm text-gray-400 leading-relaxed">Identify outdated infrastructure, applications, and architectures and transform them into modern, scalable cloud environments built for changing business demands.</p>
+          </article>
+          <article class="benefit-card p-7">
+            <div class="b-icon mb-5" aria-hidden="true">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-cloud-dark">Secure your cloud environment</h3>
+            <p class="mt-2.5 text-sm text-gray-400 leading-relaxed">Build security into every layer of your cloud journey with stronger controls, governance, monitoring, backup, and resilience.</p>
+          </article>
+          <article class="benefit-card p-7">
+            <div class="b-icon mb-5" aria-hidden="true">
+              <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 10.5h.008v.008H8.25V10.5zm3.75 0h.008v.008H12V10.5zm3.75 0h.008v.008H15.75V10.5z"/></svg>
+            </div>
+            <h3 class="font-display text-lg font-semibold text-cloud-dark">Accelerate business resilience</h3>
+            <p class="mt-2.5 text-sm text-gray-400 leading-relaxed">Design cloud environments that support high availability, faster recovery, flexible scaling, and reliable operations when your business needs them most.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 08 CORE TRANSFORMATION BANNER -->
+    <section class="py-16 sm:py-20" aria-labelledby="banner-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-[16px] border border-gray-100 bg-gray-50 px-7 sm:px-10 py-10 sm:py-12">
+          <div class="banner-art hidden sm:block" aria-hidden="true"></div>
+          <div class="relative z-10 max-w-2xl">
+            <p class="eyebrow text-cloud-deep mb-3">From first migration to long-term modernization</p>
+            <h2 id="banner-heading" class="font-display text-2xl sm:text-[1.85rem] font-bold tracking-tight text-cloud-dark leading-snug">
+              Your cloud journey shouldn’t end when the migration is complete.
+            </h2>
+            <p class="mt-4 text-gray-400 text-base leading-relaxed">
+              JIT Global helps you continuously optimize your cloud environment for performance, security, scalability, cost efficiency, and long-term business value.
+            </p>
+            <a href="#final-cta" class="btn-ghost-light mt-6">Talk to a Cloud Expert →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 09 TRANSFORMATION JOURNEY -->
+    <section id="journey" class="py-20 sm:py-24 bg-white" aria-labelledby="journey-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <p class="eyebrow text-cloud-deep mb-4">The Transformation Journey</p>
+        <h2 id="journey-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-cloud-dark max-w-xl">
+          One cloud journey. Five stages of transformation.
+        </h2>
+        <div class="journey mt-14">
+          <div class="journey-step is-on">
+            <div class="journey-num">01</div>
+            <h3 class="font-display text-base font-semibold text-cloud-dark">Assess</h3>
+            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Understand what you have, what should move, what should change, and where the risks are.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">02</div>
+            <h3 class="font-display text-base font-semibold text-cloud-dark">Migrate</h3>
+            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Move workloads and infrastructure with a structured approach designed to minimize disruption.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">03</div>
+            <h3 class="font-display text-base font-semibold text-cloud-dark">Modernize</h3>
+            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Transform legacy applications, architectures, and data platforms where modernization creates real value.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">04</div>
+            <h3 class="font-display text-base font-semibold text-cloud-dark">Optimize</h3>
+            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Continuously improve cloud performance, cost efficiency, security, resilience, and operations.</p>
+          </div>
+          <div class="journey-step">
+            <div class="journey-num">05</div>
+            <h3 class="font-display text-base font-semibold text-cloud-dark">Transform</h3>
+            <p class="mt-2 text-sm text-gray-400 leading-relaxed">Use the modern cloud foundation to support automation, analytics, AI, digital products, and future growth.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 10–11 USE CASES (tabs) -->
+    <section id="use-cases" class="py-20 sm:py-24 bg-gray-50" aria-labelledby="usecases-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <p class="eyebrow text-cloud-deep mb-4">Use Cases</p>
+        <h2 id="usecases-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-cloud-dark">Here’s what we deliver</h2>
+        <p class="mt-4 text-gray-400 text-base leading-relaxed max-w-2xl">
+          Cloud transformation designed around your environment, priorities, and business objectives.
+        </p>
+
+        <div class="tabs-bar mt-10" role="tablist" aria-label="Use cases">
+          <button type="button" class="tab-btn is-active" role="tab" aria-selected="true" aria-controls="tab-1" id="tab-btn-1" data-tab="1">Cloud Migration &amp; Infrastructure</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-2" id="tab-btn-2" data-tab="2">Application Modernization</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-3" id="tab-btn-3" data-tab="3">Cloud Optimization &amp; Managed Services</button>
+          <button type="button" class="tab-btn" role="tab" aria-selected="false" aria-controls="tab-4" id="tab-btn-4" data-tab="4">Data &amp; Cloud Modernization</button>
+        </div>
+
+        <div class="mt-10">
+          <div id="tab-1" class="tab-panel is-active grid lg:grid-cols-2 gap-10 items-center" role="tabpanel" aria-labelledby="tab-btn-1">
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Move critical infrastructure with confidence.</h3>
+              <p class="mt-4 text-gray-400 text-base leading-relaxed">Move workloads, servers, databases, and enterprise infrastructure to the cloud with a structured migration strategy designed to minimize disruption.</p>
+            </div>
+            <div class="rounded-[16px] border border-gray-100 bg-white p-8 min-h-[220px] flex items-center justify-center" aria-hidden="true">
+              <svg class="w-full max-w-sm text-cloud-deep/70" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="1.25">
+                <rect x="20" y="50" width="70" height="90" rx="4"/><rect x="32" y="62" width="46" height="8" rx="1"/><rect x="32" y="78" width="46" height="8" rx="1"/><rect x="32" y="94" width="46" height="8" rx="1"/>
+                <path d="M100 95 H140" stroke="#62B5F7"/><path d="M132 88 l8 7 -8 7" stroke="#62B5F7"/>
+                <ellipse cx="220" cy="70" rx="70" ry="28"/><ellipse cx="220" cy="95" rx="55" ry="22"/><circle cx="190" cy="70" r="3" fill="#62B5F7" stroke="none"/><circle cx="230" cy="85" r="3" fill="#62B5F7" stroke="none"/><circle cx="250" cy="65" r="2.5" fill="#62B5F7" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          <div id="tab-2" class="tab-panel grid lg:grid-cols-2 gap-10 items-center" role="tabpanel" aria-labelledby="tab-btn-2" hidden>
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Transform legacy applications for what’s next.</h3>
+              <p class="mt-4 text-gray-400 text-base leading-relaxed">Transform legacy applications and architectures into scalable, cloud-ready environments using modernization approaches aligned with your technical and business priorities.</p>
+            </div>
+            <div class="rounded-[16px] border border-gray-100 bg-white p-8 min-h-[220px] flex items-center justify-center" aria-hidden="true">
+              <svg class="w-full max-w-sm text-cloud-deep/70" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="1.25">
+                <rect x="40" y="40" width="90" height="100" rx="6"/><path d="M55 60h60M55 80h45M55 100h55"/>
+                <path d="M150 90 H185" stroke="#62B5F7"/><path d="M177 83 l8 7 -8 7" stroke="#62B5F7"/>
+                <rect x="200" y="35" width="80" height="50" rx="6"/><rect x="210" y="100" width="80" height="50" rx="6"/><path d="M240 85v15" stroke="#62B5F7"/>
+              </svg>
+            </div>
+          </div>
+          <div id="tab-3" class="tab-panel grid lg:grid-cols-2 gap-10 items-center" role="tabpanel" aria-labelledby="tab-btn-3" hidden>
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Make your cloud environment work harder.</h3>
+              <p class="mt-4 text-gray-400 text-base leading-relaxed">Improve performance, reliability, security, and cloud economics through continuous monitoring, optimization, automation, and managed operations.</p>
+            </div>
+            <div class="rounded-[16px] border border-gray-100 bg-white p-8 min-h-[220px] flex items-center justify-center" aria-hidden="true">
+              <svg class="w-full max-w-sm text-cloud-deep/70" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="1.25">
+                <rect x="30" y="40" width="260" height="110" rx="8"/>
+                <path d="M50 120 L90 90 L130 105 L180 70 L230 95 L270 60" stroke="#62B5F7"/>
+                <circle cx="90" cy="90" r="3" fill="#62B5F7" stroke="none"/><circle cx="180" cy="70" r="3" fill="#62B5F7" stroke="none"/><circle cx="270" cy="60" r="3" fill="#62B5F7" stroke="none"/>
+              </svg>
+            </div>
+          </div>
+          <div id="tab-4" class="tab-panel grid lg:grid-cols-2 gap-10 items-center" role="tabpanel" aria-labelledby="tab-btn-4" hidden>
+            <div>
+              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Build a foundation for data, analytics, and AI.</h3>
+              <p class="mt-4 text-gray-400 text-base leading-relaxed">Modernize data platforms and workloads to create scalable foundations for analytics, intelligence, reporting, and future AI initiatives.</p>
+            </div>
+            <div class="rounded-[16px] border border-gray-100 bg-white p-8 min-h-[220px] flex items-center justify-center" aria-hidden="true">
+              <svg class="w-full max-w-sm text-cloud-deep/70" viewBox="0 0 320 180" fill="none" stroke="currentColor" stroke-width="1.25">
+                <ellipse cx="80" cy="50" rx="40" ry="14"/><path d="M40 50v40c0 8 18 14 40 14s40-6 40-14V50"/><ellipse cx="80" cy="90" rx="40" ry="14"/>
+                <path d="M130 70 H165" stroke="#62B5F7"/><path d="M157 63 l8 7 -8 7" stroke="#62B5F7"/>
+                <rect x="180" y="45" width="28" height="70" rx="2"/><rect x="218" y="65" width="28" height="50" rx="2"/><rect x="256" y="35" width="28" height="80" rx="2" stroke="#62B5F7"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 12 PROVEN RESULTS (dark) -->
+    <section id="results" class="py-20 sm:py-24 bg-cloud-dark text-white" aria-labelledby="results-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 mb-10">
+          <div class="max-w-2xl">
+            <p class="eyebrow text-accent mb-4">Proven Results</p>
+            <h2 id="results-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight">Count on us for proven results.</h2>
+            <p class="mt-4 text-white/55 text-base leading-relaxed">Real transformation is measured by what improves after the technology changes.</p>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button type="button" id="case-prev" class="carousel-btn" aria-label="Previous case study"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg></button>
+            <button type="button" id="case-next" class="carousel-btn" aria-label="Next case study"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></button>
+          </div>
+        </div>
+        <div class="overflow-hidden">
+          <div id="cases-track" class="cases-track">
+            <article class="case-slide">
+              <p class="eyebrow text-[10px] text-white/40 mb-3">Case Study 01</p>
+              <h3 class="font-display text-lg font-semibold">Cloud Infrastructure Modernization</h3>
+              <p class="mt-3 text-sm text-white/55 leading-relaxed">Modernizing infrastructure to improve scalability, resilience, operational efficiency, and long-term cloud readiness.</p>
+              <a href="index.html#case-studies" class="btn-ghost-light mt-6">Read Case Study →</a>
+            </article>
+            <article class="case-slide">
+              <p class="eyebrow text-[10px] text-white/40 mb-3">Case Study 02</p>
+              <h3 class="font-display text-lg font-semibold">Accelerating Cloud Performance &amp; Scale</h3>
+              <p class="mt-3 text-sm text-white/55 leading-relaxed">Building a more scalable cloud environment designed to support business growth while improving performance and optimizing infrastructure costs.</p>
+              <a href="index.html#case-studies" class="btn-ghost-light mt-6">Read Case Study →</a>
+            </article>
+          </div>
+        </div>
+        <div class="mt-7 flex justify-center gap-2" id="case-dots" role="tablist" aria-label="Case studies"></div>
+      </div>
+    </section>
+
+    <!-- 13 FAQ -->
+    <section id="faq" class="py-20 sm:py-24 bg-white" aria-labelledby="faq-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-12 gap-10 lg:gap-14">
+          <div class="lg:col-span-4 faq-dot-bg rounded-[16px] p-6 sm:p-8 self-start">
+            <p class="eyebrow text-cloud-deep mb-4">FAQ</p>
+            <h2 id="faq-heading" class="font-display text-2xl sm:text-3xl font-bold tracking-tight text-cloud-dark">
+              Frequently asked <span class="text-accent">questions</span>
+            </h2>
+          </div>
+          <div class="lg:col-span-8 flex flex-col gap-2">
+            <details class="faq-item rounded-2xl bg-gray-50 px-6 transition-all" open>
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer">
+                <span class="pr-4 text-base font-medium text-cloud-dark">How does JIT Global approach cloud migration?</span>
+                <span class="faq-chev shrink-0 text-gray-400"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </summary>
+              <div class="pb-5 text-sm text-gray-400 leading-relaxed">We begin by understanding your existing infrastructure, applications, dependencies, security requirements, and business objectives. We then create a practical migration roadmap covering assessment, planning, migration, validation, and post-migration optimization.</div>
+            </details>
+            <details class="faq-item rounded-2xl bg-gray-50 px-6 transition-all">
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer">
+                <span class="pr-4 text-base font-medium text-cloud-dark">What types of workloads can you migrate to the cloud?</span>
+                <span class="faq-chev shrink-0 text-gray-400"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </summary>
+              <div class="pb-5 text-sm text-gray-400 leading-relaxed">We support a wide range of workloads, including servers, applications, databases, enterprise systems, storage, and data environments. The migration approach is selected based on workload complexity, business criticality, dependencies, and modernization goals.</div>
+            </details>
+            <details class="faq-item rounded-2xl bg-gray-50 px-6 transition-all">
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer">
+                <span class="pr-4 text-base font-medium text-cloud-dark">Can you modernize applications instead of simply migrating them?</span>
+                <span class="faq-chev shrink-0 text-gray-400"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </summary>
+              <div class="pb-5 text-sm text-gray-400 leading-relaxed">Yes. Not every workload should be moved to the cloud exactly as it exists today. Where appropriate, we help organizations modernize applications and architectures to improve scalability, performance, resilience, maintainability, and cloud efficiency.</div>
+            </details>
+            <details class="faq-item rounded-2xl bg-gray-50 px-6 transition-all">
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer">
+                <span class="pr-4 text-base font-medium text-cloud-dark">Which cloud platforms do you support?</span>
+                <span class="faq-chev shrink-0 text-gray-400"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </summary>
+              <div class="pb-5 text-sm text-gray-400 leading-relaxed">Our cloud capabilities span major platforms including AWS, Microsoft Azure, and Google Cloud, allowing us to align the technology choice with your business and technical requirements.</div>
+            </details>
+            <details class="faq-item rounded-2xl bg-gray-50 px-6 transition-all">
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer">
+                <span class="pr-4 text-base font-medium text-cloud-dark">How do you minimize disruption during migration?</span>
+                <span class="faq-chev shrink-0 text-gray-400"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </summary>
+              <div class="pb-5 text-sm text-gray-400 leading-relaxed">We use structured discovery, dependency mapping, migration planning, testing, validation, phased execution, and rollback planning to reduce operational risk and minimize business disruption.</div>
+            </details>
+            <details class="faq-item rounded-2xl bg-gray-50 px-6 transition-all">
+              <summary class="flex items-center justify-between gap-4 py-5 cursor-pointer">
+                <span class="pr-4 text-base font-medium text-cloud-dark">Can JIT Global manage our cloud environment after migration?</span>
+                <span class="faq-chev shrink-0 text-gray-400"><svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></span>
+              </summary>
+              <div class="pb-5 text-sm text-gray-400 leading-relaxed">Yes. Cloud transformation can extend beyond migration into ongoing infrastructure management, monitoring, optimization, security, backup, performance management, and operational support.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 14 FINAL CTA -->
+    <section id="final-cta" class="relative py-20 sm:py-24 overflow-hidden" style="background:#0F172A;" aria-labelledby="next-heading">
+      <div class="absolute inset-0 pointer-events-none" aria-hidden="true" style="background:radial-gradient(ellipse 50% 60% at 85% 40%, rgba(98,181,247,0.18), transparent 60%);"></div>
+      <div class="relative z-10 mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <h2 id="next-heading" class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Ready to move beyond migration?</h2>
+        <p class="mt-4 text-white/55 text-base max-w-xl">Let’s build a cloud environment that is ready for what comes next.</p>
+        <div class="mt-10 grid lg:grid-cols-2 gap-5">
+          <div class="cta-card bg-white/[0.04] border-white/10 p-8">
+            <div class="text-accent mb-5" aria-hidden="true">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-white">Talk to us</h3>
+            <p class="mt-3 text-sm text-white/55 leading-relaxed">Tell us about your current infrastructure, migration goals, or modernization challenges. Our cloud specialists can help identify the right path forward.</p>
+            <a href="mailto:sales@jitglobal.net?subject=Cloud%20Migration%20Inquiry" class="btn-primary mt-7">Contact Us →</a>
+          </div>
+          <div class="cta-card bg-white/[0.04] border-white/10 p-8">
+            <div class="text-accent mb-5" aria-hidden="true">
+              <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+            </div>
+            <h3 class="font-display text-xl font-semibold text-white">Exclusively for you</h3>
+            <p class="mt-3 text-sm text-white/55 leading-relaxed">Stay updated with insights on cloud migration, modernization, infrastructure, security, optimization, and emerging technology.</p>
+            <form id="subscribe-form" class="mt-7 flex flex-col sm:flex-row gap-3" action="#" method="post">
+              <label for="email" class="sr-only">Email Address</label>
+              <input id="email" name="email" type="email" required placeholder="Email Address"
+                class="flex-1 rounded-[6px] border border-white/15 bg-white/5 px-4 py-3 text-sm text-white placeholder:text-white/35 focus:border-accent outline-none" />
+              <button type="submit" class="btn-primary shrink-0 justify-center">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- 15 FOOTER -->
+  <footer class="bg-black text-gray-400" role="contentinfo">
+    <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-14 sm:py-16">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <a href="index.html" class="inline-flex items-center gap-2.5">
+            <img src="logo.png" alt="JIT Global" class="h-9 w-9 object-contain rounded-[6px] ring-1 ring-white/10 bg-white/5" width="36" height="36" />
+            <span class="font-display text-lg font-semibold text-white">JIT Global</span>
+          </a>
+          <p class="mt-4 text-sm leading-relaxed max-w-xs text-gray-500">Secure cloud transformation for enterprises that can’t afford to stand still.</p>
+          <div class="mt-5 space-y-1.5 text-sm">
+            <a href="mailto:sales@jitglobal.net" class="block hover:text-accent transition-colors">sales@jitglobal.net</a>
+            <a href="tel:+917810099942" class="block hover:text-accent transition-colors">+91 78100 99942</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Services</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="cloud-migration-modernization.html" class="text-accent">Cloud Migration &amp; Modernization</a></li>
+            <li><a href="index.html#svc-infra" class="hover:text-accent transition-colors">Infrastructure Management</a></li>
+            <li><a href="index.html#svc-security" class="hover:text-accent transition-colors">Cybersecurity &amp; Compliance</a></li>
+            <li><a href="index.html#svc-data" class="hover:text-accent transition-colors">Data Engineering &amp; Analytics</a></li>
+            <li><a href="index.html#svc-apps" class="hover:text-accent transition-colors">Application Development</a></li>
+            <li><a href="index.html#svc-devops" class="hover:text-accent transition-colors">DevOps &amp; Automation</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Industries</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="index.html#industries" class="hover:text-accent transition-colors">Banking</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent transition-colors">Healthcare</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent transition-colors">Manufacturing</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent transition-colors">Retail</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent transition-colors">Logistics</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent transition-colors">Technology</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Resources</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="index.html#about" class="hover:text-accent transition-colors">About Us</a></li>
+            <li><a href="index.html#case-studies" class="hover:text-accent transition-colors">Case Studies</a></li>
+            <li><a href="index.html#" class="hover:text-accent transition-colors">Blog</a></li>
+            <li><a href="index.html#" class="hover:text-accent transition-colors">Careers</a></li>
+            <li><a href="#final-cta" class="hover:text-accent transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Contact</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="mailto:sales@jitglobal.net" class="hover:text-accent transition-colors">sales@jitglobal.net</a></li>
+            <li><a href="tel:+917810099942" class="hover:text-accent transition-colors">+91 78100 99942</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-white/10 text-xs text-gray-600">
+        <p>© <span id="year"></span> JIT Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const nav = document.getElementById('navbar');
+      const onScroll = () => nav.classList.toggle('nav-scrolled', window.scrollY > 20);
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      const item = document.getElementById('nav-services');
+      const btn = document.getElementById('services-mega-btn');
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = item.classList.toggle('is-open');
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      document.addEventListener('click', () => {
+        item.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+      const setMenu = (open) => {
+        menu.hidden = !open;
+        menu.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      };
+      toggle.addEventListener('click', () => setMenu(menu.hidden));
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+      // Tabs
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const panels = document.querySelectorAll('.tab-panel');
+      tabBtns.forEach((b) => {
+        b.addEventListener('click', () => {
+          const id = b.getAttribute('data-tab');
+          tabBtns.forEach((x) => {
+            x.classList.toggle('is-active', x === b);
+            x.setAttribute('aria-selected', x === b ? 'true' : 'false');
+          });
+          panels.forEach((p) => {
+            const on = p.id === 'tab-' + id;
+            p.classList.toggle('is-active', on);
+            p.hidden = !on;
+          });
+        });
+      });
+
+      // Journey hover highlight
+      document.querySelectorAll('.journey-step').forEach((step) => {
+        step.addEventListener('mouseenter', () => {
+          document.querySelectorAll('.journey-step').forEach((s) => s.classList.remove('is-on'));
+          step.classList.add('is-on');
+        });
+      });
+
+      // Case carousel
+      const track = document.getElementById('cases-track');
+      const slides = Array.from(track.querySelectorAll('.case-slide'));
+      const dotsWrap = document.getElementById('case-dots');
+      let page = 0;
+      const perView = () => (window.innerWidth < 768 ? 1 : 2);
+      const maxPage = () => Math.max(0, slides.length - perView());
+      const paint = () => {
+        page = Math.min(page, maxPage());
+        const gap = 20;
+        const w = slides[0] ? slides[0].getBoundingClientRect().width + gap : 0;
+        track.style.transform = 'translateX(' + (-page * w) + 'px)';
+        dotsWrap.innerHTML = '';
+        for (let i = 0; i <= maxPage(); i++) {
+          const d = document.createElement('button');
+          d.type = 'button';
+          d.className = 'dot' + (i === page ? ' is-on' : '');
+          d.setAttribute('aria-label', 'Go to page ' + (i + 1));
+          d.addEventListener('click', () => { page = i; paint(); });
+          dotsWrap.appendChild(d);
+        }
+      };
+      document.getElementById('case-prev').addEventListener('click', () => { page = Math.max(0, page - 1); paint(); });
+      document.getElementById('case-next').addEventListener('click', () => { page = Math.min(maxPage(), page + 1); paint(); });
+      window.addEventListener('resize', paint);
+      paint();
+
+      document.getElementById('subscribe-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        e.target.reset();
+      });
+    })();
+  </script>
+</body>
+</html>
