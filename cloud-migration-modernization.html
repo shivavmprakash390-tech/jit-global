@@ -183,19 +183,37 @@
     .btn-accent:hover { background: #4AA3E8; }
 
     .svc-hero {
-      position: relative; min-height: min(88vh, 720px); display: flex; align-items: center;
+      position: relative; min-height: min(90vh, 740px); display: flex; align-items: center;
       overflow: hidden; background: #0B1220;
     }
     .svc-hero-bg {
       position: absolute; inset: 0;
+      pointer-events: none;
       background:
-        linear-gradient(100deg, rgba(11,18,32,0.94) 0%, rgba(11,18,32,0.78) 38%, rgba(11,18,32,0.45) 68%, rgba(11,18,32,0.55) 100%),
-        linear-gradient(to top, rgba(11,18,32,0.7) 0%, transparent 32%),
-        linear-gradient(to top left, #0B1220 0%, rgba(11,18,32,0.95) 14%, transparent 32%),
-        url('svc-migration-hero-bg.jpg') center/cover no-repeat;
-      background-size: auto, auto, 360px 140px, cover;
-      background-position: center, bottom, bottom right, center;
-      background-repeat: no-repeat;
+        radial-gradient(ellipse 50% 60% at 78% 50%, rgba(98,181,247,0.16) 0%, transparent 65%),
+        radial-gradient(ellipse 35% 45% at 12% 75%, rgba(30,58,138,0.3) 0%, transparent 55%),
+        #0B1220;
+    }
+    /* Wireframe-style glowing framed art */
+    .hero-frame {
+      position: relative;
+      border-radius: 1.35rem;
+      padding: 2px;
+      background: linear-gradient(145deg, rgba(98,181,247,0.75), rgba(30,58,138,0.2) 45%, rgba(98,181,247,0.45));
+      box-shadow:
+        0 0 0 1px rgba(98,181,247,0.2),
+        0 0 36px rgba(98,181,247,0.4),
+        0 0 90px rgba(98,181,247,0.22),
+        0 28px 60px rgba(2,6,23,0.55);
+    }
+    .hero-frame-inner {
+      border-radius: calc(1.35rem - 1px);
+      overflow: hidden;
+      background: #0F172A;
+      aspect-ratio: 4 / 3;
+    }
+    .hero-frame-inner img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
     }
     .intro-dial {
       width: 180px; height: 180px; margin: 0 auto; position: relative;
@@ -347,22 +365,30 @@
   </header>
 
   <main>
-    <!-- 01 Hero — full-bleed migration background, left copy only -->
-    <section class="svc-hero pt-32 sm:pt-36" aria-labelledby="hero-heading">
+    <!-- 01 Hero — wireframe: left copy + glowing framed art -->
+    <section class="svc-hero pt-28 sm:pt-32" aria-labelledby="hero-heading">
       <div class="svc-hero-bg" aria-hidden="true"></div>
-      <div class="relative z-10 mx-auto max-w-container w-full px-5 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div class="max-w-xl lg:max-w-2xl reveal">
-          <h1 id="hero-heading" class="font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold tracking-tight text-white leading-[1.12]">
-            Cloud Migration &amp; Modernization:<br />
-            Built for What’s Next
-          </h1>
-          <p class="mt-6 text-base sm:text-lg text-white/70 leading-relaxed">
-            Move beyond legacy infrastructure. Modernize your applications, data, and operations with a secure, scalable cloud foundation designed around your business.
-          </p>
-          <a href="#final-cta" class="btn-pill-lg mt-8">
-            Start Your Cloud Journey
-            <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.25"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
-          </a>
+      <div class="relative z-10 mx-auto max-w-container w-full px-5 sm:px-6 lg:px-8 py-14 sm:py-20">
+        <div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div class="reveal max-w-xl">
+            <h1 id="hero-heading" class="font-display text-3xl sm:text-4xl lg:text-[2.85rem] font-bold tracking-tight text-white leading-[1.12]">
+              Cloud Migration &amp; Modernization:<br />
+              Built for What’s Next
+            </h1>
+            <p class="mt-6 text-base sm:text-lg text-white/70 leading-relaxed">
+              Move beyond legacy infrastructure. Modernize your applications, data, and operations with a secure, scalable cloud foundation designed around your business.
+            </p>
+            <a href="#final-cta" class="btn-pill-lg mt-8">
+              Start Your Cloud Journey
+            </a>
+          </div>
+          <div class="reveal">
+            <div class="hero-frame">
+              <div class="hero-frame-inner">
+                <img src="svc-migration-hero-art.jpg" alt="Cloud migration from legacy servers to modern cloud" width="800" height="600" />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
