@@ -200,13 +200,42 @@
     .benefit-card:hover .b-icon { color: var(--accent); }
     .b-icon { color: var(--deep); transition: color 0.2s; }
 
-    /* Banner dark */
-    .xform-banner {
-      position: relative; background: #0F172A; overflow: hidden;
+    /* Partnership-style banner (matches homepage #partner-cta) */
+    .partner-banner {
+      position: relative; overflow: hidden;
+      background: linear-gradient(125deg, #020617 0%, #0B1220 40%, #0F172A 70%, #1E3A8A 100%);
     }
-    .xform-banner .net {
-      position: absolute; inset: 0 0 0 45%; opacity: 0.25; pointer-events: none;
+    .partner-banner .partner-glow {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(ellipse 55% 80% at 85% 50%, rgba(55,172,241,0.22), transparent 55%);
     }
+    .partner-banner .partner-photo {
+      position: absolute; right: 0; top: 0; bottom: 0; width: 50%; opacity: 0.3;
+      pointer-events: none;
+      background: url('process-migrate.jpg') center/cover no-repeat;
+      mask-image: linear-gradient(90deg, transparent, black 35%);
+      -webkit-mask-image: linear-gradient(90deg, transparent, black 35%);
+    }
+    @media (max-width: 767px) {
+      .partner-banner .partner-photo { display: none; }
+    }
+    .btn-ghost-partner {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      font-weight: 600; font-size: 0.9375rem; border-radius: 6px;
+      padding: 0.8rem 1.5rem; white-space: nowrap; text-decoration: none;
+      background: transparent; color: #fff; border: 1px solid rgba(255,255,255,0.35);
+      transition: all 0.2s ease;
+    }
+    .btn-ghost-partner:hover { border-color: #fff; background: rgba(255,255,255,0.06); }
+    .btn-primary-partner {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      font-weight: 600; font-size: 0.9375rem; border-radius: 6px;
+      padding: 0.8rem 1.5rem; white-space: nowrap; text-decoration: none;
+      background: #37ACF1; color: #0F172A; border: 0;
+      box-shadow: 0 0 0 1px rgba(55,172,241,0.4), 0 10px 40px rgba(55,172,241,0.25);
+      transition: all 0.2s ease;
+    }
+    .btn-primary-partner:hover { background: #2B9ADF; }
 
     /* Tabs */
     .tabs-bar {
@@ -480,34 +509,7 @@
       </div>
     </section>
 
-    <!-- 5. TRANSFORMATION BANNER — dark -->
-    <section class="xform-banner py-16 sm:py-20" aria-labelledby="banner-heading">
-      <svg class="net" viewBox="0 0 600 300" fill="none" aria-hidden="true">
-        <g stroke="#fff" stroke-width="0.8" opacity="0.5">
-          <circle cx="80" cy="80" r="3"/><circle cx="180" cy="50" r="3"/><circle cx="280" cy="100" r="3"/>
-          <circle cx="160" cy="160" r="3"/><circle cx="320" cy="180" r="3"/><circle cx="420" cy="90" r="3"/>
-          <circle cx="500" cy="150" r="3"/><circle cx="380" cy="40" r="3"/>
-          <path d="M80 80L180 50L280 100L180 50L160 160L280 100L320 180L420 90L500 150L420 90L380 40"/>
-        </g>
-      </svg>
-      <div class="relative z-10 mx-auto max-w-container px-5 sm:px-6 lg:px-8">
-        <div class="max-w-2xl">
-          <p class="eyebrow mb-4" style="color:#A1A1AA">From first migration to long-term modernization</p>
-          <h2 id="banner-heading" class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            From first migration to long-term management.
-          </h2>
-          <p class="mt-4 text-white/55 text-base leading-relaxed">
-            We stay your technology partner — architecture, security, and operations under one accountable team.
-          </p>
-          <div class="mt-8 flex flex-col sm:flex-row gap-3">
-            <a href="#final-cta" class="btn-primary">Talk to a Cloud Expert</a>
-            <a href="index.html#case-studies" class="btn-outline-light">View Success Stories</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. USE CASES — tabs -->
+    <!-- 5. USE CASES — tabs (before partnership banner) -->
     <section id="use-cases" class="py-20 sm:py-24 bg-white" aria-labelledby="usecases-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto">
@@ -548,6 +550,29 @@
               <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Build a foundation for data, analytics, and AI.</h3>
               <p class="mt-3 text-gray-400 text-base leading-relaxed max-w-3xl">Modernize data platforms and workloads to create scalable foundations for analytics, intelligence, reporting, and future AI initiatives.</p>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PARTNERSHIP BANNER — mirrors homepage #partner-cta UI/UX -->
+    <section class="partner-banner py-16 sm:py-20" aria-labelledby="banner-heading" id="partner-cta">
+      <div class="partner-glow" aria-hidden="true"></div>
+      <div class="partner-photo hidden md:block" aria-hidden="true"></div>
+      <div class="relative z-10 mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-8">
+          <div class="max-w-xl">
+            <p class="font-mono text-[11px] font-medium tracking-[0.16em] uppercase text-accent mb-3" style="color:#37ACF1">Partnership</p>
+            <h2 id="banner-heading" class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight leading-tight">
+              From first migration to<br class="hidden sm:block" /> long-term management.
+            </h2>
+            <p class="mt-3 text-white/60 text-sm sm:text-base max-w-md leading-relaxed">
+              We stay your technology partner — architecture, security, and operations under one accountable team.
+            </p>
+          </div>
+          <div class="flex flex-col sm:flex-row gap-3 shrink-0">
+            <a href="#final-cta" class="btn-primary-partner">Talk to a Cloud Expert</a>
+            <a href="index.html#case-studies" class="btn-ghost-partner">View Success Stories</a>
           </div>
         </div>
       </div>
