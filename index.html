@@ -2795,7 +2795,7 @@
                   Secure, compliant infrastructure built for regulatory scrutiny and always-on banking. Identity, encryption, and continuous monitoring at every layer.
                 </p>
                 <div class="mt-5 flex flex-wrap gap-3">
-                  <a href="#cta" class="btn btn-primary !py-2.5 !px-4 !text-sm">Talk to an Expert</a>
+                  <a href="#cta" id="industry-cta-primary" class="btn btn-primary !py-2.5 !px-4 !text-sm">Talk to an Expert</a>
                   <a href="#case-studies" class="btn btn-outline !py-2.5 !px-4 !text-sm">Case Studies</a>
                 </div>
               </div>
@@ -3309,7 +3309,7 @@
           <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Industries</h3>
           <ul class="mt-4 space-y-2.5 text-sm">
             <li><a href="#industries" class="hover:text-accent transition-colors">Banking</a></li>
-            <li><a href="#industries" class="hover:text-accent transition-colors">Healthcare</a></li>
+            <li><a href="healthcare-life-sciences.html" class="hover:text-accent transition-colors">Healthcare &amp; Life Sciences</a></li>
             <li><a href="#industries" class="hover:text-accent transition-colors">Manufacturing</a></li>
             <li><a href="#industries" class="hover:text-accent transition-colors">Retail</a></li>
             <li><a href="#industries" class="hover:text-accent transition-colors">Logistics</a></li>
@@ -3676,6 +3676,8 @@
             img: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1000&q=80',
             alt: 'Healthcare professionals using secure digital patient systems',
             tone: 'healthcare',
+            page: 'healthcare-life-sciences.html',
+            cta: 'Explore Healthcare Solutions',
           },
           manufacturing: {
             title: 'Manufacturing',
@@ -3717,6 +3719,7 @@
         const titleEl = document.getElementById('industry-title');
         const descEl = document.getElementById('industry-desc');
         const imgEl = document.getElementById('industry-img');
+        const ctaEl = document.getElementById('industry-cta-primary');
         if (!titleEl || !descEl || !imgEl) return;
 
         let idx = 0;
@@ -3752,6 +3755,10 @@
           descEl.textContent = data.desc;
           imgEl.src = data.img;
           imgEl.alt = data.alt;
+          if (ctaEl) {
+            ctaEl.href = data.page || '#cta';
+            ctaEl.textContent = data.cta || 'Talk to an Expert';
+          }
           if (section) section.setAttribute('data-industry-tone', data.tone || key);
           tabs.forEach((t) => styleDesktopTab(t, t.dataset.industry === key));
           mobileCards.forEach((c) => c.classList.toggle('is-active', c.dataset.industry === key));
