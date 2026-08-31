@@ -941,13 +941,14 @@
           entries.forEach((e) => {
             if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
           });
-        }, { threshold: 0.12 });
+        }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
         reveals.forEach((el) => io.observe(el));
       } else {
         reveals.forEach((el) => el.classList.add('visible'));
       }
     })();
-    <script>
+  </script>
+  <script>
       // Shared homepage-style navbar
       (function initSharedNav() {
         const navbar = document.getElementById('navbar');
@@ -1006,6 +1007,5 @@
         }
       })();
   </script>
-</script>
 </body>
 </html>
