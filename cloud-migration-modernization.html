@@ -352,70 +352,423 @@
     @media (prefers-reduced-motion: reduce) {
       .hero-enter, .hero-art-wrap { animation: none !important; opacity: 1; transform: none; }
     }
+      /* === SHARED HOMEPAGE NAV (replicate across pages) === */
+    #navbar {
+      position: fixed;
+      inset-inline: 0;
+      top: 0;
+      z-index: 50;
+      pointer-events: none;
+      background: transparent;
+      border: 0;
+      padding: 0;
+      transition: background 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    #navbar.nav-scrolled {
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(16px) saturate(160%);
+      -webkit-backdrop-filter: blur(16px) saturate(160%);
+      border-bottom: 1px solid rgba(98, 181, 247, 0.16);
+      box-shadow: 0 8px 32px rgba(2, 6, 23, 0.35);
+    }
+    #navbar.nav-top:not(.nav-scrolled) {
+      background: linear-gradient(180deg, rgba(2, 6, 23, 0.55) 0%, rgba(2, 6, 23, 0.2) 70%, transparent 100%);
+    }
+    #navbar .nav-shell {
+      pointer-events: auto;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0.55rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      position: relative;
+      height: 4.5rem;
+      min-height: 4.5rem;
+    }
+    #navbar .nav-brand {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      text-decoration: none;
+      line-height: 0;
+      background: none;
+      border: 0;
+      padding: 0;
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.2s ease, transform 0.2s ease, filter 0.2s ease;
+    }
+    #navbar .nav-brand:hover {
+      opacity: 1;
+      transform: scale(1.04);
+      filter: brightness(1.12);
+    }
+    #navbar .nav-brand:focus-visible {
+      outline: 2px solid #62B5F7;
+      outline-offset: 4px;
+      border-radius: 8px;
+    }
+    #navbar .nav-brand img {
+      height: 8rem;
+      width: auto;
+      max-width: 8.75rem;
+      object-fit: contain;
+      display: block;
+      margin-top: -1.55rem;
+      margin-bottom: -1.55rem;
+    }
+    @media (max-width: 640px) {
+      #navbar .nav-shell { height: 4.15rem; min-height: 4.15rem; padding: 0.4rem 1rem; }
+      #navbar .nav-brand img {
+        height: 6.5rem;
+        max-width: 7.25rem;
+        margin-top: -1.05rem;
+        margin-bottom: -1.05rem;
+      }
+    }
+    #navbar .nav-center {
+      display: none;
+      flex: 1;
+      justify-content: center;
+      min-width: 0;
+    }
+    #navbar .nav-links {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.1rem;
+    }
+    #navbar .nav-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.55rem 0.9rem;
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: rgba(226, 232, 240, 0.82);
+      border-radius: 0.5rem;
+      white-space: nowrap;
+      transition: color 0.2s, background 0.2s;
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    #navbar .nav-link:hover,
+    #navbar .nav-link.nav-active,
+    #navbar .nav-item.is-open > .nav-link {
+      color: #fff;
+      background: rgba(255,255,255,0.08);
+    }
+    #navbar .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-shrink: 0;
+    }
+    #navbar .nav-cta {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      height: 2.5rem;
+      padding: 0 1.25rem;
+      border-radius: 0.5rem;
+      background: #62B5F7;
+      color: #0F172A;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+    #navbar .nav-cta:hover { background: #4AA3E8; }
+    #navbar .nav-mobile-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      color: #fff;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      cursor: pointer;
+    }
+    #navbar .nav-mobile-toggle:hover { background: rgba(255,255,255,0.12); }
+    @media (min-width: 768px) {
+      #navbar .nav-cta { display: inline-flex; }
+    }
+    @media (min-width: 1024px) {
+      #navbar .nav-center { display: flex; }
+      #navbar .nav-mobile-toggle { display: none; }
+      #navbar .nav-shell { padding: 0.55rem 1.5rem; height: 4.5rem; min-height: 4.5rem; }
+    }
+    #navbar .nav-item { position: relative; }
+    .mega-panel {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 0.75rem);
+      transform: translateX(-35%) translateY(10px) scale(0.98);
+      width: min(42rem, calc(100vw - 2rem));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      z-index: 80;
+    }
+    .nav-item.is-open .mega-panel,
+    .nav-item:hover .mega-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-35%) translateY(0) scale(1);
+    }
+    .nav-item.is-open .nav-chev,
+    .nav-item:hover .nav-chev { transform: rotate(180deg); }
+    .mega-inner {
+      background: #0B1220;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 1.25rem;
+      box-shadow: 0 24px 60px rgba(2, 6, 23, 0.55);
+      overflow: hidden;
+      color: #fff;
+    }
+    .mega-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1.15fr;
+      gap: 0;
+      padding: 1.5rem;
+    }
+    @media (max-width: 900px) {
+      .mega-grid { grid-template-columns: 1fr; gap: 1rem; }
+    }
+    .mega-col {
+      display: flex;
+      flex-direction: column;
+      padding: 0 1.15rem;
+      min-width: 0;
+    }
+    .mega-col + .mega-col { border-left: 1px solid rgba(255,255,255,0.08); }
+    .mega-col .mega-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.8);
+      margin-bottom: 0.65rem;
+      font-weight: 500;
+    }
+    .mega-col a.mega-simple {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(226,232,240,0.65);
+      text-decoration: none;
+      padding: 0.3rem 0;
+      transition: color 0.15s;
+    }
+    .mega-col a.mega-simple:hover,
+    .mega-col a.mega-simple.is-current { color: #62B5F7; }
+    .mega-featured {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 11rem;
+      border-radius: 1rem;
+      padding: 1.15rem;
+      text-decoration: none;
+      border: 1px solid rgba(98,181,247,0.35);
+      background:
+        radial-gradient(ellipse 80% 70% at 0% 0%, rgba(98,181,247,0.18), transparent 55%),
+        #0F172A;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .mega-featured:hover {
+      border-color: rgba(98,181,247,0.6);
+      transform: translateY(-2px);
+    }
+    .mega-featured .badge {
+      display: inline-flex;
+      align-self: flex-start;
+      border-radius: 9999px;
+      border: 1px solid rgba(98,181,247,0.35);
+      background: rgba(15,23,42,0.8);
+      color: #62B5F7;
+      font-size: 0.65rem;
+      font-weight: 600;
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 0.75rem;
+    }
+    .mega-featured h4 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 0.4rem;
+    }
+    .mega-featured p {
+      font-size: 0.78rem;
+      color: rgba(226,232,240,0.6);
+      line-height: 1.45;
+      margin: 0;
+    }
+    .mega-featured .mega-cta {
+      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #62B5F7;
+    }
+    #mobile-menu {
+      pointer-events: auto;
+      width: 100%;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(11, 18, 32, 0.98);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 0.35s ease, opacity 0.25s ease;
+    }
+    #mobile-menu.open {
+      max-height: min(70vh, 520px);
+      opacity: 1;
+    }
+    #mobile-menu[hidden] { display: none !important; }
+    @media (min-width: 1024px) {
+      #mobile-menu { display: none !important; }
+    }
+    #mobile-menu .mobile-link {
+      display: block;
+      border-radius: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: rgba(226,232,240,0.9);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    #mobile-menu .mobile-link:hover {
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+    }
+    #mobile-menu .mobile-section-label {
+      padding: 0.5rem 0.85rem 0.25rem;
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(148,163,184,0.65);
+    }
+    #mobile-menu details.mobile-acc > summary {
+      list-style: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 0.75rem;
+      padding: 0.65rem 0.85rem;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: #fff;
+    }
+    #mobile-menu details.mobile-acc > summary::-webkit-details-marker { display: none; }
+    #mobile-menu details.mobile-acc[open] > summary .nav-chev { transform: rotate(180deg); }
+    #mobile-menu .mobile-acc-body {
+      margin-left: 0.85rem;
+      padding: 0.25rem 0 0.5rem 0.85rem;
+      border-left: 1px solid rgba(255,255,255,0.1);
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+    }
+    /* === END SHARED NAV === */
+
   </style>
 </head>
 <body>
   <!-- 1. NAVBAR -->
-  <header id="navbar">
+  <header id="navbar" class="nav-top">
     <div class="nav-shell">
-      <a href="index.html" class="nav-brand" aria-label="JIT Global home">
-        <img src="logo.png" alt="JIT Global" width="120" height="40" />
+      <a href="index.html" class="nav-brand" aria-label="JIT Global home" title="JIT Global — Home">
+        <img src="logo.png" alt="JIT Global" width="140" height="140" decoding="async" />
       </a>
       <div class="nav-center">
         <nav class="nav-links" aria-label="Primary">
           <div class="nav-item" id="nav-services">
-            <button type="button" class="nav-link" id="services-mega-btn" aria-expanded="false" aria-controls="services-mega">
+            <button type="button" class="nav-link nav-active" aria-expanded="false" aria-controls="services-mega" id="services-mega-btn">
               Services
-              <svg class="h-3.5 w-3.5 opacity-60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+              <svg class="h-3.5 w-3.5 opacity-70 transition-transform nav-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div id="services-mega" class="mega-panel" role="region" aria-labelledby="services-mega-btn">
               <div class="mega-inner">
-                <div>
-                  <p class="mega-label">Cloud &amp; infrastructure</p>
-                  <a href="cloud-migration-modernization.html" class="mega-simple is-current">Cloud Migration &amp; Modernization</a>
-                  <a href="index.html#svc-infra" class="mega-simple">Cloud Infrastructure Management</a>
-                  <a href="index.html#svc-security" class="mega-simple">Cybersecurity &amp; Compliance</a>
-                </div>
-                <div>
-                  <p class="mega-label">Data, apps &amp; delivery</p>
-                  <a href="index.html#svc-data" class="mega-simple">Data Engineering &amp; Analytics</a>
-                  <a href="index.html#svc-apps" class="mega-simple">Application Development</a>
-                  <a href="index.html#svc-devops" class="mega-simple">DevOps &amp; Automation</a>
+                <div class="mega-grid">
+                  <div class="mega-col" style="padding-left:0">
+                    <p class="mega-label">Cloud &amp; infrastructure</p>
+                    <a href="cloud-migration-modernization.html" class="mega-simple is-current">Cloud Migration &amp; Modernization</a>
+                    <a href="index.html#svc-infra" class="mega-simple">Cloud Infrastructure Management</a>
+                    <a href="index.html#svc-security" class="mega-simple">Cybersecurity &amp; Compliance</a>
+                  </div>
+                  <div class="mega-col">
+                    <p class="mega-label">Data, apps &amp; delivery</p>
+                    <a href="index.html#svc-data" class="mega-simple">Data Engineering &amp; Analytics</a>
+                    <a href="index.html#svc-apps" class="mega-simple">Application Development &amp; Integration</a>
+                    <a href="index.html#svc-devops" class="mega-simple">DevOps &amp; Automation</a>
+                  </div>
+                  <div class="mega-col" style="padding-right:0">
+                    <a href="index.html#cta" class="mega-featured">
+                      <div>
+                        <span class="badge">Free assessment</span>
+                        <h4>Secure cloud. Zero drama.</h4>
+                        <p>Get a free infrastructure review and a clear path to modernize without downtime.</p>
+                      </div>
+                      <span class="mega-cta">Request a Demo <span aria-hidden="true">↗</span></span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <a href="index.html#industries" class="nav-link">Industries</a>
-          <a href="index.html#case-studies" class="nav-link">Success Stories</a>
-          <a href="index.html#about" class="nav-link">Company</a>
+          <a href="success-stories.html" class="nav-link">Success Stories</a>
+          <a href="about.html" class="nav-link">Company</a>
+          <a href="index.html#faq" class="nav-link">FAQ</a>
         </nav>
       </div>
       <div class="nav-actions">
-        <a href="index.html#case-studies" class="nav-ghost">View Success Stories</a>
-        <a href="#final-cta" class="nav-cta">Request a Demo</a>
-        <button type="button" id="menu-toggle" class="nav-mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
-          <svg id="icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
-          <svg id="icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        <a href="index.html#cta" class="nav-cta">Request a Demo</a>
+        <button type="button" id="menu-toggle" class="nav-mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu">
+          <svg id="icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
       </div>
     </div>
     <div id="mobile-menu" hidden>
-      <nav aria-label="Mobile">
-        <details>
-          <summary>Services <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
-          <a href="cloud-migration-modernization.html" class="!pl-8 text-sm">Cloud Migration &amp; Modernization</a>
-          <a href="index.html#svc-infra" class="!pl-8 text-sm">Infrastructure Management</a>
-          <a href="index.html#svc-security" class="!pl-8 text-sm">Cybersecurity</a>
-          <a href="index.html#svc-data" class="!pl-8 text-sm">Data Engineering</a>
-          <a href="index.html#svc-apps" class="!pl-8 text-sm">Application Development</a>
-          <a href="index.html#svc-devops" class="!pl-8 text-sm">DevOps &amp; Automation</a>
+      <nav class="flex flex-col gap-0.5 px-5 py-4 max-h-[min(70vh,480px)] overflow-y-auto mx-auto max-w-container" aria-label="Mobile">
+        <details class="mobile-acc">
+          <summary>
+            Services
+            <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mobile-acc-body">
+            <p class="mobile-section-label" style="padding-left:0">Cloud &amp; infrastructure</p>
+            <a href="cloud-migration-modernization.html" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Cloud Migration &amp; Modernization</a>
+            <a href="index.html#svc-infra" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Cloud Infrastructure Management</a>
+            <a href="index.html#svc-security" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Cybersecurity &amp; Compliance</a>
+            <p class="mobile-section-label" style="padding-left:0;margin-top:0.5rem">Data, apps &amp; delivery</p>
+            <a href="index.html#svc-data" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Data Engineering &amp; Analytics</a>
+            <a href="index.html#svc-apps" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Application Development &amp; Integration</a>
+            <a href="index.html#svc-devops" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">DevOps &amp; Automation</a>
+          </div>
         </details>
-        <a href="index.html#industries">Industries</a>
-        <a href="index.html#case-studies">Success Stories</a>
-        <a href="index.html#about">Company</a>
-        <div class="px-5 py-4 flex flex-col gap-2 border-t border-white/10">
-          <a href="index.html#case-studies" class="btn-outline-light justify-center">View Success Stories</a>
-          <a href="#final-cta" class="btn-primary justify-center">Request a Demo</a>
+        <a href="index.html#industries" class="mobile-link">Industries</a>
+        <a href="success-stories.html" class="mobile-link">Success Stories</a>
+        <a href="about.html" class="mobile-link">Company</a>
+        <a href="index.html#faq" class="mobile-link">FAQ</a>
+        <div class="mt-3 flex flex-col gap-2 pt-3 border-t border-white/10">
+          <a href="index.html#cta" class="nav-cta !flex w-full text-center justify-center mobile-link !h-11">Request a Demo</a>
         </div>
       </nav>
     </div>
@@ -945,6 +1298,65 @@
         document.getElementById('lead-card').classList.add('is-success');
       });
     })();
+    <script>
+      // Shared homepage-style navbar
+      (function initSharedNav() {
+        const navbar = document.getElementById('navbar');
+        if (!navbar) return;
+        const onScroll = () => {
+          if (window.scrollY > 40) {
+            navbar.classList.add('nav-scrolled');
+            navbar.classList.remove('nav-top');
+          } else {
+            navbar.classList.add('nav-top');
+            navbar.classList.remove('nav-scrolled');
+          }
+        };
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+
+        const toggle = document.getElementById('menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        const iconOpen = document.getElementById('icon-open');
+        const iconClose = document.getElementById('icon-close');
+        if (toggle && menu) {
+          let menuOpen = false;
+          const setMenu = (open) => {
+            menuOpen = open;
+            toggle.setAttribute('aria-expanded', String(open));
+            if (open) {
+              menu.hidden = false;
+              requestAnimationFrame(() => menu.classList.add('open'));
+              iconOpen && iconOpen.classList.add('hidden');
+              iconClose && iconClose.classList.remove('hidden');
+            } else {
+              menu.classList.remove('open');
+              iconOpen && iconOpen.classList.remove('hidden');
+              iconClose && iconClose.classList.add('hidden');
+              setTimeout(() => { if (!menuOpen) menu.hidden = true; }, 350);
+            }
+          };
+          toggle.addEventListener('click', () => setMenu(!menuOpen));
+          menu.querySelectorAll('a').forEach((l) => l.addEventListener('click', () => setMenu(false)));
+        }
+
+        const item = document.getElementById('nav-services');
+        const btn = document.getElementById('services-mega-btn');
+        const panel = document.getElementById('services-mega');
+        if (item && btn && panel) {
+          const open = () => { item.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
+          const close = () => { item.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (item.classList.contains('is-open')) close(); else open();
+          });
+          item.addEventListener('mouseenter', open);
+          item.addEventListener('mouseleave', close);
+          panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+          document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
+        }
+      })();
   </script>
+</script>
 </body>
 </html>
