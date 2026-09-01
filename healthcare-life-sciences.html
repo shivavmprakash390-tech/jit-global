@@ -624,7 +624,39 @@
               </div>
             </div>
           </div>
-          <a href="index.html#industries" class="nav-link nav-active">Industries</a>
+                    <div class="nav-item" id="nav-technology">
+            <button type="button" class="nav-link" aria-expanded="false" aria-controls="technology-mega" id="technology-mega-btn">
+              Technology
+              <svg class="h-3.5 w-3.5 opacity-70 transition-transform nav-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="technology-mega" class="mega-panel mega-panel-tech" role="region" aria-labelledby="technology-mega-btn">
+              <div class="mega-inner">
+                <div class="mega-grid mega-grid-tech">
+                  <div class="mega-col" style="padding-left:0">
+                    <p class="mega-label">Cloud Platforms</p>
+                    <a href="aws.html" class="mega-simple">AWS</a>
+                    <a href="#" class="mega-simple">Microsoft Azure</a>
+                    <a href="#" class="mega-simple">Google Cloud</a>
+                  </div>
+                  <div class="mega-col">
+                    <p class="mega-label">AI &amp; Data</p>
+                    <a href="#" class="mega-simple">AI &amp; Machine Learning</a>
+                    <a href="#" class="mega-simple">Big Data &amp; Analytics</a>
+                  </div>
+                  <div class="mega-col">
+                    <p class="mega-label">Application Technologies</p>
+                    <a href="#" class="mega-simple">Programming Languages</a>
+                    <a href="#" class="mega-simple">Application Development</a>
+                  </div>
+                  <div class="mega-col" style="padding-right:0">
+                    <p class="mega-label">Modern Infrastructure</p>
+                    <a href="#" class="mega-simple">Containers &amp; Kubernetes</a>
+                    <a href="#" class="mega-simple">DevOps &amp; CI/CD</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>          <a href="index.html#industries" class="nav-link nav-active">Industries</a>
           <a href="success-stories.html" class="nav-link">Success Stories</a>
           <a href="about.html" class="nav-link">Company</a>
           <a href="index.html#faq" class="nav-link">FAQ</a>
@@ -656,7 +688,27 @@
             <a href="index.html#svc-devops" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">DevOps &amp; Automation</a>
           </div>
         </details>
-        <a href="index.html#industries" class="mobile-link">Industries</a>
+                <details class="mobile-acc">
+          <summary>
+            Technology
+            <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </summary>
+          <div class="mobile-acc-body">
+            <p class="mobile-section-label" style="padding-left:0">Cloud Platforms</p>
+            <a href="aws.html" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">AWS</a>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Microsoft Azure</a>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Google Cloud</a>
+            <p class="mobile-section-label" style="padding-left:0;margin-top:0.5rem">AI &amp; Data</p>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">AI &amp; Machine Learning</a>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Big Data &amp; Analytics</a>
+            <p class="mobile-section-label" style="padding-left:0;margin-top:0.5rem">Application Technologies</p>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Programming Languages</a>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Application Development</a>
+            <p class="mobile-section-label" style="padding-left:0;margin-top:0.5rem">Modern Infrastructure</p>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Containers &amp; Kubernetes</a>
+            <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">DevOps &amp; CI/CD</a>
+          </div>
+        </details>        <a href="index.html#industries" class="mobile-link">Industries</a>
         <a href="success-stories.html" class="mobile-link">Success Stories</a>
         <a href="about.html" class="mobile-link">Company</a>
         <a href="index.html#faq" class="mobile-link">FAQ</a>
@@ -1128,6 +1180,24 @@
           panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
           document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
         }
+      })();
+
+      // Technology mega menu
+      (function initTechnologyMega() {
+        const item = document.getElementById('nav-technology');
+        const btn = document.getElementById('technology-mega-btn');
+        const panel = document.getElementById('technology-mega');
+        if (!item || !btn || !panel) return;
+        const open = () => { item.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
+        const close = () => { item.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (item.classList.contains('is-open')) close(); else open();
+        });
+        item.addEventListener('mouseenter', open);
+        item.addEventListener('mouseleave', close);
+        panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+        document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
       })();
   </script>
 </body>
