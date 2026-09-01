@@ -621,6 +621,155 @@
     }
     /* === END SHARED NAV === */
 
+  
+    /* ===== INNER MEGA NAV (Services / Industries / Technologies) ===== */
+    .mega-panel {
+      position: absolute;
+      left: 50%;
+      top: calc(100% + 0.65rem);
+      transform: translateX(-50%) translateY(10px) scale(0.985);
+      width: min(68rem, calc(100vw - 1.5rem));
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      z-index: 80;
+    }
+    .nav-item.is-open .mega-panel,
+    .nav-item:hover .mega-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateX(-50%) translateY(0) scale(1);
+    }
+    .mega-inner {
+      background: linear-gradient(165deg, #0B1220 0%, #0F172A 55%, #0A1020 100%);
+      border: 1px solid rgba(98,181,247,0.18);
+      border-radius: 1.15rem;
+      box-shadow: 0 28px 70px rgba(2, 6, 23, 0.6);
+      overflow: hidden;
+      color: #fff;
+    }
+    .mega-shell {
+      display: grid;
+      grid-template-columns: 13.5rem minmax(0, 1fr) 16.5rem;
+      min-height: 22rem;
+    }
+    @media (max-width: 1024px) {
+      .mega-shell { grid-template-columns: 12rem minmax(0, 1fr); }
+      .mega-feature { display: none !important; }
+    }
+    .mega-side {
+      padding: 1.15rem 0.75rem;
+      border-right: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.18);
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+    }
+    .mega-side-btn {
+      display: flex; align-items: center; gap: 0.55rem;
+      width: 100%; text-align: left;
+      padding: 0.7rem 0.75rem;
+      border-radius: 0.55rem;
+      border: 0; border-left: 2px solid transparent;
+      background: transparent;
+      color: rgba(226,232,240,0.72);
+      font-size: 0.8125rem; font-weight: 500;
+      cursor: pointer; transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .mega-side-btn:hover { color: #fff; background: rgba(255,255,255,0.05); }
+    .mega-side-btn.is-active {
+      color: #fff;
+      background: rgba(98,181,247,0.1);
+      border-left-color: #62B5F7;
+    }
+    .mega-side-btn svg { width: 1rem; height: 1rem; flex-shrink: 0; opacity: 0.75; }
+    .mega-side-btn.is-active svg { color: #62B5F7; opacity: 1; }
+    .mega-main {
+      padding: 1.25rem 1.35rem;
+      min-width: 0;
+    }
+    .mega-main-title {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 1.05rem; font-weight: 600; color: #fff; margin-bottom: 0.35rem;
+    }
+    .mega-main-desc {
+      font-size: 0.8rem; color: rgba(226,232,240,0.55); line-height: 1.45;
+      margin-bottom: 1rem; max-width: 36rem;
+    }
+    .mega-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.65rem;
+    }
+    .mega-card {
+      display: flex; gap: 0.7rem; align-items: flex-start;
+      padding: 0.85rem 0.9rem;
+      border-radius: 0.75rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      text-decoration: none; color: inherit;
+      transition: border-color 0.18s, background 0.18s, transform 0.18s;
+    }
+    .mega-card:hover {
+      border-color: rgba(98,181,247,0.4);
+      background: rgba(98,181,247,0.08);
+      transform: translateY(-1px);
+    }
+    .mega-card-ico {
+      width: 2rem; height: 2rem; border-radius: 0.5rem; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: rgba(98,181,247,0.12); color: #62B5F7;
+    }
+    .mega-card-ico svg { width: 1rem; height: 1rem; }
+    .mega-card h5 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.84rem; font-weight: 600; color: #fff; margin: 0 0 0.2rem;
+    }
+    .mega-card p {
+      font-size: 0.72rem; color: rgba(226,232,240,0.55); line-height: 1.4; margin: 0;
+    }
+    .mega-panel-body[hidden] { display: none !important; }
+    .mega-feature {
+      padding: 1.15rem;
+      border-left: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(30,58,138,0.35), rgba(15,23,42,0.9));
+      display: flex; flex-direction: column;
+    }
+    .mega-feature-media {
+      border-radius: 0.75rem; overflow: hidden; aspect-ratio: 16/10;
+      background: #0B1220; margin-bottom: 0.9rem;
+      border: 1px solid rgba(98,181,247,0.2);
+    }
+    .mega-feature-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .mega-feature .badge {
+      display: inline-flex; align-self: flex-start;
+      font-family: "Roboto Mono", monospace; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: #62B5F7; border: 1px solid rgba(98,181,247,0.35); border-radius: 9999px;
+      padding: 0.2rem 0.55rem; margin-bottom: 0.55rem;
+    }
+    .mega-feature h4 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: 0.95rem; font-weight: 600; color: #fff; margin: 0 0 0.4rem;
+    }
+    .mega-feature p {
+      font-size: 0.75rem; color: rgba(226,232,240,0.6); line-height: 1.45; margin: 0 0 1rem; flex: 1;
+    }
+    .mega-feature-actions { display: flex; flex-direction: column; gap: 0.45rem; }
+    .mega-feature-actions .btn-mega-primary {
+      display: inline-flex; justify-content: center; align-items: center;
+      height: 2.25rem; border-radius: 0.45rem; background: #62B5F7; color: #0F172A;
+      font-size: 0.78rem; font-weight: 600; text-decoration: none;
+    }
+    .mega-feature-actions .btn-mega-primary:hover { background: #4AA3E8; }
+    .mega-feature-actions .btn-mega-ghost {
+      display: inline-flex; justify-content: center; align-items: center;
+      height: 2.25rem; border-radius: 0.45rem; border: 1px solid rgba(255,255,255,0.25);
+      color: #fff; font-size: 0.78rem; font-weight: 500; text-decoration: none;
+    }
+    .mega-feature-actions .btn-mega-ghost:hover { border-color: #62B5F7; color: #62B5F7; }
+    /* Keep old mega-col styles for any leftover */
+    .mega-grid-tech { grid-template-columns: repeat(4, 1fr); }
+
   </style>
 </head>
 <body>
@@ -631,75 +780,304 @@
       </a>
       <div class="nav-center">
         <nav class="nav-links" aria-label="Primary">
-          <div class="nav-item" id="nav-services">
+          <!-- SERVICES -->
+          <div class="nav-item" id="nav-services" data-mega="services">
             <button type="button" class="nav-link" aria-expanded="false" aria-controls="services-mega" id="services-mega-btn">
               Services
               <svg class="h-3.5 w-3.5 opacity-70 transition-transform nav-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </button>
             <div id="services-mega" class="mega-panel" role="region" aria-labelledby="services-mega-btn">
               <div class="mega-inner">
-                <div class="mega-grid">
-                  <div class="mega-col" style="padding-left:0">
-                    <p class="mega-label">Cloud &amp; infrastructure</p>
-                    <a href="cloud-migration-modernization.html" class="mega-simple">Cloud Migration &amp; Modernization</a>
-                    <a href="index.html#svc-infra" class="mega-simple">Cloud Infrastructure Management</a>
-                    <a href="index.html#svc-security" class="mega-simple">Cybersecurity &amp; Compliance</a>
+                <div class="mega-shell">
+                  <div class="mega-side" role="tablist" aria-label="Service categories">
+                    <button type="button" class="mega-side-btn is-active" data-mega-tab="svc-migration" role="tab" aria-selected="true">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg>
+                      Cloud Migration
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="svc-infra" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg>
+                      Infrastructure
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="svc-security" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg>
+                      Cybersecurity
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="svc-data" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z"/></svg>
+                      Data &amp; Analytics
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="svc-apps" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+                      App Development
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="svc-devops" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg>
+                      DevOps &amp; Automation
+                    </button>
                   </div>
-                  <div class="mega-col">
-                    <p class="mega-label">Data, apps &amp; delivery</p>
-                    <a href="index.html#svc-data" class="mega-simple">Data Engineering &amp; Analytics</a>
-                    <a href="index.html#svc-apps" class="mega-simple">Application Development &amp; Integration</a>
-                    <a href="index.html#svc-devops" class="mega-simple">DevOps &amp; Automation</a>
-                  </div>
-                  <div class="mega-col" style="padding-right:0">
-                    <a href="index.html#cta" class="mega-featured">
-                      <div>
-                        <span class="badge">Free assessment</span>
-                        <h4>Secure cloud. Zero drama.</h4>
-                        <p>Get a free infrastructure review and a clear path to modernize without downtime.</p>
+                  <div class="mega-main">
+                    <div class="mega-panel-body" data-mega-panel="svc-migration">
+                      <p class="mega-main-title">Cloud Migration &amp; Modernization</p>
+                      <p class="mega-main-desc">Move workloads with confidence and modernize architectures for long-term scale.</p>
+                      <div class="mega-cards">
+                        <a href="cloud-migration-modernization.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg></span><div><h5>Workload Migration</h5><p>Structured migration for servers, apps, and databases.</p></div></a>
+                        <a href="cloud-migration-modernization.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></span><div><h5>Application Modernization</h5><p>Refactor legacy apps into cloud-ready architectures.</p></div></a>
+                        <a href="cloud-migration-modernization.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>Post-Migration Optimization</h5><p>Tune performance, cost, and resilience after cutover.</p></div></a>
+                        <a href="cloud-migration-modernization.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg></span><div><h5>Hybrid &amp; Multi-Cloud</h5><p>Design environments that span on-prem and cloud.</p></div></a>
                       </div>
-                      <span class="mega-cta">Request a Demo <span aria-hidden="true">↗</span></span>
-                    </a>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="svc-infra" hidden>
+                      <p class="mega-main-title">Cloud Infrastructure Management</p>
+                      <p class="mega-main-desc">Operate secure, reliable infrastructure with continuous monitoring and optimization.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#svc-infra" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg></span><div><h5>Managed Infrastructure</h5><p>Day-2 operations, patching, and reliability.</p></div></a>
+                        <a href="index.html#svc-infra" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22"/></svg></span><div><h5>Observability</h5><p>Monitoring, alerting, and performance visibility.</p></div></a>
+                        <a href="index.html#svc-infra" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg></span><div><h5>Backup &amp; DR</h5><p>Resilience strategies for critical workloads.</p></div></a>
+                        <a href="index.html#svc-infra" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364 1.386l-1.591 1.591M21 12h-2.25"/></svg></span><div><h5>Cost Optimization</h5><p>Right-size resources and improve cloud economics.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="svc-security" hidden>
+                      <p class="mega-main-title">Cybersecurity &amp; Compliance</p>
+                      <p class="mega-main-desc">Strengthen identity, governance, and monitoring across cloud and hybrid environments.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#svc-security" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></span><div><h5>Identity &amp; Access</h5><p>IAM, least privilege, and access governance.</p></div></a>
+                        <a href="index.html#svc-security" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125"/></svg></span><div><h5>Threat Detection</h5><p>Continuous monitoring and incident readiness.</p></div></a>
+                        <a href="index.html#svc-security" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5"/></svg></span><div><h5>Compliance Controls</h5><p>Security practices aligned to regulated environments.</p></div></a>
+                        <a href="index.html#svc-security" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75"/></svg></span><div><h5>Data Protection</h5><p>Encryption, backup, and sensitive data controls.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="svc-data" hidden>
+                      <p class="mega-main-title">Data Engineering &amp; Analytics</p>
+                      <p class="mega-main-desc">Build trusted data foundations for analytics, reporting, and AI readiness.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#svc-data" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125S3.75 8.653 3.75 6.375"/></svg></span><div><h5>Data Platforms</h5><p>Lakes, warehouses, and integration pipelines.</p></div></a>
+                        <a href="index.html#svc-data" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25"/></svg></span><div><h5>Analytics &amp; BI</h5><p>Turn operational data into decision-ready insight.</p></div></a>
+                        <a href="index.html#svc-data" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846"/></svg></span><div><h5>AI-Ready Foundations</h5><p>Prepare data environments for ML and automation.</p></div></a>
+                        <a href="index.html#svc-data" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12"/></svg></span><div><h5>Data Migration</h5><p>Move and modernize enterprise data workloads.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="svc-apps" hidden>
+                      <p class="mega-main-title">Application Development &amp; Integration</p>
+                      <p class="mega-main-desc">Design, build, and integrate enterprise applications for cloud scale.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#svc-apps" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg></span><div><h5>Custom Development</h5><p>Cloud-ready applications aligned to business needs.</p></div></a>
+                        <a href="index.html#svc-apps" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5"/></svg></span><div><h5>API Integration</h5><p>Connect systems with secure, scalable APIs.</p></div></a>
+                        <a href="index.html#svc-apps" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25"/></svg></span><div><h5>Legacy Modernization</h5><p>Evolve aging applications without unnecessary risk.</p></div></a>
+                        <a href="index.html#svc-apps" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5"/></svg></span><div><h5>Microservices</h5><p>Modular architectures for faster delivery.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="svc-devops" hidden>
+                      <p class="mega-main-title">DevOps &amp; Automation</p>
+                      <p class="mega-main-desc">Accelerate delivery with CI/CD, IaC, containers, and operational automation.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#svc-devops" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></span><div><h5>CI/CD Pipelines</h5><p>Reliable automated build and release flows.</p></div></a>
+                        <a href="index.html#svc-devops" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25"/></svg></span><div><h5>Infrastructure as Code</h5><p>Repeatable environments with governed automation.</p></div></a>
+                        <a href="index.html#svc-devops" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25"/></svg></span><div><h5>Containers</h5><p>Package and run workloads consistently at scale.</p></div></a>
+                        <a href="index.html#svc-devops" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25"/></svg></span><div><h5>Release Governance</h5><p>Control quality, rollback, and deployment risk.</p></div></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mega-feature">
+                    <div class="mega-feature-media">
+                      <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=700&q=80" alt="" width="700" height="420" loading="lazy" />
+                    </div>
+                    <span class="badge">Free assessment</span>
+                    <h4>Secure cloud. Zero drama.</h4>
+                    <p>Get a free infrastructure review and a clear path to modernize without downtime.</p>
+                    <div class="mega-feature-actions">
+                      <a href="index.html#cta" class="btn-mega-primary">Request a Demo</a>
+                      <a href="cloud-migration-modernization.html" class="btn-mega-ghost">Explore Services</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-                    <div class="nav-item" id="nav-technology">
+
+          <!-- TECHNOLOGY -->
+          <div class="nav-item" id="nav-technology" data-mega="technology">
             <button type="button" class="nav-link" aria-expanded="false" aria-controls="technology-mega" id="technology-mega-btn">
               Technology
               <svg class="h-3.5 w-3.5 opacity-70 transition-transform nav-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
             </button>
-            <div id="technology-mega" class="mega-panel mega-panel-tech" role="region" aria-labelledby="technology-mega-btn">
+            <div id="technology-mega" class="mega-panel" role="region" aria-labelledby="technology-mega-btn">
               <div class="mega-inner">
-                <div class="mega-grid mega-grid-tech">
-                  <div class="mega-col" style="padding-left:0">
-                    <p class="mega-label">Cloud Platforms</p>
-                    <a href="aws.html" class="mega-simple">AWS</a>
-                    <a href="#" class="mega-simple">Microsoft Azure</a>
-                    <a href="#" class="mega-simple">Google Cloud</a>
+                <div class="mega-shell">
+                  <div class="mega-side" role="tablist" aria-label="Technology categories">
+                    <button type="button" class="mega-side-btn is-active" data-mega-tab="tech-cloud" role="tab" aria-selected="true">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg>
+                      Cloud Platforms
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="tech-ai" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg>
+                      AI &amp; Data
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="tech-apps" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+                      Application Tech
+                    </button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="tech-infra" role="tab" aria-selected="false">
+                      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25"/></svg>
+                      Modern Infrastructure
+                    </button>
                   </div>
-                  <div class="mega-col">
-                    <p class="mega-label">AI &amp; Data</p>
-                    <a href="#" class="mega-simple">AI &amp; Machine Learning</a>
-                    <a href="#" class="mega-simple">Big Data &amp; Analytics</a>
+                  <div class="mega-main">
+                    <div class="mega-panel-body" data-mega-panel="tech-cloud">
+                      <p class="mega-main-title">Cloud Platforms</p>
+                      <p class="mega-main-desc">Build and operate enterprise workloads across leading public cloud platforms.</p>
+                      <div class="mega-cards">
+                        <a href="aws.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257"/></svg></span><div><h5>AWS</h5><p>Migrate, modernize, secure, and operate on Amazon Web Services.</p></div></a>
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z"/></svg></span><div><h5>Microsoft Azure</h5><p>Enterprise Azure architecture, identity, and hybrid cloud.</p></div></a>
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18"/></svg></span><div><h5>Google Cloud</h5><p>Data, analytics, and scalable Google Cloud environments.</p></div></a>
+                        <a href="aws.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12"/></svg></span><div><h5>Multi-Cloud Strategy</h5><p>Design platforms that span providers with governance.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="tech-ai" hidden>
+                      <p class="mega-main-title">AI &amp; Data</p>
+                      <p class="mega-main-desc">Create intelligent platforms from trusted enterprise data foundations.</p>
+                      <div class="mega-cards">
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846"/></svg></span><div><h5>AI &amp; Machine Learning</h5><p>Operationalize ML with secure, scalable platforms.</p></div></a>
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25"/></svg></span><div><h5>Big Data &amp; Analytics</h5><p>Integrate, process, and analyze enterprise-scale data.</p></div></a>
+                        <a href="index.html#svc-data" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125"/></svg></span><div><h5>Data Engineering</h5><p>Pipelines, lakes, and trusted data products.</p></div></a>
+                        <a href="index.html#svc-data" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25"/></svg></span><div><h5>Real-Time Insights</h5><p>Streaming and operational analytics patterns.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="tech-apps" hidden>
+                      <p class="mega-main-title">Application Technologies</p>
+                      <p class="mega-main-desc">Languages, frameworks, and platforms for modern enterprise applications.</p>
+                      <div class="mega-cards">
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg></span><div><h5>Programming Languages</h5><p>Enterprise stacks for scalable application delivery.</p></div></a>
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M14.25 9.75L16.5 12l-2.25 2.25"/></svg></span><div><h5>Application Development</h5><p>Design and build cloud-ready enterprise software.</p></div></a>
+                        <a href="index.html#svc-apps" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5"/></svg></span><div><h5>APIs &amp; Integration</h5><p>Connect systems with secure integration patterns.</p></div></a>
+                        <a href="index.html#svc-apps" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5"/></svg></span><div><h5>App Modernization</h5><p>Evolve legacy applications for cloud platforms.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="tech-infra" hidden>
+                      <p class="mega-main-title">Modern Infrastructure</p>
+                      <p class="mega-main-desc">Containers, orchestration, and delivery automation for scalable operations.</p>
+                      <div class="mega-cards">
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25"/></svg></span><div><h5>Containers &amp; Kubernetes</h5><p>Package, orchestrate, and run workloads at scale.</p></div></a>
+                        <a href="#" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25"/></svg></span><div><h5>DevOps &amp; CI/CD</h5><p>Automate build, test, and release with governance.</p></div></a>
+                        <a href="index.html#svc-devops" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25"/></svg></span><div><h5>Infrastructure as Code</h5><p>Repeatable environments with policy controls.</p></div></a>
+                        <a href="index.html#svc-infra" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307"/></svg></span><div><h5>Platform Operations</h5><p>Observability, reliability, and day-2 management.</p></div></a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="mega-col">
-                    <p class="mega-label">Application Technologies</p>
-                    <a href="#" class="mega-simple">Programming Languages</a>
-                    <a href="#" class="mega-simple">Application Development</a>
-                  </div>
-                  <div class="mega-col" style="padding-right:0">
-                    <p class="mega-label">Modern Infrastructure</p>
-                    <a href="#" class="mega-simple">Containers &amp; Kubernetes</a>
-                    <a href="#" class="mega-simple">DevOps &amp; CI/CD</a>
+                  <div class="mega-feature">
+                    <div class="mega-feature-media">
+                      <img src="images/hero-aws-cloud.jpg" alt="" width="700" height="420" loading="lazy" />
+                    </div>
+                    <span class="badge">Featured</span>
+                    <h4>AWS Cloud Solutions</h4>
+                    <p>Build, modernize, and operate enterprise environments on Amazon Web Services.</p>
+                    <div class="mega-feature-actions">
+                      <a href="aws.html" class="btn-mega-primary">Explore AWS</a>
+                      <a href="index.html#cta" class="btn-mega-ghost">Talk to an Expert</a>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>          <a href="index.html#industries" class="nav-link">Industries</a>
+          </div>
+
+          <!-- INDUSTRIES -->
+          <div class="nav-item" id="nav-industries" data-mega="industries">
+            <button type="button" class="nav-link" aria-expanded="false" aria-controls="industries-mega" id="industries-mega-btn">
+              Industries
+              <svg class="h-3.5 w-3.5 opacity-70 transition-transform nav-chev" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="industries-mega" class="mega-panel" role="region" aria-labelledby="industries-mega-btn">
+              <div class="mega-inner">
+                <div class="mega-shell">
+                  <div class="mega-side" role="tablist" aria-label="Industry categories">
+                    <button type="button" class="mega-side-btn is-active" data-mega-tab="ind-banking" role="tab" aria-selected="true">Banking</button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="ind-healthcare" role="tab" aria-selected="false">Healthcare</button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="ind-manufacturing" role="tab" aria-selected="false">Manufacturing</button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="ind-retail" role="tab" aria-selected="false">Retail</button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="ind-logistics" role="tab" aria-selected="false">Logistics</button>
+                    <button type="button" class="mega-side-btn" data-mega-tab="ind-tech" role="tab" aria-selected="false">Technology</button>
+                  </div>
+                  <div class="mega-main">
+                    <div class="mega-panel-body" data-mega-panel="ind-banking">
+                      <p class="mega-main-title">Banking &amp; Financial Services</p>
+                      <p class="mega-main-desc">Secure, compliant infrastructure for regulated, always-on financial environments.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6"/></svg></span><div><h5>Secure Banking Platforms</h5><p>Identity, encryption, and continuous monitoring.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>Compliance-Ready Cloud</h5><p>Controls aligned to regulated financial operations.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307"/></svg></span><div><h5>Resilient Operations</h5><p>High availability for mission-critical services.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5"/></svg></span><div><h5>Core Modernization</h5><p>Modernize infrastructure behind banking workloads.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="ind-healthcare" hidden>
+                      <p class="mega-main-title">Healthcare &amp; Life Sciences</p>
+                      <p class="mega-main-desc">Protect patient data and modernize clinical technology with secure platforms.</p>
+                      <div class="mega-cards">
+                        <a href="healthcare-life-sciences.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9"/></svg></span><div><h5>Healthcare Cybersecurity</h5><p>Protect identities, data, and connected systems.</p></div></a>
+                        <a href="healthcare-life-sciences.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18"/></svg></span><div><h5>Secure Cloud Infrastructure</h5><p>Scalable environments for clinical workloads.</p></div></a>
+                        <a href="healthcare-life-sciences.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M20.25 6.375c0 2.278-3.694 4.125-8.25 4.125"/></svg></span><div><h5>Healthcare Data Platforms</h5><p>Unified foundations for trusted clinical data.</p></div></a>
+                        <a href="healthcare-life-sciences.html" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>HIPAA-Focused Controls</h5><p>Security practices for privacy-sensitive environments.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="ind-manufacturing" hidden>
+                      <p class="mega-main-title">Manufacturing</p>
+                      <p class="mega-main-desc">Connect shop-floor systems to secure, scalable cloud and data platforms.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17l-5.27 5.28"/></svg></span><div><h5>Smart Manufacturing</h5><p>IoT, telemetry, and operational visibility.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25"/></svg></span><div><h5>Plant Infrastructure</h5><p>Modernize OT/IT environments with resilience.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25"/></svg></span><div><h5>Predictive Operations</h5><p>Data platforms that reduce downtime risk.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>Secure Connectivity</h5><p>Protect industrial networks and cloud links.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="ind-retail" hidden>
+                      <p class="mega-main-title">Retail &amp; E-Commerce</p>
+                      <p class="mega-main-desc">Scale customer experiences with resilient commerce infrastructure.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 3h1.386c.51 0 .955.343 1.087.835"/></svg></span><div><h5>Peak-Ready Platforms</h5><p>Infrastructure prepared for demand spikes.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18"/></svg></span><div><h5>Cloud Commerce</h5><p>Scalable environments for digital retail.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25"/></svg></span><div><h5>Customer Analytics</h5><p>Data foundations for personalization.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>Secure Transactions</h5><p>Protect customer and payment environments.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="ind-logistics" hidden>
+                      <p class="mega-main-title">Logistics &amp; Supply Chain</p>
+                      <p class="mega-main-desc">Improve visibility and reliability across warehouse and delivery systems.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 01-3 0"/></svg></span><div><h5>Real-Time Visibility</h5><p>Track operations across distributed networks.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14"/></svg></span><div><h5>Warehouse Systems</h5><p>Modernize infrastructure behind logistics ops.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25"/></svg></span><div><h5>Automation</h5><p>Streamline processes with reliable platforms.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>Secure Connectivity</h5><p>Protect systems spanning partners and sites.</p></div></a>
+                      </div>
+                    </div>
+                    <div class="mega-panel-body" data-mega-panel="ind-tech" hidden>
+                      <p class="mega-main-title">Technology &amp; SaaS</p>
+                      <p class="mega-main-desc">Scale multi-tenant platforms without scaling complexity.</p>
+                      <div class="mega-cards">
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18"/></svg></span><div><h5>Cloud-Native Scale</h5><p>Architectures built for rapid growth.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25"/></svg></span><div><h5>DevOps Velocity</h5><p>Faster delivery with automated pipelines.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5"/></svg></span><div><h5>Cost-Efficient Ops</h5><p>Optimize multi-tenant infrastructure spend.</p></div></a>
+                        <a href="index.html#industries" class="mega-card"><span class="mega-card-ico"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75"/></svg></span><div><h5>Secure Tenancy</h5><p>Isolation, identity, and platform governance.</p></div></a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="mega-feature">
+                    <div class="mega-feature-media">
+                      <img src="healthcare-hero-bg.jpg" alt="" width="700" height="420" loading="lazy" />
+                    </div>
+                    <span class="badge">Industry spotlight</span>
+                    <h4>Healthcare &amp; Life Sciences</h4>
+                    <p>Modernize infrastructure, protect sensitive data, and strengthen cyber resilience for clinical environments.</p>
+                    <div class="mega-feature-actions">
+                      <a href="healthcare-life-sciences.html" class="btn-mega-primary">Explore Healthcare</a>
+                      <a href="index.html#industries" class="btn-mega-ghost">All Industries</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <a href="success-stories.html" class="nav-link">Success Stories</a>
-          <a href="about.html" class="nav-link nav-active">Company</a>
+          <a href="about.html" class="nav-link">Company</a>
           <a href="index.html#faq" class="nav-link">FAQ</a>
         </nav>
       </div>
@@ -729,11 +1107,8 @@
             <a href="index.html#svc-devops" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">DevOps &amp; Automation</a>
           </div>
         </details>
-                <details class="mobile-acc">
-          <summary>
-            Technology
-            <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
-          </summary>
+                        <details class="mobile-acc">
+          <summary>Technology <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
           <div class="mobile-acc-body">
             <p class="mobile-section-label" style="padding-left:0">Cloud Platforms</p>
             <a href="aws.html" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">AWS</a>
@@ -749,7 +1124,18 @@
             <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Containers &amp; Kubernetes</a>
             <a href="#" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">DevOps &amp; CI/CD</a>
           </div>
-        </details>        <a href="index.html#industries" class="mobile-link">Industries</a>
+        </details>
+        <details class="mobile-acc">
+          <summary>Industries <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="mobile-acc-body">
+            <a href="index.html#industries" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Banking &amp; Financial Services</a>
+            <a href="healthcare-life-sciences.html" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Healthcare &amp; Life Sciences</a>
+            <a href="index.html#industries" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Manufacturing</a>
+            <a href="index.html#industries" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Retail &amp; E-Commerce</a>
+            <a href="index.html#industries" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Logistics &amp; Supply Chain</a>
+            <a href="index.html#industries" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Technology &amp; SaaS</a>
+          </div>
+        </details>
         <a href="success-stories.html" class="mobile-link">Success Stories</a>
         <a href="about.html" class="mobile-link">Company</a>
         <a href="index.html#faq" class="mobile-link">FAQ</a>
@@ -1122,6 +1508,56 @@
         panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
         document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
       })();
-  </script>
+  
+      (function initInnerMegas() {
+        const items = ['nav-services', 'nav-technology', 'nav-industries'];
+        items.forEach((id) => {
+          const item = document.getElementById(id);
+          if (!item) return;
+          const btn = item.querySelector(':scope > .nav-link, :scope > button.nav-link');
+          const panel = item.querySelector('.mega-panel');
+          if (!btn || !panel) return;
+          const open = () => {
+            items.forEach((otherId) => {
+              const other = document.getElementById(otherId);
+              if (other && other !== item) {
+                other.classList.remove('is-open');
+                const ob = other.querySelector(':scope > .nav-link, :scope > button.nav-link');
+                if (ob) ob.setAttribute('aria-expanded', 'false');
+              }
+            });
+            item.classList.add('is-open');
+            btn.setAttribute('aria-expanded', 'true');
+          };
+          const close = () => {
+            item.classList.remove('is-open');
+            btn.setAttribute('aria-expanded', 'false');
+          };
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            if (item.classList.contains('is-open')) close(); else open();
+          });
+          item.addEventListener('mouseenter', open);
+          item.addEventListener('mouseleave', close);
+          panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+          document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
+          const sideBtns = item.querySelectorAll('.mega-side-btn');
+          sideBtns.forEach((sb) => {
+            sb.addEventListener('click', (e) => {
+              e.stopPropagation();
+              const tab = sb.getAttribute('data-mega-tab');
+              sideBtns.forEach((b) => {
+                const on = b === sb;
+                b.classList.toggle('is-active', on);
+                b.setAttribute('aria-selected', on ? 'true' : 'false');
+              });
+              item.querySelectorAll('.mega-panel-body').forEach((body) => {
+                body.hidden = body.getAttribute('data-mega-panel') !== tab;
+              });
+            });
+          });
+        });
+      })();
+</script>
 </body>
 </html>
