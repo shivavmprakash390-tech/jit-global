@@ -20,6 +20,38 @@ Error generating stack: `+a.message+`
   </head>
   <body>
 <!-- JIT-NAV-START -->
+<style id="jit-cta-layout-fix">
+  /* Force FAQ+CTA final conversation: copy left, form right */
+  #contact-form .container-xl > div.flex {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: flex-start !important;
+    gap: 3rem !important;
+  }
+  #contact-form .container-xl > div.flex > div {
+    flex: 1 1 0 !important;
+    width: 50% !important;
+    max-width: 50% !important;
+    min-width: 0 !important;
+  }
+  #contact-form .container-xl > div.flex > div:first-child {
+    order: 1 !important;
+  }
+  #contact-form .container-xl > div.flex > div:last-child {
+    order: 2 !important;
+  }
+  @media (max-width: 1023px) {
+    #contact-form .container-xl > div.flex {
+      flex-direction: column !important;
+      gap: 2rem !important;
+    }
+    #contact-form .container-xl > div.flex > div {
+      width: 100% !important;
+      max-width: 100% !important;
+    }
+  }
+</style>
 <style id="jit-hide-spa-nav">
   body > nav,
   #root nav.fixed,
