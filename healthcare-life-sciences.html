@@ -730,106 +730,130 @@
     .mega-grid-tech { grid-template-columns: repeat(4, 1fr); }
 
   
-    /* ===== INNER MEGA NAV LAYOUT FIX ===== */
+    
+  
+    /* ===== MEGA NAV STRUCTURAL FIX v2 (fixed under header) ===== */
+    #navbar .nav-center,
+    #navbar .nav-links,
+    #navbar .nav-item,
+    #navbar .nav-shell {
+      overflow: visible !important;
+    }
     .mega-panel {
-      position: absolute !important;
+      position: fixed !important;
       left: 50% !important;
+      top: 4.5rem !important;
       right: auto !important;
-      top: calc(100% + 0.65rem) !important;
-      transform: translateX(-50%) translateY(10px) scale(0.985) !important;
-      width: min(72rem, calc(100vw - 1.25rem)) !important;
-      max-width: calc(100vw - 1.25rem) !important;
+      bottom: auto !important;
+      transform: translateX(-50%) translateY(8px) !important;
+      width: min(1120px, calc(100vw - 2rem)) !important;
+      max-width: calc(100vw - 2rem) !important;
+      margin: 0 !important;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.22s ease, transform 0.22s ease;
-      z-index: 90;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+      z-index: 100 !important;
     }
     .nav-item.is-open .mega-panel,
     .nav-item:hover .mega-panel {
       opacity: 1 !important;
       pointer-events: auto !important;
-      transform: translateX(-50%) translateY(0) scale(1) !important;
+      transform: translateX(-50%) translateY(0) !important;
     }
     .mega-panel-tech {
-      width: min(72rem, calc(100vw - 1.25rem)) !important;
-      transform: translateX(-50%) translateY(10px) scale(0.985) !important;
+      width: min(1120px, calc(100vw - 2rem)) !important;
+      transform: translateX(-50%) translateY(8px) !important;
     }
     .nav-item.is-open .mega-panel-tech,
     .nav-item:hover .mega-panel-tech {
-      transform: translateX(-50%) translateY(0) scale(1) !important;
+      transform: translateX(-50%) translateY(0) !important;
     }
     .mega-inner {
-      background: linear-gradient(165deg, #0B1220 0%, #0F172A 55%, #0A1020 100%) !important;
-      border: 1px solid rgba(98,181,247,0.18) !important;
-      border-radius: 1.15rem !important;
-      box-shadow: 0 28px 70px rgba(2, 6, 23, 0.6) !important;
-      overflow: hidden !important;
-      color: #fff !important;
       display: block !important;
+      width: 100% !important;
+      overflow: hidden !important;
+      border-radius: 1rem !important;
+      border: 1px solid rgba(98,181,247,0.2) !important;
+      background: #0B1220 !important;
+      box-shadow: 0 24px 64px rgba(2,6,23,0.65) !important;
     }
     .mega-shell {
-      display: grid !important;
-      grid-template-columns: 14rem minmax(0, 1fr) 17rem !important;
-      grid-template-rows: auto !important;
+      display: flex !important;
+      flex-direction: row !important;
       align-items: stretch !important;
-      min-height: 23rem !important;
       width: 100% !important;
+      min-height: 24rem !important;
+      grid-template-columns: none !important;
     }
     .mega-side {
-      padding: 1.15rem 0.75rem !important;
-      border-right: 1px solid rgba(255,255,255,0.08) !important;
-      background: rgba(0,0,0,0.22) !important;
+      flex: 0 0 13.75rem !important;
+      width: 13.75rem !important;
+      max-width: 13.75rem !important;
       display: flex !important;
       flex-direction: column !important;
-      gap: 0.2rem !important;
-      min-width: 0 !important;
+      gap: 0.15rem !important;
+      padding: 1rem 0.7rem !important;
+      border-right: 1px solid rgba(255,255,255,0.08) !important;
+      background: rgba(0,0,0,0.25) !important;
+      box-sizing: border-box !important;
     }
     .mega-main {
-      padding: 1.25rem 1.35rem !important;
+      flex: 1 1 auto !important;
       min-width: 0 !important;
-      overflow: hidden !important;
+      width: auto !important;
+      padding: 1.15rem 1.25rem !important;
+      box-sizing: border-box !important;
+      overflow: visible !important;
     }
     .mega-cards {
       display: grid !important;
-      grid-template-columns: 1fr 1fr !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
       gap: 0.65rem !important;
+      width: 100% !important;
+    }
+    .mega-card {
+      min-width: 0 !important;
+      box-sizing: border-box !important;
     }
     .mega-feature {
-      padding: 1.15rem !important;
-      border-left: 1px solid rgba(255,255,255,0.08) !important;
-      background: linear-gradient(180deg, rgba(30,58,138,0.4), rgba(15,23,42,0.95)) !important;
+      flex: 0 0 16.5rem !important;
+      width: 16.5rem !important;
+      max-width: 16.5rem !important;
       display: flex !important;
       flex-direction: column !important;
-      min-width: 0 !important;
-      height: 100% !important;
+      padding: 1.1rem !important;
+      border-left: 1px solid rgba(255,255,255,0.08) !important;
+      background: linear-gradient(180deg, rgba(30,58,138,0.45), rgba(15,23,42,0.98)) !important;
+      box-sizing: border-box !important;
+      position: relative !important;
+      float: none !important;
     }
     .mega-feature-media {
-      border-radius: 0.75rem !important;
+      width: 100% !important;
+      height: 8.5rem !important;
+      max-height: 8.5rem !important;
+      aspect-ratio: auto !important;
+      border-radius: 0.65rem !important;
       overflow: hidden !important;
-      aspect-ratio: 16/10 !important;
-      max-height: 9.5rem !important;
-      background: #0B1220 !important;
-      margin-bottom: 0.9rem !important;
-      border: 1px solid rgba(98,181,247,0.2) !important;
+      margin-bottom: 0.85rem !important;
       flex-shrink: 0 !important;
     }
-    .mega-grid, .mega-grid-tech {
-      display: none !important; /* legacy layouts disabled when shell present */
+    .mega-feature-media img {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block !important;
     }
-    .mega-inner:has(.mega-shell) > .mega-grid,
-    .mega-inner:has(.mega-shell) > .mega-grid-tech {
+    .mega-grid,
+    .mega-grid-tech {
       display: none !important;
     }
-    @media (max-width: 1100px) {
-      .mega-shell {
-        grid-template-columns: 12.5rem minmax(0, 1fr) 15rem !important;
-      }
-    }
-    @media (max-width: 980px) {
-      .mega-shell {
-        grid-template-columns: 12rem minmax(0, 1fr) !important;
-      }
+    @media (max-width: 1023px) {
       .mega-feature { display: none !important; }
+      .mega-side { flex-basis: 12rem !important; width: 12rem !important; max-width: 12rem !important; }
+    }
+    @media (max-width: 640px) {
+      .mega-panel { top: 4.15rem !important; }
     }
   </style>
 </head>
