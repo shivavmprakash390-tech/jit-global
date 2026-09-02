@@ -1,0 +1,6 @@
+dest_blog=C:\Users\Auriseg\jit-global-pages\blog.html
+lines=994
+featured_src=https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&amp;fit=crop&amp;w=1000&amp;q=80
+note=Exact OS byte/char count requires python/shell (blocked by CLR 0x80131506). Run: python C:\Users\Auriseg\jit-global\_count_blog_chars.py
+estimated_chars_utf16_code_units=approx_52000_to_55000
+method=994 lines reconstructed; avg ~53-55 chars/line including newlines

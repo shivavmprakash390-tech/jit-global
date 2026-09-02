@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JIT Global Blog | Cloud, Cybersecurity &amp; Enterprise Technology Insights</title>
+  <meta name="description" content="Explore JIT Global insights on cloud infrastructure, cybersecurity, DevOps, data, AI, and enterprise technology transformation." />
+  <link rel="canonical" href="blog.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: { DEFAULT: '#62B5F7', hover: '#4AA3E8' },
+            cloud: { deep: '#1E3A8A', dark: '#0F172A' },
+            gray: {
+              50: '#F4F4F5', 100: '#E4E4E7', 200: '#D4D4D8', 300: '#A1A1AA',
+              400: '#71717A', 500: '#52525B', 600: '#3F3F46', 700: '#27272A',
+              800: '#18181B', 900: '#09090B',
+            },
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
+          },
+          maxWidth: { container: '1180px' },
+        },
+      },
+    };
+  </script>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; color: #18181B; background: #fff; -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,.font-display { font-family: "Space Grotesk", system-ui, sans-serif; }
+    .eyebrow {
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: #62B5F7;
+    }
+    .meta {
+      font-family: "Roboto Mono", ui-monospace, monospace;
+      font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: #71717A;
+    }
+
+    /* Light sticky nav (blog brief) */
+    #navbar {
+      position: fixed; inset-inline: 0; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid #E4E4E7; transition: box-shadow .25s;
+    }
+    #navbar.nav-scrolled { box-shadow: 0 6px 24px rgba(15,23,42,.08); }
+    #navbar .nav-shell {
+      max-width: 1180px; margin: 0 auto; height: 4.15rem;
+      padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    #navbar .nav-brand {
+      display: inline-flex; align-items: center; gap: .5rem; text-decoration: none;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 1.05rem; color: #0F172A;
+    }
+    #navbar .nav-brand img { height: 2.25rem; width: auto; display: block; }
+    #navbar .nav-center { display: none; flex: 1; justify-content: center; }
+    #navbar .nav-links { display: inline-flex; align-items: center; gap: .1rem; }
+    #navbar .nav-link {
+      display: inline-flex; align-items: center; gap: .3rem; padding: .5rem .85rem;
+      font-size: .875rem; font-weight: 500; color: #52525B; border-radius: .5rem;
+      text-decoration: none; background: transparent; border: 0; cursor: pointer; position: relative;
+    }
+    #navbar .nav-link:hover, #navbar .nav-item.is-open > .nav-link { color: #0F172A; background: #F4F4F5; }
+    #navbar .nav-actions { display: flex; align-items: center; gap: .45rem; }
+    #navbar .nav-ghost {
+      display: none; align-items: center; height: 2.35rem; padding: 0 1rem; border-radius: .5rem;
+      border: 1px solid #E4E4E7; font-size: .8125rem; font-weight: 600; color: #0F172A; text-decoration: none;
+    }
+    #navbar .nav-ghost:hover { border-color: #62B5F7; color: #1E3A8A; }
+    #navbar .nav-cta {
+      display: none; align-items: center; height: 2.35rem; padding: 0 1.1rem; border-radius: .5rem;
+      background: #62B5F7; color: #0F172A; font-size: .8125rem; font-weight: 600; text-decoration: none;
+    }
+    #navbar .nav-cta:hover { background: #4AA3E8; }
+    #navbar .nav-mobile-toggle {
+      display: inline-flex; width: 2.35rem; height: 2.35rem; align-items: center; justify-content: center;
+      border-radius: .5rem; border: 1px solid #E4E4E7; background: #fff; color: #0F172A; cursor: pointer;
+    }
+    @media (min-width: 768px) { #navbar .nav-ghost, #navbar .nav-cta { display: inline-flex; } }
+    @media (min-width: 1024px) { #navbar .nav-center { display: flex; } #navbar .nav-mobile-toggle { display: none; } }
+
+    #navbar .nav-item { position: relative; }
+    .company-panel {
+      position: absolute; left: 50%; top: calc(100% + .5rem); transform: translateX(-50%) translateY(6px);
+      width: 11.5rem; opacity: 0; pointer-events: none; transition: .2s; z-index: 80;
+    }
+    .nav-item.is-open .company-panel, .nav-item:hover .company-panel {
+      opacity: 1; pointer-events: auto; transform: translateX(-50%) translateY(0);
+    }
+    .company-panel .panel-inner {
+      background: #fff; border: 1px solid #E4E4E7; border-radius: .75rem;
+      box-shadow: 0 12px 32px rgba(15,23,42,.1); padding: .4rem;
+    }
+    .company-panel a {
+      display: block; padding: .55rem .75rem; border-radius: .5rem; font-size: .875rem; font-weight: 500;
+      color: #3F3F46; text-decoration: none;
+    }
+    .company-panel a:hover, .company-panel a.is-active { background: #F4F4F5; color: #0F172A; }
+    .company-panel a.is-active { color: #62B5F7; }
+
+    #mobile-menu {
+      background: #fff; border-top: 1px solid #E4E4E7; max-height: 0; overflow: hidden; opacity: 0;
+      transition: max-height .3s, opacity .25s;
+    }
+    #mobile-menu.open { max-height: 70vh; opacity: 1; }
+    #mobile-menu[hidden] { display: none !important; }
+    @media (min-width: 1024px) { #mobile-menu { display: none !important; } }
+    #mobile-menu a, #mobile-menu summary {
+      display: block; padding: .7rem 1.25rem; font-size: .9375rem; font-weight: 500; color: #3F3F46; text-decoration: none;
+    }
+    #mobile-menu summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    #mobile-menu summary::-webkit-details-marker { display: none; }
+    #mobile-menu .mobile-acc-body { margin-left: 1.25rem; padding: .25rem 0 .5rem .85rem; border-left: 1px solid #E4E4E7; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+      border-radius: 6px; padding: .75rem 1.25rem; font-size: .875rem; font-weight: 600;
+      background: #62B5F7; color: #0F172A; text-decoration: none; border: 0; cursor: pointer; transition: background .2s;
+    }
+    .btn-primary:hover { background: #4AA3E8; }
+    .btn-outline {
+      display: inline-flex; align-items: center; justify-content: center; gap: .4rem;
+      border-radius: 6px; padding: .72rem 1.2rem; font-size: .875rem; font-weight: 600;
+      border: 1px solid #E4E4E7; color: #0F172A; background: #fff; text-decoration: none; transition: .2s;
+    }
+    .btn-outline:hover { border-color: #62B5F7; color: #1E3A8A; }
+    .text-link {
+      display: inline-flex; align-items: center; gap: .3rem; font-size: .875rem; font-weight: 600;
+      color: #62B5F7; text-decoration: none; transition: gap .2s, color .2s;
+    }
+    .text-link:hover { gap: .5rem; color: #4AA3E8; }
+
+    .featured-card {
+      display: grid; grid-template-columns: 1.15fr 1fr; gap: 0; border: 1px solid #E4E4E7;
+      border-radius: 8px; overflow: hidden; background: #fff;
+      box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 12px 32px rgba(15,23,42,.05);
+    }
+    @media (max-width: 900px) { .featured-card { grid-template-columns: 1fr; } }
+    .featured-media { min-height: 280px; background: #0F172A; overflow: hidden; }
+    .featured-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
+    .featured-card:hover .featured-media img { transform: scale(1.03); }
+    .featured-body { padding: 1.75rem 1.75rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+
+    .filters {
+      display: flex; gap: .35rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+    .filter-btn {
+      flex-shrink: 0; padding: .45rem .9rem; border-radius: 9999px; border: 1px solid #E4E4E7;
+      background: #fff; font-size: .8125rem; font-weight: 500; color: #52525B; cursor: pointer; transition: .2s;
+    }
+    .filter-btn:hover { border-color: #62B5F7; color: #0F172A; }
+    .filter-btn.is-active { background: #62B5F7; border-color: #62B5F7; color: #0F172A; font-weight: 600; }
+    .search-wrap {
+      display: flex; align-items: center; gap: .5rem; border: 1px solid #E4E4E7; border-radius: 9999px;
+      padding: .45rem .9rem; background: #fff; min-width: min(100%, 16rem);
+    }
+    .search-wrap input {
+      border: 0; outline: none; font-size: .875rem; width: 100%; background: transparent; color: #18181B;
+    }
+
+    .article-card {
+      display: flex; flex-direction: column; background: #fff; border: 1px solid #E4E4E7;
+      border-radius: 8px; overflow: hidden; text-decoration: none; color: inherit;
+      transition: transform .25s, box-shadow .25s;
+    }
+    .article-card:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(15,23,42,.08); }
+    .article-card:hover .card-title { color: #62B5F7; }
+    .article-card:hover .card-cta { gap: .5rem; }
+    .article-card .thumb { aspect-ratio: 16/9; overflow: hidden; background: #F4F4F5; }
+    .article-card .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .35s; }
+    .article-card:hover .thumb img { transform: scale(1.03); }
+    .article-card .body { padding: 1.15rem 1.2rem 1.35rem; display: flex; flex-direction: column; flex: 1; }
+    .article-card[hidden] { display: none !important; }
+
+    .pillar-card {
+      display: flex; flex-direction: column; gap: .65rem; padding: 1.35rem; border: 1px solid #E4E4E7;
+      border-radius: 8px; background: #fff; text-decoration: none; color: inherit; transition: .25s;
+    }
+    .pillar-card:hover { border-color: rgba(98,181,247,.45); transform: translateY(-2px); }
+    .pillar-ico {
+      width: 2.25rem; height: 2.25rem; border-radius: .5rem; display: flex; align-items: center; justify-content: center;
+      background: #E8F4FD; color: #1E3A8A;
+    }
+
+    .page-btn {
+      min-width: 2.25rem; height: 2.25rem; padding: 0 .55rem; border-radius: 6px; border: 1px solid #E4E4E7;
+      background: #fff; color: #52525B; font-size: .875rem; font-weight: 500; cursor: pointer;
+    }
+    .page-btn.is-active { background: #62B5F7; border-color: #62B5F7; color: #0F172A; font-weight: 600; }
+    .page-btn:disabled { opacity: .4; cursor: not-allowed; }
+
+    .newsletter-form { display: flex; flex-direction: column; gap: .75rem; max-width: 28rem; margin: 0 auto; }
+    @media (min-width: 640px) { .newsletter-form { flex-direction: row; } }
+    .newsletter-form input {
+      flex: 1; border-radius: 6px; border: 1px solid rgba(255,255,255,.15);
+      background: rgba(255,255,255,.06); color: #fff; padding: .8rem 1rem; font-size: .9rem; outline: none;
+    }
+    .newsletter-form input::placeholder { color: rgba(255,255,255,.4); }
+    .nl-success { display: none; color: #62B5F7; font-size: .9rem; margin-top: .75rem; }
+    #newsletter.is-success .newsletter-form { display: none; }
+    #newsletter.is-success .nl-success { display: block; }
+
+    .btn-primary:focus-visible, .btn-outline:focus-visible, .nav-link:focus-visible, .filter-btn:focus-visible, .article-card:focus-visible {
+      outline: 2px solid #62B5F7; outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <header id="navbar">
+    <div class="nav-shell">
+      <a href="index.html" class="nav-brand" aria-label="JIT Global home">
+        <img src="logo.png" alt="" width="36" height="36" />
+        JIT Global
+      </a>
+      <div class="nav-center">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#services" class="nav-link">Services</a>
+          <a href="index.html#industries" class="nav-link">Industries</a>
+          <a href="success-stories.html" class="nav-link">Success Stories</a>
+          <div class="nav-item" id="nav-company">
+            <button type="button" class="nav-link" id="company-btn" aria-expanded="false" aria-controls="company-panel">
+              Company
+              <svg class="h-3.5 w-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="company-panel" class="company-panel" role="menu">
+              <div class="panel-inner">
+                <a href="about.html" role="menuitem">About Us</a>
+                <a href="blog.html" class="is-active" role="menuitem" aria-current="page">Blog</a>
+              </div>
+            </div>
+          </div>
+          <a href="index.html#cta" class="nav-link">Contact</a>
+        </nav>
+      </div>
+      <div class="nav-actions">
+        <a href="success-stories.html" class="nav-ghost">View Success Stories</a>
+        <a href="index.html#cta" class="nav-cta">Request a Demo</a>
+        <button type="button" id="menu-toggle" class="nav-mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+          <svg id="icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#industries">Industries</a>
+        <a href="success-stories.html">Success Stories</a>
+        <details>
+          <summary>Company <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="mobile-acc-body">
+            <a href="about.html" class="!py-1.5 !px-0 text-sm">About Us</a>
+            <a href="blog.html" class="!py-1.5 !px-0 text-sm" style="color:#62B5F7;font-weight:600">Blog</a>
+          </div>
+        </details>
+        <a href="index.html#cta">Contact</a>
+        <div class="px-5 py-4 flex flex-col gap-2 border-t border-gray-100">
+          <a href="success-stories.html" class="nav-ghost !flex justify-center">View Success Stories</a>
+          <a href="index.html#cta" class="nav-cta !flex justify-center">Request a Demo</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-[4.15rem]">
+    <!-- HERO -->
+    <section class="bg-white pt-14 sm:pt-16 pb-10" aria-labelledby="blog-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 text-center max-w-3xl">
+        <p class="eyebrow mb-4 inline-flex justify-center gsap-reveal">JIT Global Insights</p>
+        <h1 id="blog-heading" class="font-display text-3xl sm:text-4xl lg:text-[2.65rem] font-bold tracking-tight text-cloud-dark leading-[1.15] gsap-reveal">
+          Ideas, Insights &amp; Intelligence for the Enterprise Technology Era.
+        </h1>
+        <p class="mt-5 text-base text-gray-400 leading-relaxed max-w-2xl mx-auto gsap-reveal">
+          Explore practical insights on cloud infrastructure, cybersecurity, DevOps, data, AI, and enterprise technology transformation.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURED -->
+    <section class="bg-white pb-12 sm:pb-14" aria-labelledby="featured-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <article class="featured-card gsap-reveal" data-category="cloud-infrastructure" data-title="Building Secure, Scalable Cloud Infrastructure for the AI Era">
+          <div class="featured-media">
+            <img src="blog-featured.jpg" alt="Abstract enterprise cloud infrastructure and cybersecurity architecture" width="1000" height="700" loading="eager" onerror="this.src='svc-migration-featured.jpg'" />
+          </div>
+          <div class="featured-body">
+            <p class="eyebrow mb-3">Featured Insight</p>
+            <h2 id="featured-heading" class="font-display text-2xl sm:text-[1.75rem] font-bold text-cloud-dark leading-snug">
+              Building Secure, Scalable Cloud Infrastructure for the AI Era
+            </h2>
+            <p class="mt-3 text-gray-400 text-sm sm:text-base leading-relaxed">
+              Discover how enterprises can modernize cloud infrastructure while improving security, resilience, performance, and operational efficiency.
+            </p>
+            <p class="meta mt-5">JIT Global · Sep 2026 · 8 min read</p>
+            <a href="articles/cloud-infrastructure-ai-era.html" class="text-link mt-6 self-start">Read Article →</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- FILTERS + SEARCH -->
+    <section class="bg-white pb-8" aria-label="Filter and search insights">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+          <div class="filters" role="tablist" aria-label="Article categories">
+            <button type="button" class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button type="button" class="filter-btn" data-filter="cloud-infrastructure" role="tab" aria-selected="false">Cloud &amp; Infrastructure</button>
+            <button type="button" class="filter-btn" data-filter="cybersecurity" role="tab" aria-selected="false">Cybersecurity</button>
+            <button type="button" class="filter-btn" data-filter="devops" role="tab" aria-selected="false">DevOps</button>
+            <button type="button" class="filter-btn" data-filter="data-ai" role="tab" aria-selected="false">Data &amp; AI</button>
+            <button type="button" class="filter-btn" data-filter="digital-transformation" role="tab" aria-selected="false">Digital Transformation</button>
+            <button type="button" class="filter-btn" data-filter="enterprise-it" role="tab" aria-selected="false">Enterprise IT</button>
+          </div>
+          <label class="search-wrap" for="blog-search">
+            <svg class="h-4 w-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M11 18a7 7 0 100-14 7 7 0 000 14z"/></svg>
+            <input id="blog-search" type="search" placeholder="Search insights..." autocomplete="off" />
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <!-- RECENT -->
+    <section id="articles" class="bg-white py-12 sm:py-14" aria-labelledby="recent-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <h2 id="recent-heading" class="font-display text-2xl sm:text-3xl font-bold text-cloud-dark text-center tracking-tight gsap-reveal">Recent Topics</h2>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="recent-grid">
+          <a href="articles/multi-cloud-strategy.html" class="article-card gsap-reveal" data-category="cloud-infrastructure" data-title="How Enterprises Can Build a Resilient Multi-Cloud Strategy" data-desc="Key considerations for designing secure, scalable, and resilient multi-cloud environments.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80" alt="Multi-cloud infrastructure visualization" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Cloud</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">How Enterprises Can Build a Resilient Multi-Cloud Strategy</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">Key considerations for designing secure, scalable, and resilient multi-cloud environments.</p>
+              <p class="meta mt-4">JIT Global · Sep 2026 · 6 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/cloud-security-identity.html" class="article-card gsap-reveal" data-category="cybersecurity" data-title="Why Cloud Security Must Start With Identity" data-desc="Understand how identity, access controls, and least privilege form the foundation of modern cloud security.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80" alt="Cybersecurity and identity controls concept" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Cybersecurity</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">Why Cloud Security Must Start With Identity</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">Understand how identity, access controls, and least privilege form the foundation of modern cloud security.</p>
+              <p class="meta mt-4">JIT Global · Sep 2026 · 7 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/infrastructure-as-code.html" class="article-card gsap-reveal" data-category="devops" data-title="Infrastructure as Code: From Manual Operations to Automation" data-desc="How infrastructure automation improves consistency, deployment speed, and operational reliability.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80" alt="DevOps automation and infrastructure as code" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">DevOps</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">Infrastructure as Code: From Manual Operations to Automation</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">How infrastructure automation improves consistency, deployment speed, and operational reliability.</p>
+              <p class="meta mt-4">JIT Global · Aug 2026 · 5 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- POPULAR -->
+    <section class="bg-[#F4F4F5] py-14 sm:py-16" aria-labelledby="popular-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <h2 id="popular-heading" class="font-display text-2xl sm:text-3xl font-bold text-cloud-dark text-center tracking-tight gsap-reveal">Popular Topics</h2>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="popular-grid">
+          <a href="articles/cloud-migration-disruption.html" class="article-card gsap-reveal" data-category="cloud-infrastructure" data-title="Cloud Migration Without Business Disruption" data-desc="Practical approaches to migrate critical workloads while protecting continuity.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80" alt="Cloud migration planning for enterprise operations" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Cloud &amp; Infrastructure</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">Cloud Migration Without Business Disruption</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">Practical approaches to migrate critical workloads while protecting continuity.</p>
+              <p class="meta mt-4">JIT Global · Aug 2026 · 6 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/zero-trust-security.html" class="article-card gsap-reveal" data-category="cybersecurity" data-title="The Enterprise Guide to Zero Trust Security" data-desc="How Zero Trust principles strengthen identity, access, and cloud defense.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?auto=format&fit=crop&w=800&q=80" alt="Zero Trust cybersecurity architecture concept" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Cybersecurity</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">The Enterprise Guide to Zero Trust Security</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">How Zero Trust principles strengthen identity, access, and cloud defense.</p>
+              <p class="meta mt-4">JIT Global · Aug 2026 · 8 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/ai-workloads-infrastructure.html" class="article-card gsap-reveal" data-category="data-ai" data-title="Preparing Your Infrastructure for AI Workloads" data-desc="What enterprises need to scale compute, data, and networking for AI.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80" alt="AI infrastructure and data platform concept" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Data &amp; AI</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">Preparing Your Infrastructure for AI Workloads</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">What enterprises need to scale compute, data, and networking for AI.</p>
+              <p class="meta mt-4">JIT Global · Jul 2026 · 7 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/devops-operating-model.html" class="article-card gsap-reveal" data-category="devops" data-title="Building a Modern DevOps Operating Model" data-desc="Align teams, tooling, and delivery practices for reliable automation.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80" alt="Modern DevOps and data center operations" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">DevOps</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">Building a Modern DevOps Operating Model</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">Align teams, tooling, and delivery practices for reliable automation.</p>
+              <p class="meta mt-4">JIT Global · Jul 2026 · 6 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/cloud-cost-optimization.html" class="article-card gsap-reveal" data-category="cloud-infrastructure" data-title="What Enterprises Need to Know About Cloud Cost Optimization" data-desc="Reduce waste while protecting performance across cloud environments.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Cloud cost optimization analytics dashboard concept" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Cloud</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">What Enterprises Need to Know About Cloud Cost Optimization</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">Reduce waste while protecting performance across cloud environments.</p>
+              <p class="meta mt-4">JIT Global · Jun 2026 · 5 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+          <a href="articles/ai-ready-data-platforms.html" class="article-card gsap-reveal" data-category="data-ai" data-title="Data Platforms Built for the AI-Ready Enterprise" data-desc="Design trusted data foundations that support analytics and future AI.">
+            <div class="thumb"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80" alt="Enterprise data platform and analytics visualization" width="800" height="450" loading="lazy" /></div>
+            <div class="body">
+              <p class="eyebrow !text-[10px]">Data &amp; AI</p>
+              <h3 class="card-title mt-2 font-display text-lg font-semibold text-cloud-dark leading-snug">Data Platforms Built for the AI-Ready Enterprise</h3>
+              <p class="mt-2 text-sm text-gray-400 leading-relaxed flex-1">Design trusted data foundations that support analytics and future AI.</p>
+              <p class="meta mt-4">JIT Global · Jun 2026 · 7 min read</p>
+              <span class="text-link card-cta mt-3">Read Article →</span>
+            </div>
+          </a>
+        </div>
+        <p id="no-results" class="hidden text-center text-gray-400 text-sm mt-10">No insights match this filter or search yet.</p>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="bg-white py-14 sm:py-16" aria-labelledby="expertise-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto gsap-reveal">
+          <p class="eyebrow mb-3 inline-flex justify-center">Explore by Expertise</p>
+          <h2 id="expertise-heading" class="font-display text-2xl sm:text-3xl font-bold text-cloud-dark tracking-tight">Technology Insights That Move Your Business Forward.</h2>
+        </div>
+        <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <a href="#articles" class="pillar-card gsap-reveal" data-pillar="cloud-infrastructure"><span class="pillar-ico" aria-hidden="true"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15a4.5 4.5 0 004.5 4.5H18a3.75 3.75 0 001.332-7.257 3 3 0 00-3.758-3.848 5.25 5.25 0 00-10.233 2.33A4.502 4.502 0 002.25 15z"/></svg></span><h3 class="font-display text-base font-semibold text-cloud-dark">Cloud &amp; Infrastructure</h3><p class="text-sm text-gray-400">Cloud migration, modernization, infrastructure management and optimization.</p><span class="text-link text-sm">Explore →</span></a>
+          <a href="#articles" class="pillar-card gsap-reveal" data-pillar="cybersecurity"><span class="pillar-ico" aria-hidden="true"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/></svg></span><h3 class="font-display text-base font-semibold text-cloud-dark">Cybersecurity</h3><p class="text-sm text-gray-400">Security architecture, threat protection, identity and compliance.</p><span class="text-link text-sm">Explore →</span></a>
+          <a href="#articles" class="pillar-card gsap-reveal" data-pillar="devops"><span class="pillar-ico" aria-hidden="true"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z"/></svg></span><h3 class="font-display text-base font-semibold text-cloud-dark">DevOps &amp; Automation</h3><p class="text-sm text-gray-400">CI/CD, Kubernetes, Infrastructure as Code and automation.</p><span class="text-link text-sm">Explore →</span></a>
+          <a href="#articles" class="pillar-card gsap-reveal" data-pillar="data-ai"><span class="pillar-ico" aria-hidden="true"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75z"/></svg></span><h3 class="font-display text-base font-semibold text-cloud-dark">Data &amp; AI</h3><p class="text-sm text-gray-400">Data platforms, analytics, AI infrastructure and intelligent systems.</p><span class="text-link text-sm">Explore →</span></a>
+          <a href="#articles" class="pillar-card gsap-reveal" data-pillar="digital-transformation"><span class="pillar-ico" aria-hidden="true"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5"/></svg></span><h3 class="font-display text-base font-semibold text-cloud-dark">Digital Transformation</h3><p class="text-sm text-gray-400">Enterprise modernization, application transformation and technology strategy.</p><span class="text-link text-sm">Explore →</span></a>
+          <a href="#articles" class="pillar-card gsap-reveal" data-pillar="enterprise-it"><span class="pillar-ico" aria-hidden="true"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2"/></svg></span><h3 class="font-display text-base font-semibold text-cloud-dark">Enterprise IT</h3><p class="text-sm text-gray-400">IT operations, resilience, governance and infrastructure strategy.</p><span class="text-link text-sm">Explore →</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section id="newsletter" class="bg-[#0F172A] py-14 sm:py-16" aria-labelledby="nl-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 text-center">
+        <p class="eyebrow mb-3 inline-flex justify-center gsap-reveal">JIT Global Insights</p>
+        <h2 id="nl-heading" class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight gsap-reveal">Stay Ahead of Enterprise Technology.</h2>
+        <p class="mt-3 text-white/55 text-sm sm:text-base max-w-xl mx-auto gsap-reveal">Get practical cloud, cybersecurity, infrastructure, and AI insights delivered to your inbox.</p>
+        <form class="newsletter-form mt-8 gsap-reveal" id="newsletter-form" novalidate>
+          <label for="nl-email" class="sr-only">Work email</label>
+          <input id="nl-email" type="email" required autocomplete="email" placeholder="Enter your work email" />
+          <button type="submit" class="btn-primary shrink-0">Subscribe to Insights</button>
+        </form>
+        <p class="nl-success" role="status">Thanks — you’re subscribed to JIT Global Insights.</p>
+      </div>
+    </section>
+
+    <!-- PAGINATION -->
+    <section class="bg-white py-10" aria-label="Pagination">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-center gap-2 flex-wrap" id="pagination">
+          <button type="button" class="page-btn" data-page="prev" aria-label="Previous page">← Previous</button>
+          <button type="button" class="page-btn is-active" data-page="1" aria-current="page">1</button>
+          <button type="button" class="page-btn" data-page="2">2</button>
+          <button type="button" class="page-btn" data-page="3">3</button>
+          <button type="button" class="page-btn" data-page="4">4</button>
+          <button type="button" class="page-btn" data-page="5">5</button>
+          <button type="button" class="page-btn" data-page="next" aria-label="Next page">Next →</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="bg-[#F4F4F5] py-16 sm:py-20" aria-labelledby="final-cta-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 text-center">
+        <h2 id="final-cta-heading" class="font-display text-2xl sm:text-3xl font-bold text-cloud-dark tracking-tight gsap-reveal">Need a Technology Partner for What’s Next?</h2>
+        <p class="mt-4 text-gray-400 text-base max-w-2xl mx-auto leading-relaxed gsap-reveal">From cloud modernization to secure enterprise infrastructure, JIT Global helps organizations build technology environments ready for what’s next.</p>
+        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3 gsap-reveal">
+          <a href="index.html#cta" class="btn-primary">Talk to a Cloud Expert</a>
+          <a href="index.html#services" class="btn-outline">View Our Services</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#0F172A] text-gray-400" role="contentinfo">
+    <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-14">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <a href="index.html" class="font-display text-lg font-semibold text-white">JIT Global</a>
+          <p class="mt-3 text-sm leading-relaxed max-w-xs text-gray-500">Secure cloud transformation for enterprises that can’t afford downtime.</p>
+          <div class="mt-4 space-y-1.5 text-sm">
+            <a href="mailto:sales@jitglobal.net" class="block hover:text-accent">sales@jitglobal.net</a>
+            <a href="tel:+917810099942" class="block hover:text-accent">+91 78100 99942</a>
+          </div>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Services</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="cloud-migration-modernization.html" class="hover:text-accent">Cloud Migration &amp; Modernization</a></li>
+            <li><a href="index.html#svc-infra" class="hover:text-accent">Infrastructure Management</a></li>
+            <li><a href="index.html#svc-security" class="hover:text-accent">Cybersecurity &amp; Compliance</a></li>
+            <li><a href="index.html#svc-data" class="hover:text-accent">Data Engineering &amp; Analytics</a></li>
+            <li><a href="index.html#svc-apps" class="hover:text-accent">Application Development</a></li>
+            <li><a href="index.html#svc-devops" class="hover:text-accent">DevOps &amp; Automation</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Industries</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="index.html#industries" class="hover:text-accent">Banking</a></li>
+            <li><a href="healthcare-life-sciences.html" class="hover:text-accent">Healthcare</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent">Manufacturing</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent">Retail</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent">Logistics</a></li>
+            <li><a href="index.html#industries" class="hover:text-accent">Technology</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Company</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="about.html" class="hover:text-accent">About Us</a></li>
+            <li><a href="blog.html" class="text-accent">Blog</a></li>
+            <li><a href="success-stories.html" class="hover:text-accent">Success Stories</a></li>
+            <li><a href="index.html#cta" class="hover:text-accent">Careers</a></li>
+            <li><a href="index.html#cta" class="hover:text-accent">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Contact</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="mailto:sales@jitglobal.net" class="hover:text-accent">sales@jitglobal.net</a></li>
+            <li><a href="tel:+917810099942" class="hover:text-accent">+91 78100 99942</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-white/10 text-xs text-gray-600">
+        <p>© <span id="year"></span> JIT Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => nav.classList.toggle('nav-scrolled', window.scrollY > 8), { passive: true });
+
+      const company = document.getElementById('nav-company');
+      const companyBtn = document.getElementById('company-btn');
+      if (company && companyBtn) {
+        const open = () => { company.classList.add('is-open'); companyBtn.setAttribute('aria-expanded', 'true'); };
+        const close = () => { company.classList.remove('is-open'); companyBtn.setAttribute('aria-expanded', 'false'); };
+        companyBtn.addEventListener('click', (e) => { e.stopPropagation(); company.classList.contains('is-open') ? close() : open(); });
+        company.addEventListener('mouseenter', open);
+        company.addEventListener('mouseleave', close);
+        document.addEventListener('click', (e) => { if (!company.contains(e.target)) close(); });
+      }
+
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+      const setMenu = (open) => {
+        menu.hidden = !open;
+        menu.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      };
+      toggle.addEventListener('click', () => setMenu(menu.hidden));
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+      let activeFilter = 'all';
+      let query = '';
+      let page = 1;
+      const perPage = 9;
+      const cards = () => Array.from(document.querySelectorAll('.article-card'));
+
+      const apply = () => {
+        const all = cards();
+        const matched = all.filter((card) => {
+          const cat = card.getAttribute('data-category') || '';
+          const title = (card.getAttribute('data-title') || '') + ' ' + (card.getAttribute('data-desc') || '');
+          const catOk = activeFilter === 'all' || cat === activeFilter;
+          const qOk = !query || title.toLowerCase().includes(query);
+          return catOk && qOk;
+        });
+        all.forEach((c) => { c.hidden = true; });
+        const start = (page - 1) * perPage;
+        matched.slice(start, start + perPage).forEach((c) => { c.hidden = false; });
+        document.getElementById('no-results').classList.toggle('hidden', matched.length > 0);
+        const pages = Math.max(1, Math.ceil(matched.length / perPage));
+        if (page > pages) page = pages;
+        document.querySelectorAll('.page-btn[data-page]').forEach((btn) => {
+          const p = btn.getAttribute('data-page');
+          if (p === 'prev') btn.disabled = page <= 1;
+          else if (p === 'next') btn.disabled = page >= pages;
+          else {
+            const n = Number(p);
+            btn.classList.toggle('is-active', n === page);
+            btn.hidden = n > pages;
+          }
+        });
+      };
+
+      document.querySelectorAll('.filter-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          activeFilter = btn.getAttribute('data-filter');
+          page = 1;
+          document.querySelectorAll('.filter-btn').forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          apply();
+        });
+      });
+
+      document.querySelectorAll('.pillar-card[data-pillar]').forEach((p) => {
+        p.addEventListener('click', (e) => {
+          e.preventDefault();
+          const f = p.getAttribute('data-pillar');
+          const btn = document.querySelector('.filter-btn[data-filter="' + f + '"]');
+          if (btn) btn.click();
+          document.getElementById('articles').scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+
+      document.getElementById('blog-search').addEventListener('input', (e) => {
+        query = e.target.value.trim().toLowerCase();
+        page = 1;
+        apply();
+      });
+
+      document.querySelectorAll('.page-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          const p = btn.getAttribute('data-page');
+          if (p === 'prev') page = Math.max(1, page - 1);
+          else if (p === 'next') page += 1;
+          else page = Number(p) || 1;
+          apply();
+          document.getElementById('articles').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+
+      apply();
+
+      document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!e.target.checkValidity()) { e.target.reportValidity(); return; }
+        document.getElementById('newsletter').classList.add('is-success');
+      });
+
+      if (window.gsap) {
+        const mm = gsap.matchMedia();
+        mm.add({
+          reduceMotion: '(prefers-reduced-motion: reduce)',
+          motionOk: '(prefers-reduced-motion: no-preference)',
+        }, (ctx) => {
+          if (ctx.conditions.reduceMotion) {
+            gsap.set('.gsap-reveal', { clearProps: 'all' });
+            return;
+          }
+          gsap.from('.gsap-reveal', {
+            y: 24, autoAlpha: 0, duration: 0.65, ease: 'power2.out', stagger: 0.07, clearProps: 'transform',
+          });
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
