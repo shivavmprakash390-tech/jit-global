@@ -1,52 +1,28 @@
-SUCCESS
+deploy started 02-09-2026 17:19:06 (VBS _interval_force_deploy)
+live_url=https://shivavmprakash390-tech.github.io/jit-global/
+blog_url=https://shivavmprakash390-tech.github.io/jit-global/blog.html
 
-deploy started VBS_STARTUP 02-09-2026 17:18:38
 === copy ===
-COPIED blog.html (47372 bytes)
-COPIED index.html (4935789 bytes)
-COPIED about.html (111254 bytes)
-COPIED logo.png (97843 bytes)
-COPIED svc-migration-featured.jpg (198097 bytes)
-COPIED blog-featured.jpg (175295 bytes)
+copied blog.html (47372 bytes)
+copied index.html (4935789 bytes)
+copied about.html (111254 bytes)
+copied logo.png (97843 bytes)
+copied svc-migration-featured.jpg (198097 bytes)
+copied blog-featured.jpg (175295 bytes)
+
 === git ===
 > git add -A
-exit: 0
-stdout:
+warning: in the working copy of '_deploy_status.txt', LF will be replaced by CRLF the next time Git touches it
 
-stderr:
-warning: in the working copy of 'blog.html', LF will be replaced by CRLF the next time Git touches it
-
+exit 0
 > git commit -m "Add Blog page and Company nav Blog link"
-exit: 0
-stdout:
-[main 56ddb89] Add Blog page and Company nav Blog link
- 2 files changed, 5 deletions(-)
- delete mode 100644 _do_deploy.bat
- create mode 100644 blog-featured.jpg
+[main a052319] Add Blog page and Company nav Blog link
+ 1 file changed, 42 insertions(+), 55 deletions(-)
 
-stderr:
-
+exit 0
 > git push origin main
-exit: 0
-stdout:
-
-stderr:
 To https://github.com/shivavmprakash390-tech/jit-global.git
-   64c1ca8..56ddb89  main -> main
+   56ddb89..a052319  main -> main
 
-> git rev-parse HEAD
-exit: 0
-stdout:
-56ddb897d0bb5a693ee7b8803085aebf197c0c10
-
-stderr:
-
-> git status -sb
-exit: 0
-stdout:
-## main...origin/main
-
-stderr:
-
-LIVE_URL=https://shivavmprakash390-tech.github.io/jit-global/blog.html
+exit 0
 DONE
