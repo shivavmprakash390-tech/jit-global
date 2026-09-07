@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | JIT Global</title>
+  <meta name="description" content="Contact JIT Global. Have questions about cloud, cybersecurity, or infrastructure? Fill out the form and our team will get back to you." />
+  <link rel="canonical" href="contact.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: { DEFAULT: '#62B5F7', hover: '#4AA3E8', soft: '#E8F4FD' },
+            cloud: { deep: '#1E3A8A', dark: '#0F172A', navy: '#0B1220' },
+            gray: {
+              50: '#F4F4F5', 100: '#E4E4E7', 200: '#D4D4D8', 300: '#A1A1AA',
+              400: '#71717A', 500: '#52525B', 600: '#3F3F46', 700: '#27272A',
+              800: '#18181B', 900: '#09090B',
+            },
+          },
+          fontFamily: {
+            display: ['"Space Grotesk"', 'system-ui', 'sans-serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['"Roboto Mono"', 'ui-monospace', 'monospace'],
+          },
+          maxWidth: { container: '1120px' },
+        },
+      },
+    };
+  </script>
+  <style>
+    :root {
+      --brand-accent: #62B5F7;
+      --brand-accent-hover: #4AA3E8;
+      --brand-deep: #1E3A8A;
+      --brand-dark: #0F172A;
+      --brand-navy: #0B1220;
+      --text-heading: #0F172A;
+      --text-body: #52525B;
+      --text-muted: #71717A;
+      --border-input: #D4D4D8;
+      --border-soft: #E4E4E7;
+      --bg-page: #FFFFFF;
+      --bg-soft: #F4F4F5;
+      --radius-btn: 6px;
+      --radius-card: 8px;
+    }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      color: var(--text-body);
+      background: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, .font-display { font-family: "Space Grotesk", system-ui, sans-serif; color: var(--text-heading); }
+
+    #navbar {
+      position: fixed; inset-inline: 0; top: 0; z-index: 50;
+      background: rgba(255,255,255,0.94); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-soft);
+      transition: box-shadow 0.25s;
+    }
+    #navbar.nav-scrolled { box-shadow: 0 6px 24px rgba(15,23,42,0.08); }
+    #navbar .nav-shell {
+      max-width: 1120px; margin: 0 auto; height: 4.15rem;
+      padding: 0 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+    }
+    #navbar .nav-brand {
+      display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+      font-family: "Space Grotesk", sans-serif; font-weight: 700; font-size: 1.05rem; color: var(--brand-dark);
+    }
+    #navbar .nav-brand img { height: 2.25rem; width: auto; display: block; }
+    #navbar .nav-center { display: none; flex: 1; justify-content: center; }
+    #navbar .nav-links { display: inline-flex; align-items: center; gap: 0.1rem; }
+    #navbar .nav-link {
+      display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.5rem 0.85rem;
+      font-size: 0.875rem; font-weight: 500; color: #52525B; border-radius: 0.5rem;
+      text-decoration: none; background: transparent; border: 0; cursor: pointer;
+    }
+    #navbar .nav-link:hover, #navbar .nav-item.is-open > .nav-link { color: var(--brand-dark); background: var(--bg-soft); }
+    #navbar .nav-link.is-active { color: var(--brand-accent); font-weight: 600; }
+    #navbar .nav-actions { display: flex; align-items: center; gap: 0.45rem; }
+    #navbar .nav-ghost {
+      display: none; align-items: center; height: 2.35rem; padding: 0 1rem; border-radius: var(--radius-btn);
+      border: 1px solid var(--border-soft); font-size: 0.8125rem; font-weight: 600; color: var(--brand-dark); text-decoration: none;
+    }
+    #navbar .nav-ghost:hover { border-color: var(--brand-accent); color: var(--brand-deep); }
+    #navbar .nav-cta {
+      display: none; align-items: center; height: 2.35rem; padding: 0 1.1rem; border-radius: var(--radius-btn);
+      background: var(--brand-accent); color: var(--brand-dark); font-size: 0.8125rem; font-weight: 600; text-decoration: none;
+    }
+    #navbar .nav-cta:hover { background: var(--brand-accent-hover); }
+    #navbar .nav-mobile-toggle {
+      display: inline-flex; width: 2.35rem; height: 2.35rem; align-items: center; justify-content: center;
+      border-radius: var(--radius-btn); border: 1px solid var(--border-soft); background: #fff; color: var(--brand-dark); cursor: pointer;
+    }
+    @media (min-width: 768px) { #navbar .nav-ghost, #navbar .nav-cta { display: inline-flex; } }
+    @media (min-width: 1024px) { #navbar .nav-center { display: flex; } #navbar .nav-mobile-toggle { display: none; } }
+
+    #navbar .nav-item { position: relative; }
+    .company-panel {
+      position: absolute; left: 0; top: 100%; margin: 0; padding: 0;
+      width: 11.5rem; opacity: 0; visibility: hidden; pointer-events: none; transition: 0.15s; z-index: 80;
+    }
+    .nav-item.is-open .company-panel {
+      opacity: 1; visibility: visible; pointer-events: auto;
+    }
+    .company-panel .panel-inner {
+      background: #fff; border: 1px solid var(--border-soft); border-radius: 0 0 0.75rem 0.75rem;
+      box-shadow: 0 12px 32px rgba(15,23,42,0.1); padding: 0.4rem;
+    }
+    .company-panel a {
+      display: block; padding: 0.55rem 0.75rem; border-radius: 0.5rem; font-size: 0.875rem; font-weight: 500;
+      color: #3F3F46; text-decoration: none;
+    }
+    .company-panel a:hover { background: var(--bg-soft); color: var(--brand-dark); }
+
+    #mobile-menu {
+      background: #fff; border-top: 1px solid var(--border-soft);
+      max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s, opacity 0.25s;
+    }
+    #mobile-menu.open { max-height: 70vh; opacity: 1; }
+    #mobile-menu[hidden] { display: none !important; }
+    @media (min-width: 1024px) { #mobile-menu { display: none !important; } }
+    #mobile-menu a, #mobile-menu summary {
+      display: block; padding: 0.7rem 1.25rem; font-size: 0.9375rem; font-weight: 500; color: #3F3F46; text-decoration: none;
+    }
+    #mobile-menu summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+    #mobile-menu summary::-webkit-details-marker { display: none; }
+    #mobile-menu .mobile-acc-body { margin-left: 1.25rem; padding: 0.25rem 0 0.5rem 0.85rem; border-left: 1px solid var(--border-soft); }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; justify-content: center;
+      border-radius: var(--radius-btn); padding: 0.8rem 1.5rem; font-size: 0.9rem; font-weight: 600;
+      background: var(--brand-accent); color: var(--brand-dark); text-decoration: none; border: 0; cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn-primary:hover { background: var(--brand-accent-hover); }
+    .btn-primary:focus-visible, .nav-link:focus-visible, .contact-input:focus-visible, .contact-check:focus-visible {
+      outline: 2px solid var(--brand-accent); outline-offset: 2px;
+    }
+
+    .contact-sub {
+      color: var(--brand-accent);
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-weight: 600;
+    }
+    .contact-link { color: var(--brand-deep); text-decoration: none; font-weight: 500; }
+    .contact-link:hover { color: var(--brand-accent); }
+
+    .map-wrap {
+      border-radius: var(--radius-card);
+      overflow: hidden;
+      border: 1px solid var(--border-soft);
+      background: var(--bg-soft);
+      aspect-ratio: 16 / 11;
+      min-height: 240px;
+    }
+    .map-wrap iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+    .contact-label {
+      display: block; font-size: 0.875rem; font-weight: 500; color: var(--text-heading); margin-bottom: 0.4rem;
+    }
+    .req { color: #DC2626; margin-left: 0.1rem; }
+    .contact-input {
+      width: 100%; border: 1px solid var(--border-input); border-radius: var(--radius-btn);
+      padding: 0.75rem 0.9rem; font-size: 0.9375rem; color: var(--text-heading); background: #fff;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .contact-input:focus {
+      border-color: var(--brand-accent);
+      box-shadow: 0 0 0 3px rgba(98, 181, 247, 0.22);
+      outline: none;
+    }
+    textarea.contact-input { min-height: 140px; resize: vertical; }
+    .consent-text { font-size: 0.75rem; line-height: 1.55; color: var(--text-muted); }
+    .consent-text a { color: var(--brand-deep); text-decoration: underline; text-underline-offset: 2px; }
+    .consent-text a:hover { color: var(--brand-accent); }
+
+    .form-success { display: none; text-align: center; padding: 2rem 1rem; }
+    #contact-form-card.is-success .contact-form-fields { display: none; }
+    #contact-form-card.is-success .form-success { display: block; }
+  </style>
+</head>
+<body>
+  <header id="navbar">
+    <div class="nav-shell">
+      <a href="index.html" class="nav-brand" aria-label="JIT Global home">
+        <img src="logo.png" alt="" width="36" height="36" />
+        JIT Global
+      </a>
+      <div class="nav-center">
+        <nav class="nav-links" aria-label="Primary">
+          <a href="index.html#services" class="nav-link">Services</a>
+          <a href="index.html#industries" class="nav-link">Industries</a>
+          <a href="success-stories.html" class="nav-link">Success Stories</a>
+          <div class="nav-item" id="nav-company">
+            <button type="button" class="nav-link" id="company-btn" aria-expanded="false" aria-controls="company-panel">
+              Company
+              <svg class="h-3.5 w-3.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+            </button>
+            <div id="company-panel" class="company-panel" role="menu">
+              <div class="panel-inner">
+                <a href="about.html" role="menuitem">About Us</a>
+                <a href="blog.html" role="menuitem">Blog</a>
+              </div>
+            </div>
+          </div>
+          <a href="contact.html" class="nav-link is-active" aria-current="page">Contact</a>
+        </nav>
+      </div>
+      <div class="nav-actions">
+        <a href="success-stories.html" class="nav-ghost">View Success Stories</a>
+        <a href="index.html#cta" class="nav-cta">Request a Demo</a>
+        <button type="button" id="menu-toggle" class="nav-mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Open menu">
+          <svg id="icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="icon-close" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" hidden>
+      <nav aria-label="Mobile">
+        <a href="index.html#services">Services</a>
+        <a href="index.html#industries">Industries</a>
+        <a href="success-stories.html">Success Stories</a>
+        <details>
+          <summary>Company <svg class="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
+          <div class="mobile-acc-body">
+            <a href="about.html" class="!py-1.5 !px-0 text-sm">About Us</a>
+            <a href="blog.html" class="!py-1.5 !px-0 text-sm">Blog</a>
+          </div>
+        </details>
+        <a href="contact.html" style="color:#62B5F7;font-weight:600">Contact</a>
+        <div class="px-5 py-4 flex flex-col gap-2 border-t border-gray-100">
+          <a href="success-stories.html" class="nav-ghost !flex justify-center">View Success Stories</a>
+          <a href="index.html#cta" class="nav-cta !flex justify-center">Request a Demo</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main class="pt-[4.15rem]">
+    <section class="bg-white py-14 sm:py-16 lg:py-20" aria-labelledby="contact-heading">
+      <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
+        <div class="max-w-2xl">
+          <h1 id="contact-heading" class="font-display text-4xl sm:text-5xl font-bold tracking-tight text-cloud-dark">
+            Contact Us
+          </h1>
+          <p class="contact-sub mt-3 text-xl sm:text-2xl">Have Questions?</p>
+          <p class="mt-4 text-base text-gray-500 leading-relaxed max-w-xl">
+            We are here to help, if you have any questions feel free to fill out the form and we will get back to you.
+          </p>
+        </div>
+
+        <div class="mt-12 grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
+          <!-- Left: info + map -->
+          <div>
+            <address class="not-italic text-[0.95rem] leading-relaxed text-cloud-dark space-y-1">
+              <p>2555 Augustine Drive</p>
+              <p>Santa Clara, CA 95054</p>
+              <p class="pt-2">
+                <a href="tel:+917810099942" class="contact-link">+91 78100 99942</a>
+              </p>
+              <p>
+                <a href="mailto:sales@jitglobal.net" class="contact-link">sales@jitglobal.net</a>
+              </p>
+            </address>
+
+            <div class="map-wrap mt-8">
+              <iframe
+                title="Map — Santa Clara, CA 95054, USA"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://maps.google.com/maps?q=Santa%20Clara%2C%20CA%2095054%2C%20USA&z=13&output=embed"
+                allowfullscreen
+              ></iframe>
+            </div>
+            <p class="mt-3 text-xs text-gray-400">Map centered on Santa Clara, CA 95054, USA</p>
+          </div>
+
+          <!-- Right: form -->
+          <div id="contact-form-card">
+            <form id="contact-form" class="contact-form-fields space-y-5" novalidate>
+              <div>
+                <label class="contact-label" for="first-name">First Name<span class="req" aria-hidden="true">*</span></label>
+                <input class="contact-input" id="first-name" name="firstName" type="text" required autocomplete="given-name" />
+              </div>
+              <div>
+                <label class="contact-label" for="last-name">Last Name<span class="req" aria-hidden="true">*</span></label>
+                <input class="contact-input" id="last-name" name="lastName" type="text" required autocomplete="family-name" />
+              </div>
+              <div>
+                <label class="contact-label" for="job-title">Job Title<span class="req" aria-hidden="true">*</span></label>
+                <input class="contact-input" id="job-title" name="jobTitle" type="text" required autocomplete="organization-title" />
+              </div>
+              <div>
+                <label class="contact-label" for="company-name">Company Name<span class="req" aria-hidden="true">*</span></label>
+                <input class="contact-input" id="company-name" name="companyName" type="text" required autocomplete="organization" />
+              </div>
+              <div>
+                <label class="contact-label" for="email">Email<span class="req" aria-hidden="true">*</span></label>
+                <input class="contact-input" id="email" name="email" type="email" required autocomplete="email" />
+              </div>
+              <div>
+                <label class="contact-label" for="phone">Phone Number<span class="req" aria-hidden="true">*</span></label>
+                <input class="contact-input" id="phone" name="phone" type="tel" required autocomplete="tel" />
+              </div>
+              <div>
+                <label class="contact-label" for="message">Message</label>
+                <textarea class="contact-input" id="message" name="message" rows="5"></textarea>
+              </div>
+
+              <div class="flex items-start gap-3 pt-1">
+                <input class="contact-check mt-1 h-4 w-4 shrink-0 accent-[#62B5F7]" id="agree" name="agree" type="checkbox" required />
+                <label for="agree" class="text-sm text-cloud-dark leading-snug">
+                  I agree to receive communications from JIT Global.<span class="req" aria-hidden="true">*</span>
+                </label>
+              </div>
+
+              <p class="consent-text">
+                By submitting this form, you consent to JIT Global’s processing and storing of the contact information you submitted so we can provide you with the content you have requested. We may also send you promotional materials related to our content and services. You can unsubscribe from these communications at any time. For more information, please review our
+                <a href="#">privacy policy</a>.
+              </p>
+
+              <button type="submit" class="btn-primary mt-2">Submit</button>
+            </form>
+
+            <div class="form-success" role="status">
+              <p class="font-display text-xl font-semibold text-cloud-dark">Thank you</p>
+              <p class="mt-2 text-sm text-gray-500">We’ve received your message and will get back to you shortly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#0F172A] text-gray-400" role="contentinfo">
+    <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-14">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
+        <div class="lg:col-span-4">
+          <a href="index.html" class="font-display text-lg font-semibold text-white">JIT Global</a>
+          <p class="mt-3 text-sm leading-relaxed max-w-xs text-gray-500">Secure cloud transformation for enterprises that can’t afford downtime.</p>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Services</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="cloud-migration-modernization.html" class="hover:text-accent">Cloud Migration</a></li>
+            <li><a href="index.html#svc-infra" class="hover:text-accent">Infrastructure</a></li>
+            <li><a href="index.html#svc-security" class="hover:text-accent">Cybersecurity</a></li>
+            <li><a href="index.html#svc-data" class="hover:text-accent">Data &amp; Analytics</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Company</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="about.html" class="hover:text-accent">About Us</a></li>
+            <li><a href="blog.html" class="hover:text-accent">Blog</a></li>
+            <li><a href="contact.html" class="text-accent">Contact</a></li>
+          </ul>
+        </div>
+        <div class="lg:col-span-2">
+          <h3 class="font-display text-xs font-semibold tracking-[0.12em] uppercase text-white">Contact</h3>
+          <ul class="mt-4 space-y-2.5 text-sm">
+            <li><a href="mailto:sales@jitglobal.net" class="hover:text-accent">sales@jitglobal.net</a></li>
+            <li><a href="tel:+917810099942" class="hover:text-accent">+91 78100 99942</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="mt-12 pt-6 border-t border-white/10 text-xs text-gray-600">
+        <p>© <span id="year"></span> JIT Global. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      document.getElementById('year').textContent = new Date().getFullYear();
+      const nav = document.getElementById('navbar');
+      window.addEventListener('scroll', () => nav.classList.toggle('nav-scrolled', window.scrollY > 8), { passive: true });
+
+      const company = document.getElementById('nav-company');
+      const companyBtn = document.getElementById('company-btn');
+      if (company && companyBtn) {
+        const open = () => { company.classList.add('is-open'); companyBtn.setAttribute('aria-expanded', 'true'); };
+        const close = () => { company.classList.remove('is-open'); companyBtn.setAttribute('aria-expanded', 'false'); };
+        companyBtn.addEventListener('click', (e) => { e.stopPropagation(); company.classList.contains('is-open') ? close() : open(); });
+        company.addEventListener('mouseenter', open);
+        company.addEventListener('mouseleave', close);
+        document.addEventListener('click', (e) => { if (!company.contains(e.target)) close(); });
+      }
+
+      const toggle = document.getElementById('menu-toggle');
+      const menu = document.getElementById('mobile-menu');
+      const iconOpen = document.getElementById('icon-open');
+      const iconClose = document.getElementById('icon-close');
+      const setMenu = (open) => {
+        menu.hidden = !open;
+        menu.classList.toggle('open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        iconOpen.classList.toggle('hidden', open);
+        iconClose.classList.toggle('hidden', !open);
+      };
+      toggle.addEventListener('click', () => setMenu(menu.hidden));
+      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
+
+      document.getElementById('contact-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!e.target.checkValidity()) { e.target.reportValidity(); return; }
+        document.getElementById('contact-form-card').classList.add('is-success');
+      });
+    })();
+  </script>
+</body>
+</html>
