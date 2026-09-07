@@ -1557,14 +1557,9 @@
       transition: transform 0.2s ease-out, box-shadow 0.3s ease;
     }
 
-    /* Base mega panel — flush under parent (final overrides later in file) */
+    /* Base mega panel (Services/Tech/Industry overridden to fixed wide panels later) */
     #navbar .nav-item { position: relative; }
     .mega-panel {
-      position: absolute;
-      left: 0;
-      top: 100%;
-      transform: none;
-      width: min(42rem, calc(100vw - 2rem));
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
@@ -1577,7 +1572,6 @@
       opacity: 1;
       visibility: visible;
       pointer-events: auto;
-      transform: none;
     }
     @media (min-width: 1024px) {
       #mobile-menu { display: none !important; }
@@ -2271,66 +2265,101 @@
   
     
   
-    /* ===== MEGA NAV: flush under parent, shared hover zone ===== */
+    /* ===== MEGA NAV ===== */
     #navbar .nav-center,
     #navbar .nav-links,
     #navbar .nav-item,
     #navbar .nav-shell {
       overflow: visible !important;
     }
-    #navbar .nav-item {
-      position: relative !important;
+    #navbar .nav-item { position: relative !important; }
+
+    /*
+      Services / Technology / Industries — restore older wide fixed mega panels
+      (centered under header). Company stays a compact dropdown under its button.
+    */
+    #nav-services > .mega-panel,
+    #nav-technology > .mega-panel,
+    #nav-industries > .mega-panel {
+      position: fixed !important;
+      left: 50% !important;
+      top: 4.5rem !important;
+      right: auto !important;
+      bottom: auto !important;
+      transform: translateX(-50%) !important;
+      width: min(1120px, calc(100vw - 2rem)) !important;
+      max-width: calc(100vw - 2rem) !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.18s ease, visibility 0.18s ease;
+      z-index: 100 !important;
     }
-    /* Every dropdown sits flush under its parent button — zero gap */
-    .mega-panel {
+    /* Hit bridge: closes the gap between nav bar and fixed mega so hover doesn't break */
+    #nav-services > .mega-panel::before,
+    #nav-technology > .mega-panel::before,
+    #nav-industries > .mega-panel::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1.25rem;
+      height: 1.25rem;
+      background: transparent;
+    }
+    #nav-services.is-open > .mega-panel,
+    #nav-technology.is-open > .mega-panel,
+    #nav-industries.is-open > .mega-panel {
+      opacity: 1 !important;
+      visibility: visible !important;
+      pointer-events: auto !important;
+      transform: translateX(-50%) !important;
+    }
+
+    /* Company — compact dropdown flush under its button */
+    #nav-company > .mega-panel {
       position: absolute !important;
       top: 100% !important;
       left: 0 !important;
       right: auto !important;
-      bottom: auto !important;
       transform: none !important;
+      width: 14rem !important;
+      min-width: 14rem !important;
       margin: 0 !important;
       padding: 0 !important;
-      width: min(42rem, calc(100vw - 2rem)) !important;
-      max-width: calc(100vw - 1rem) !important;
       opacity: 0;
       visibility: hidden;
       pointer-events: none;
       transition: opacity 0.15s ease, visibility 0.15s ease;
       z-index: 100 !important;
     }
-    #nav-technology > .mega-panel {
-      width: min(48rem, calc(100vw - 2rem)) !important;
-    }
-    #nav-industries > .mega-panel {
-      width: min(48rem, calc(100vw - 2rem)) !important;
-    }
-    #nav-company > .mega-panel {
-      width: 14rem !important;
-      min-width: 14rem !important;
-    }
-    .nav-item.is-open > .mega-panel {
+    #nav-company.is-open > .mega-panel {
       opacity: 1 !important;
       visibility: visible !important;
       pointer-events: auto !important;
       transform: none !important;
     }
+
     .mega-inner {
       display: block !important;
       width: 100% !important;
       overflow: hidden !important;
-      border-radius: 0 0 1rem 1rem !important;
+      border-radius: 1rem !important;
       border: 1px solid rgba(98,181,247,0.2) !important;
-      border-top: 1px solid rgba(98,181,247,0.28) !important;
       background: #0B1220 !important;
       box-shadow: 0 24px 64px rgba(2,6,23,0.65) !important;
+    }
+    #nav-company .mega-inner {
+      border-radius: 0 0 0.75rem 0.75rem !important;
     }
     .mega-shell {
       display: flex !important;
       flex-direction: row !important;
       align-items: stretch !important;
       width: 100% !important;
-      min-height: 22rem !important;
+      min-height: 24rem !important;
       grid-template-columns: none !important;
     }
     .mega-side {
@@ -2364,9 +2393,9 @@
       box-sizing: border-box !important;
     }
     .mega-feature {
-      flex: 0 0 15.5rem !important;
-      width: 15.5rem !important;
-      max-width: 15.5rem !important;
+      flex: 0 0 16.5rem !important;
+      width: 16.5rem !important;
+      max-width: 16.5rem !important;
       display: flex !important;
       flex-direction: column !important;
       padding: 1.1rem !important;
@@ -2399,8 +2428,12 @@
     @media (max-width: 1023px) {
       .mega-feature { display: none !important; }
       .mega-side { flex-basis: 12rem !important; width: 12rem !important; max-width: 12rem !important; }
-      .mega-panel {
-        width: min(36rem, calc(100vw - 1.5rem)) !important;
+    }
+    @media (max-width: 640px) {
+      #nav-services > .mega-panel,
+      #nav-technology > .mega-panel,
+      #nav-industries > .mega-panel {
+        top: 4.15rem !important;
       }
     }
     .mega-panel-company .mega-simple:hover { color: #62B5F7 !important; }
