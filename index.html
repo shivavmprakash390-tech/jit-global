@@ -1570,8 +1570,7 @@
       transition: opacity 0.25s ease, transform 0.25s ease;
       z-index: 80;
     }
-    .nav-item.is-open .mega-panel,
-    .nav-item:hover .mega-panel {
+    .nav-item.is-open .mega-panel {
       opacity: 1;
       pointer-events: auto;
       transform: translateX(-35%) translateY(0) scale(1);
@@ -2130,8 +2129,7 @@
       transition: opacity 0.22s ease, transform 0.22s ease;
       z-index: 80;
     }
-    .nav-item.is-open .mega-panel,
-    .nav-item:hover .mega-panel {
+    .nav-item.is-open .mega-panel {
       opacity: 1;
       pointer-events: auto;
       transform: translateX(-50%) translateY(0) scale(1);
@@ -2291,18 +2289,27 @@
       transition: opacity 0.2s ease, transform 0.2s ease;
       z-index: 100 !important;
     }
-    .nav-item.is-open .mega-panel,
-    .nav-item:hover .mega-panel {
+    /* Keep open via .is-open (JS). Hover alone must not flash closed in the trigger→panel gap. */
+    .nav-item.is-open .mega-panel {
       opacity: 1 !important;
       pointer-events: auto !important;
       transform: translateX(-50%) translateY(0) !important;
+    }
+    /* Invisible bridge so cursor can travel from nav link into fixed mega panel */
+    .mega-panel::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -1.35rem;
+      height: 1.35rem;
+      background: transparent;
     }
     .mega-panel-tech {
       width: min(1120px, calc(100vw - 2rem)) !important;
       transform: translateX(-50%) translateY(8px) !important;
     }
-    .nav-item.is-open .mega-panel-tech,
-    .nav-item:hover .mega-panel-tech {
+    .nav-item.is-open .mega-panel-tech {
       transform: translateX(-50%) translateY(0) !important;
     }
     .mega-inner {
@@ -3983,47 +3990,19 @@
       toggle.addEventListener('click', () => setMenu(!menuOpen));
       menu.querySelectorAll('.mobile-link').forEach((l) => l.addEventListener('click', () => setMenu(false)));
 
-      // Services mega menu (functional navbar)
-      (function initServicesMega() {
-        const item = document.getElementById('nav-services');
-        const btn = document.getElementById('services-mega-btn');
+      // Services link scroll helper (open/close handled by initInnerMegas)
+      (function initServicesMegaLinks() {
         const panel = document.getElementById('services-mega');
-        if (!item || !btn || !panel) return;
-
-        const open = () => {
-          item.classList.add('is-open');
-          btn.setAttribute('aria-expanded', 'true');
-        };
-        const close = () => {
-          item.classList.remove('is-open');
-          btn.setAttribute('aria-expanded', 'false');
-        };
-
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (item.classList.contains('is-open')) close();
-          else open();
-        });
-        item.addEventListener('mouseenter', open);
-        item.addEventListener('mouseleave', close);
-        panel.querySelectorAll('a').forEach((a) => {
+        if (!panel) return;
+        panel.querySelectorAll('a[href^="#svc-"]').forEach((a) => {
           a.addEventListener('click', () => {
-            close();
-            // smooth scroll handled by browser; ensure carousel card is visible
             const id = a.getAttribute('href');
-            if (id && id.startsWith('#svc-')) {
-              setTimeout(() => {
-                const el = document.querySelector(id);
-                if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
-              }, 50);
-            }
+            if (!id) return;
+            setTimeout(() => {
+              const el = document.querySelector(id);
+              if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'center' });
+            }, 50);
           });
-        });
-        document.addEventListener('click', (e) => {
-          if (!item.contains(e.target)) close();
-        });
-        document.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') close();
         });
       })();
 
@@ -5040,62 +5019,80 @@
       })();
     })();
   
-      // Technology mega menu
-      (function initTechnologyMega() {
-        const item = document.getElementById('nav-technology');
-        const btn = document.getElementById('technology-mega-btn');
-        const panel = document.getElementById('technology-mega');
-        if (!item || !btn || !panel) return;
-        const open = () => { item.classList.add('is-open'); btn.setAttribute('aria-expanded', 'true'); };
-        const close = () => { item.classList.remove('is-open'); btn.setAttribute('aria-expanded', 'false'); };
-        btn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (item.classList.contains('is-open')) close(); else open();
-        });
-        item.addEventListener('mouseenter', open);
-        item.addEventListener('mouseleave', close);
-        panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
-        document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
-      })();
-
+      // Unified mega-nav: close delay + click outside + touch-safe (no hover on coarse pointers)
       (function initInnerMegas() {
-        const items = ['nav-services', 'nav-technology', 'nav-industries', 'nav-company'];
-        items.forEach((id) => {
+        const ids = ['nav-services', 'nav-technology', 'nav-industries', 'nav-company'];
+        const CLOSE_DELAY_MS = 220;
+        const canHover = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+        const controllers = [];
+
+        ids.forEach((id) => {
           const item = document.getElementById(id);
           if (!item) return;
           const btn = item.querySelector(':scope > .nav-link, :scope > button.nav-link');
           const panel = item.querySelector('.mega-panel');
           if (!btn || !panel) return;
+
+          let closeTimer = null;
+
+          const clearCloseTimer = () => {
+            if (closeTimer) {
+              clearTimeout(closeTimer);
+              closeTimer = null;
+            }
+          };
+
           const open = () => {
-            items.forEach((otherId) => {
-              const other = document.getElementById(otherId);
-              if (other && other !== item) {
-                other.classList.remove('is-open');
-                const ob = other.querySelector(':scope > .nav-link, :scope > button.nav-link');
-                if (ob) ob.setAttribute('aria-expanded', 'false');
-              }
-            });
+            clearCloseTimer();
+            controllers.forEach((c) => { if (c.item !== item) c.closeNow(); });
             item.classList.add('is-open');
             btn.setAttribute('aria-expanded', 'true');
           };
-          const close = () => {
+
+          const closeNow = () => {
+            clearCloseTimer();
             item.classList.remove('is-open');
             btn.setAttribute('aria-expanded', 'false');
           };
+
+          const scheduleClose = () => {
+            clearCloseTimer();
+            closeTimer = setTimeout(closeNow, CLOSE_DELAY_MS);
+          };
+
+          controllers.push({ item, open, closeNow, scheduleClose, clearCloseTimer });
+
+          // Click / tap toggle (works on mobile + desktop)
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            if (item.classList.contains('is-open')) close(); else open();
+            if (item.classList.contains('is-open')) closeNow();
+            else open();
           });
-          item.addEventListener('mouseenter', open);
-          item.addEventListener('mouseleave', close);
-          panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
-          document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
-          const sideBtns = item.querySelectorAll('.mega-side-btn');
-          sideBtns.forEach((sb) => {
+
+          // Desktop fine-pointer hover with intentional close delay
+          if (canHover) {
+            item.addEventListener('mouseenter', open);
+            item.addEventListener('mouseleave', scheduleClose);
+            // Panel is fixed; also listen on panel so entering it cancels close
+            panel.addEventListener('mouseenter', () => {
+              clearCloseTimer();
+              open();
+            });
+            panel.addEventListener('mouseleave', scheduleClose);
+          }
+
+          // Close after choosing a destination
+          panel.querySelectorAll('a').forEach((a) => {
+            a.addEventListener('click', () => closeNow());
+          });
+
+          // Sidebar tabs inside mega
+          item.querySelectorAll('.mega-side-btn').forEach((sb) => {
             sb.addEventListener('click', (e) => {
               e.stopPropagation();
+              clearCloseTimer();
               const tab = sb.getAttribute('data-mega-tab');
-              sideBtns.forEach((b) => {
+              item.querySelectorAll('.mega-side-btn').forEach((b) => {
                 const on = b === sb;
                 b.classList.toggle('is-active', on);
                 b.setAttribute('aria-selected', on ? 'true' : 'false');
@@ -5105,6 +5102,34 @@
               });
             });
           });
+
+          // Keyboard
+          btn.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              if (item.classList.contains('is-open')) closeNow();
+              else open();
+            }
+            if (e.key === 'ArrowDown' && item.classList.contains('is-open')) {
+              e.preventDefault();
+              const first = panel.querySelector('a, button.mega-side-btn');
+              if (first) first.focus();
+            }
+            if (e.key === 'Escape') closeNow();
+          });
+        });
+
+        document.addEventListener('click', (e) => {
+          controllers.forEach((c) => {
+            if (!c.item.contains(e.target) && !c.item.querySelector('.mega-panel')?.contains(e.target)) {
+              // panel is inside item in DOM, so contains covers it; still close if outside item
+              if (!c.item.contains(e.target)) c.closeNow();
+            }
+          });
+        });
+
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') controllers.forEach((c) => c.closeNow());
         });
       })();
 </script>
