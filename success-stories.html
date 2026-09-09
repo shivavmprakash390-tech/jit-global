@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="scroll-smooth" data-chrome-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -589,15 +589,17 @@
     .mega-panel-company .mega-simple:hover { color: #62B5F7 !important; }
 
   </style>
+    <link rel="stylesheet" href="chrome/chrome.css" data-chrome-asset="css" />
 </head>
 <body>
   <!-- NAVBAR -->
-  <header id="navbar">
+  <!-- ===================== NAVBAR (full-width glass bar) ===================== -->
+  <header id="navbar" class="nav-top" data-chrome-root data-chrome-component="nav">
     <div class="nav-shell">
-      <a href="index.html" class="nav-brand" aria-label="JIT Global home">
-        <img src="logo.png" alt="" width="36" height="36" />
-        JIT Global
+      <a href="index.html" class="nav-brand" aria-label="JIT Global home" title="JIT Global — Home">
+        <img src="logo.png" alt="JIT Global" width="140" height="140" decoding="async" />
       </a>
+
       <div class="nav-center">
         <nav class="nav-links" aria-label="Primary">
           <!-- SERVICES -->
@@ -896,7 +898,7 @@
             </div>
           </div>
 
-          <a href="success-stories.html" class="nav-link nav-active" aria-current="page">Success Stories</a>
+          <a href="success-stories.html" class="nav-link">Success Stories</a>
           <div class="nav-item" id="nav-company">
             <button type="button" class="nav-link" aria-expanded="false" aria-controls="company-mega" id="company-mega-btn">
               Company
@@ -909,11 +911,11 @@
               </div>
             </div>
           </div>
-                  <a href="contact.html" class="nav-link">Contact</a>
+          <a href="contact.html" class="nav-link">Contact</a>
         </nav>
       </div>
+
       <div class="nav-actions">
-        <a href="index.html#services" class="nav-ghost">View Services</a>
         <a href="contact.html" class="nav-cta">Contact</a>
         <button type="button" id="menu-toggle" class="nav-mobile-toggle" aria-controls="mobile-menu" aria-expanded="false" aria-label="Toggle menu">
           <svg id="icon-open" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.75" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
@@ -921,6 +923,7 @@
         </button>
       </div>
     </div>
+
     <div id="mobile-menu" hidden>
       <nav class="flex flex-col gap-0.5 px-5 py-4 max-h-[min(70vh,480px)] overflow-y-auto mx-auto max-w-container" aria-label="Mobile">
         <details class="mobile-acc">
@@ -929,12 +932,14 @@
             <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
           </summary>
           <div class="mobile-acc-body">
-            <a href="cloud-migration-modernization.html" class="mobile-link !py-1.5 !px-0 text-sm">Cloud Migration &amp; Modernization</a>
-            <a href="index.html#svc-infra" class="mobile-link !py-1.5 !px-0 text-sm">Cloud Infrastructure Management</a>
-            <a href="index.html#svc-security" class="mobile-link !py-1.5 !px-0 text-sm">Cybersecurity &amp; Compliance</a>
-            <a href="index.html#svc-data" class="mobile-link !py-1.5 !px-0 text-sm">Data Engineering &amp; Analytics</a>
-            <a href="index.html#svc-apps" class="mobile-link !py-1.5 !px-0 text-sm">Application Development</a>
-            <a href="index.html#svc-devops" class="mobile-link !py-1.5 !px-0 text-sm">DevOps &amp; Automation</a>
+            <p class="mobile-section-label" style="padding-left:0">Cloud &amp; infrastructure</p>
+            <a href="cloud-migration-modernization.html" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Cloud Migration &amp; Modernization</a>
+            <a href="index.html#svc-infra" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Cloud Infrastructure Management</a>
+            <a href="index.html#svc-security" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Cybersecurity &amp; Compliance</a>
+            <p class="mobile-section-label" style="padding-left:0;margin-top:0.5rem">Data, apps &amp; delivery</p>
+            <a href="index.html#svc-data" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Data Engineering &amp; Analytics</a>
+            <a href="index.html#svc-apps" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Application Development &amp; Integration</a>
+            <a href="index.html#svc-devops" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">DevOps &amp; Automation</a>
           </div>
         </details>
                         <details class="mobile-acc">
@@ -966,7 +971,7 @@
             <a href="index.html#industries" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Technology &amp; SaaS</a>
           </div>
         </details>
-        <a href="success-stories.html" class="mobile-link" style="color:#62B5F7;font-weight:600">Success Stories</a>
+        <a href="success-stories.html" class="mobile-link">Success Stories</a>
         <details class="mobile-acc">
           <summary>Company <svg class="h-3.5 w-3.5 opacity-70 nav-chev transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary>
           <div class="mobile-acc-body">
@@ -974,16 +979,15 @@
             <a href="blog.html" class="mobile-link !py-1.5 !px-0 text-sm text-white/70">Blog</a>
           </div>
         </details>
+        <a href="index.html#process" class="mobile-link">How We Work</a>
         <a href="contact.html" class="mobile-link">Contact</a>
-        <div class="mt-3 flex flex-col gap-2 pt-3 border-t border-gray-100">
-          <a href="index.html#services" class="nav-ghost !flex justify-center">View Services</a>
-          <a href="contact.html" class="nav-cta !flex justify-center">Contact</a>
+        <div class="mt-3 flex flex-col gap-2 pt-3 border-t border-white/10">
+          <a href="contact.html" class="nav-cta !flex w-full text-center justify-center mobile-link !h-11">Contact</a>
         </div>
       </nav>
     </div>
   </header>
-
-  <main class="pt-16">
+<main class="pt-16">
     <!-- HERO -->
     <section class="bg-white pt-14 sm:pt-16 pb-8 sm:pb-10" aria-labelledby="stories-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 text-center max-w-3xl">
@@ -1203,7 +1207,8 @@
   </main>
 
   <!-- FOOTER -->
-    <footer class="bg-black text-gray-400" role="contentinfo">
+    <!-- ===================== FOOTER ===================== -->
+    <footer class="bg-black text-gray-400" role="contentinfo" data-chrome-component="footer">
     <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8 py-14 sm:py-16">
       <div class="grid sm:grid-cols-2 lg:grid-cols-12 gap-10">
         <div class="lg:col-span-4">
@@ -1268,28 +1273,9 @@
       </div>
     </div>
   </footer>
-
-  <script>
+<script>
     (function () {
-      document.getElementById('year').textContent = new Date().getFullYear();
-
-      const nav = document.getElementById('navbar');
-      window.addEventListener('scroll', () => nav.classList.toggle('nav-scrolled', window.scrollY > 8), { passive: true });
       // keep shadow-only light nav
-
-      const toggle = document.getElementById('menu-toggle');
-      const menu = document.getElementById('mobile-menu');
-      const iconOpen = document.getElementById('icon-open');
-      const iconClose = document.getElementById('icon-close');
-      const setMenu = (open) => {
-        menu.hidden = !open;
-        menu.classList.toggle('open', open);
-        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-        iconOpen.classList.toggle('hidden', open);
-        iconClose.classList.toggle('hidden', !open);
-      };
-      toggle.addEventListener('click', () => setMenu(menu.hidden));
-      menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
 
       // Category filters
       const cards = Array.from(document.querySelectorAll('.story-card'));
@@ -1356,55 +1342,7 @@
         document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
       })();
 
-      (function initInnerMegas() {
-        const items = ['nav-services', 'nav-technology', 'nav-industries', 'nav-company'];
-        items.forEach((id) => {
-          const item = document.getElementById(id);
-          if (!item) return;
-          const btn = item.querySelector(':scope > .nav-link, :scope > button.nav-link');
-          const panel = item.querySelector('.mega-panel');
-          if (!btn || !panel) return;
-          const open = () => {
-            items.forEach((otherId) => {
-              const other = document.getElementById(otherId);
-              if (other && other !== item) {
-                other.classList.remove('is-open');
-                const ob = other.querySelector(':scope > .nav-link, :scope > button.nav-link');
-                if (ob) ob.setAttribute('aria-expanded', 'false');
-              }
-            });
-            item.classList.add('is-open');
-            btn.setAttribute('aria-expanded', 'true');
-          };
-          const close = () => {
-            item.classList.remove('is-open');
-            btn.setAttribute('aria-expanded', 'false');
-          };
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            if (item.classList.contains('is-open')) close(); else open();
-          });
-          item.addEventListener('mouseenter', open);
-          item.addEventListener('mouseleave', close);
-          panel.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
-          document.addEventListener('click', (e) => { if (!item.contains(e.target)) close(); });
-          const sideBtns = item.querySelectorAll('.mega-side-btn');
-          sideBtns.forEach((sb) => {
-            sb.addEventListener('click', (e) => {
-              e.stopPropagation();
-              const tab = sb.getAttribute('data-mega-tab');
-              sideBtns.forEach((b) => {
-                const on = b === sb;
-                b.classList.toggle('is-active', on);
-                b.setAttribute('aria-selected', on ? 'true' : 'false');
-              });
-              item.querySelectorAll('.mega-panel-body').forEach((body) => {
-                body.hidden = body.getAttribute('data-mega-panel') !== tab;
-              });
-            });
-          });
-        });
-      })();
-</script>
+      </script>
+    <script src="chrome/chrome.js" defer data-chrome-asset="js"></script>
 </body>
 </html>
