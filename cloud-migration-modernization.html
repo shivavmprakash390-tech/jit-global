@@ -155,7 +155,7 @@
     .btn-link { display: inline-flex; align-items: center; gap: 0.35rem; font-size: 0.875rem; font-weight: 600; color: var(--accent); text-decoration: none; }
     .btn-link:hover { color: var(--accent-hover); }
     .btn-primary:focus-visible, .btn-secondary:focus-visible, .btn-outline-light:focus-visible,
-    .nav-link:focus-visible, .tab-btn:focus-visible, .carousel-btn:focus-visible, .faq-item summary:focus-visible {
+    .nav-link:focus-visible, #use-cases .uc-tab:focus-visible, .carousel-btn:focus-visible, .faq-item summary:focus-visible {
       outline: 2px solid var(--accent); outline-offset: 2px;
     }
 
@@ -269,26 +269,122 @@
     }
     .btn-primary-partner:hover { background: #2B9ADF; }
 
-    /* Tabs */
-    .tabs-bar {
-      display: flex; flex-wrap: wrap; gap: 0.5rem; justify-content: center;
+    /* Use Cases — AWS-style tabbed panel (visual structure only) */
+    #use-cases .uc-tabs {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0;
+      border: 1px solid #E4E4E7;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #fff;
     }
-    .tab-btn {
-      border-radius: 9999px; padding: 0.65rem 1.15rem; font-size: 0.8125rem; font-weight: 600;
-      border: 1px solid var(--line); background: #fff; color: var(--ink); cursor: pointer;
-      transition: background 0.25s, color 0.25s, border-color 0.25s;
+    #use-cases .uc-tab {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.55rem;
+      min-height: 3.5rem;
+      padding: 0.85rem 0.75rem;
+      border: 0;
+      border-top: 3px solid transparent;
+      background: #fff;
+      color: #71717A;
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      line-height: 1.25;
+      text-align: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
-    .tab-btn:hover { border-color: var(--accent); }
-    .tab-btn.is-active {
-      background: var(--accent); color: #fff; border-color: var(--accent);
+    #use-cases .uc-tab svg { flex-shrink: 0; color: currentColor; }
+    #use-cases .uc-tab:hover { background: #F8FAFC; color: #0F172A; }
+    #use-cases .uc-tab.is-active {
+      background: #F4F4F5;
+      color: #0F172A;
+      border-top-color: #0F172A;
+      font-weight: 600;
     }
-    .tab-panel { display: none; }
-    .tab-panel.is-active { display: block; }
-    .tab-content-card {
-      background: rgba(55,172,241,0.08); border-radius: 14px; padding: 2rem 1.75rem;
+    #use-cases .uc-tab:focus-visible {
+      outline: 2px solid #62B5F7;
+      outline-offset: -2px;
+      z-index: 1;
+    }
+    #use-cases .uc-panel {
+      margin-top: 1.25rem;
+      border: 1px solid #E4E4E7;
+      border-radius: 8px;
+      background: #fff;
+      padding: clamp(1.25rem, 3vw, 2.25rem);
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+      gap: clamp(1.25rem, 3vw, 2.5rem);
+      align-items: center;
+      min-height: 20rem;
+    }
+    #use-cases .uc-copy h3 {
+      font-family: "Space Grotesk", system-ui, sans-serif;
+      font-size: clamp(1.35rem, 2.2vw, 1.85rem);
+      font-weight: 700;
+      color: #0F172A;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin: 0 0 0.85rem;
+    }
+    #use-cases .uc-copy p {
+      font-family: Inter, system-ui, sans-serif;
+      font-size: 1rem;
+      color: #71717A;
+      line-height: 1.7;
+      margin: 0;
+      max-width: 34rem;
+    }
+    #use-cases .uc-media {
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid #E4E4E7;
+      background: #F4F4F5;
+      aspect-ratio: 4 / 3;
+      min-height: 14rem;
+    }
+    #use-cases .uc-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: opacity 0.25s ease;
+    }
+    @media (max-width: 1023px) {
+      #use-cases .uc-tabs {
+        display: flex;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        -webkit-overflow-scrolling: touch;
+      }
+      #use-cases .uc-tab {
+        flex: 0 0 auto;
+        min-width: 12.5rem;
+        justify-content: flex-start;
+        padding: 0.9rem 1rem;
+        text-align: left;
+      }
+    }
+    @media (max-width: 767px) {
+      #use-cases .uc-panel {
+        grid-template-columns: 1fr;
+        min-height: 0;
+        padding: 1.15rem;
+      }
+      #use-cases .uc-media {
+        min-height: 12rem;
+        aspect-ratio: 16 / 10;
+        order: 3;
+      }
+      #use-cases .uc-copy { order: 1; }
     }
 
-    /* Case carousel — white section */
+/* Case carousel — white section */
     .cases-track { display: flex; gap: 1.25rem; transition: transform 0.4s ease; }
     .case-slide {
       flex: 0 0 calc(50% - 0.625rem); min-width: 0; border-radius: 14px; overflow: hidden;
@@ -1513,7 +1609,7 @@
       </div>
     </section>
 
-    <!-- 5. USE CASES — tabs (before partnership banner) -->
+    <!-- 5. USE CASES — AWS-style tabs (existing migration content) -->
     <section id="use-cases" class="py-20 sm:py-24 bg-white" aria-labelledby="usecases-heading">
       <div class="mx-auto max-w-container px-5 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto">
@@ -1523,36 +1619,33 @@
           </h2>
         </div>
 
-        <div class="tabs-bar mt-10" role="tablist" aria-label="Use cases">
-          <button type="button" class="tab-btn is-active" role="tab" id="tab-btn-1" aria-selected="true" aria-controls="tab-1" data-tab="1">Cloud Migration &amp; Infrastructure</button>
-          <button type="button" class="tab-btn" role="tab" id="tab-btn-2" aria-selected="false" aria-controls="tab-2" data-tab="2">Application Modernization</button>
-          <button type="button" class="tab-btn" role="tab" id="tab-btn-3" aria-selected="false" aria-controls="tab-3" data-tab="3">Cloud Optimization &amp; Managed Services</button>
-          <button type="button" class="tab-btn" role="tab" id="tab-btn-4" aria-selected="false" aria-controls="tab-4" data-tab="4">Data &amp; Cloud Modernization</button>
-        </div>
+        <div class="mt-10 reveal">
+          <div class="uc-tabs" role="tablist" aria-label="Use cases">
+            <button type="button" class="uc-tab is-active" role="tab" id="usecase-tab-0" aria-selected="true" aria-controls="usecase-panel" tabindex="0" data-uc-index="0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h13.5m0-13.5L21 7.5m0 0L16.5 12M21 7.5H7.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Cloud Migration &amp; Infrastructure</span>
+            </button>
+            <button type="button" class="uc-tab" role="tab" id="usecase-tab-1" aria-selected="false" aria-controls="usecase-panel" tabindex="-1" data-uc-index="1">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Application Modernization</span>
+            </button>
+            <button type="button" class="uc-tab" role="tab" id="usecase-tab-2" aria-selected="false" aria-controls="usecase-panel" tabindex="-1" data-uc-index="2">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22M2.25 18v-2.25m0 2.25h2.25" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Cloud Optimization &amp; Managed Services</span>
+            </button>
+            <button type="button" class="uc-tab" role="tab" id="usecase-tab-3" aria-selected="false" aria-controls="usecase-panel" tabindex="-1" data-uc-index="3">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Data &amp; Cloud Modernization</span>
+            </button>
+          </div>
 
-        <div class="mt-8">
-          <div id="tab-1" class="tab-panel is-active" role="tabpanel" aria-labelledby="tab-btn-1">
-            <div class="tab-content-card">
-              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Move critical infrastructure with confidence.</h3>
-              <p class="mt-3 text-gray-400 text-base leading-relaxed max-w-3xl">Move workloads, servers, databases, and enterprise infrastructure to the cloud with a structured migration strategy designed to minimize disruption.</p>
+          <div id="usecase-panel" class="uc-panel" role="tabpanel" aria-labelledby="usecase-tab-0">
+            <div class="uc-copy">
+              <h3 id="uc-title">Move critical infrastructure with confidence.</h3>
+              <p id="uc-desc">Move workloads, servers, databases, and enterprise infrastructure to the cloud with a structured migration strategy designed to minimize disruption.</p>
             </div>
-          </div>
-          <div id="tab-2" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-2" hidden>
-            <div class="tab-content-card">
-              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Transform legacy applications for what’s next.</h3>
-              <p class="mt-3 text-gray-400 text-base leading-relaxed max-w-3xl">Transform legacy applications and architectures into scalable, cloud-ready environments using modernization approaches aligned with your technical and business priorities.</p>
-            </div>
-          </div>
-          <div id="tab-3" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-3" hidden>
-            <div class="tab-content-card">
-              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Make your cloud environment work harder.</h3>
-              <p class="mt-3 text-gray-400 text-base leading-relaxed max-w-3xl">Improve performance, reliability, security, and cloud economics through continuous monitoring, optimization, automation, and managed operations.</p>
-            </div>
-          </div>
-          <div id="tab-4" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-4" hidden>
-            <div class="tab-content-card">
-              <h3 class="font-display text-xl sm:text-2xl font-semibold text-cloud-dark">Build a foundation for data, analytics, and AI.</h3>
-              <p class="mt-3 text-gray-400 text-base leading-relaxed max-w-3xl">Modernize data platforms and workloads to create scalable foundations for analytics, intelligence, reporting, and future AI initiatives.</p>
+            <div class="uc-media">
+              <img id="uc-image" src="svc-migration.jpg" alt="Cloud Migration &amp; Infrastructure" width="720" height="540" loading="lazy" />
             </div>
           </div>
         </div>
@@ -1825,22 +1918,88 @@
       });
 
       // Mobile
-      // Tabs
-      document.querySelectorAll('.tab-btn').forEach((b) => {
-        b.addEventListener('click', () => {
-          const id = b.getAttribute('data-tab');
-          document.querySelectorAll('.tab-btn').forEach((x) => {
-            const on = x === b;
-            x.classList.toggle('is-active', on);
-            x.setAttribute('aria-selected', on ? 'true' : 'false');
+      // Use Cases — AWS-style single panel tabs (existing migration content)
+      (function initUseCases() {
+        const useCases = [
+          {
+            tab: "Cloud Migration & Infrastructure",
+            title: "Move critical infrastructure with confidence.",
+            desc: "Move workloads, servers, databases, and enterprise infrastructure to the cloud with a structured migration strategy designed to minimize disruption.",
+            image: "svc-migration.jpg",
+            alt: "Cloud Migration & Infrastructure"
+          },
+          {
+            tab: "Application Modernization",
+            title: "Transform legacy applications for what’s next.",
+            desc: "Transform legacy applications and architectures into scalable, cloud-ready environments using modernization approaches aligned with your technical and business priorities.",
+            image: "process-assess.jpg",
+            alt: "Application Modernization"
+          },
+          {
+            tab: "Cloud Optimization & Managed Services",
+            title: "Make your cloud environment work harder.",
+            desc: "Improve performance, reliability, security, and cloud economics through continuous monitoring, optimization, automation, and managed operations.",
+            image: "process-optimize.jpg",
+            alt: "Cloud Optimization & Managed Services"
+          },
+          {
+            tab: "Data & Cloud Modernization",
+            title: "Build a foundation for data, analytics, and AI.",
+            desc: "Modernize data platforms and workloads to create scalable foundations for analytics, intelligence, reporting, and future AI initiatives.",
+            image: "svc-infra.jpg",
+            alt: "Data & Cloud Modernization"
+          }
+        ];
+
+        const tabs = Array.from(document.querySelectorAll('#use-cases .uc-tab'));
+        const titleEl = document.getElementById('uc-title');
+        const descEl = document.getElementById('uc-desc');
+        const imageEl = document.getElementById('uc-image');
+        const panel = document.getElementById('usecase-panel');
+        if (!tabs.length || !titleEl || !descEl || !imageEl || !panel) return;
+
+        let active = 0;
+        const render = (index) => {
+          const item = useCases[index];
+          if (!item) return;
+          active = index;
+          titleEl.textContent = item.title;
+          descEl.textContent = item.desc;
+          imageEl.src = item.image;
+          imageEl.alt = item.alt;
+          panel.setAttribute('aria-labelledby', 'usecase-tab-' + index);
+          tabs.forEach((tab, i) => {
+            const on = i === index;
+            tab.classList.toggle('is-active', on);
+            tab.setAttribute('aria-selected', on ? 'true' : 'false');
+            tab.tabIndex = on ? 0 : -1;
           });
-          document.querySelectorAll('.tab-panel').forEach((p) => {
-            const on = p.id === 'tab-' + id;
-            p.classList.toggle('is-active', on);
-            p.hidden = !on;
+        };
+
+        tabs.forEach((tab) => {
+          tab.addEventListener('click', () => {
+            const index = Number(tab.getAttribute('data-uc-index') || '0');
+            render(index);
           });
         });
-      });
+
+        const tablist = document.querySelector('#use-cases .uc-tabs');
+        if (tablist) {
+          tablist.addEventListener('keydown', (evt) => {
+            if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(evt.key)) return;
+            evt.preventDefault();
+            let next = active;
+            if (evt.key === 'ArrowRight') next = (active + 1) % useCases.length;
+            if (evt.key === 'ArrowLeft') next = (active - 1 + useCases.length) % useCases.length;
+            if (evt.key === 'Home') next = 0;
+            if (evt.key === 'End') next = useCases.length - 1;
+            render(next);
+            tabs[next].focus();
+          });
+        }
+
+        render(0);
+      })();
 
       // FAQ aria + accordion (native details, sync aria)
       document.querySelectorAll('.faq-item').forEach((d) => {
